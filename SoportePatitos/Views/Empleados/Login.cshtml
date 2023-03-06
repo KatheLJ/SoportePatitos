@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<!-- Header -->
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!--Título de la sección-->
+                <h1>Inicio de sesión</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Form de iniciar sesion -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h3>Ingrese para revisar <em>la información de su cuenta</em></h3>
+                    <span> Asegurese que el usuario y la contraseña sean los que colocó en el registro </span>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="col-md-12">
+                <form id="login" action="InicioSesion" controller="Empleados" method="get">
+                    <br />
+
+                    <!--Para digitar el usuario-->
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <fieldset>
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Usuario<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input name="Usuario" type="text" class="form-control" id="usuario" placeholder="Ej: JuanMora" required="">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <!--Para digitar la contraseña-->
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <fieldset>
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Contraseña<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input name="Contraseña" type="password" class="form-control" placeholder="*******" id="contrasena" required="">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <span style="color: #ffffff;">
+                                        Gerencia <i class="fa fa-user"></i>
+                                        <input name="Rol" type="radio" value="1" class="custom-radio" id="rol" placeholder="Rol" required=""> RH<i class="fa fa-user"></i>
+                                        <input name="Rol" type="radio" class="btn-group" id="rol" placeholder="Rol" required="" value="2">Empleado<i class="fa fa-user"></i>
+                                        <input name="Rol" type="radio" class="btn-group" id="rol" placeholder="Rol" required="" value="3">
+                                    </span>
+                                </fieldset>
+                            </div>
+                        </div>
+
+
+                    <!--Para digitar el tipo de Perfil-->
+                    <!--<div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <fieldset>
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Perfil<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input name="ID_perfil" type="number" class="form-control" id="ID_perfil" required="">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>-->
+
+                    <br />
+
+                    <!--Botones de ingresar y limpiar campos-->
+                    <div class="col-lg-12">
+                        <fieldset>
+                            <button type="submit" class="btn btn-primary" id="btn-Login">Ingresar</button>
+                            <button type='reset' class="btn btn-info">Limpiar campos</button>
+                        </fieldset>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+ 

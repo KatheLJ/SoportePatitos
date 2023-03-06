@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+
+    <!-- Bootstrap -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/Scripts/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- NProgress -->
+    <script src="~/Scripts/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="~/Content/css/style.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+
+
+
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
+            <a href="index.html" class="navbar-brand d-block d-lg-none">
+                <h4 class="m-0 display-4 text-uppercase text-primary">Soporte Patitos</h4>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav mr-auto py-0">
+                    <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a>
+                    <!--<a href="Url.Action("Registro_Empleados", "Empleados")" class="nav-item nav-link">Registro</a>-->
+                    <a href="@Url.Action("Login", "Empleados")" class="nav-item nav-link">Iniciar Sesión</a>
+
+                </div>
+                <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+                    <input type="text" class="form-control border-0" placeholder="Keyword">
+                    <div class="input-group-append">
+                        <button class="input-group-text bg-primary text-dark border-0 px-3">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+
+    @if (Session["RH"] != null)
+    {
+        <!-- Sub Header opciones del Perfil de Recursos de Humanos-->
+        <div class="sub-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-xs-12">
+                        <ul class="left-info">
+                            @if (Session["RH"] != null)
+                            {
+                               
+                                <li><a href="@Url.Action("CuentaRH", "Empleado")"><i class="fa fa-user"></i>Bienvenido @HttpContext.Current.Session["RH"].ToString()</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        @if (Session["RH"] != null)
+                        {
+                            <ul class="right-icons">
+                                <li><a href="@Url.Action("Registro_Empleados", "Empleado")"><i class="fa fa-bar-chart"></i></a></li> <!-- Registro de Empleados -->
+                                <li><a href="@Url.Action("Evaluacion", "Empleado")"><i class="fa fa-list"></i></a></li> <!-- Formulario de Evaluaciòn -->
+                                <li><a href="@Url.Action("Planilla", "Empleado")"><i class="fa fa-credit-card"></i></a></li> <!-- Manejo de Planillas -->
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    @if (Session["Empleado"] != null)
+    {
+        <!-- Sub Header opciones del Perfil del Empleado-->
+        <div class="sub-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-xs-12">
+                        <ul class="left-info">
+                            @if (Session["Empleado"] != null)
+                            {
+                               
+                                <li><a href="@Url.Action("CuentaEmpleados", "Empleado")"><i class="fa fa-user"></i>Bienvenido @HttpContext.Current.Session["Empleado"].ToString()</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        @if (Session["Empleado"] != null)
+                        {
+                            <ul class="right-icons">
+                                <li><a href="@Url.Action("MarcaAsistencia", "Empleado")"><i class="fa fa-bar-chart"></i></a></li> <!-- Formulario para Marcar Asistencia -->
+                                <li><a href="@Url.Action("Colillas", "Empleado")"><i class="fa fa-list"></i></a></li> <!-- Colillas de pago de planilla  -->
+                                
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+    </div>
+
+
+
+
+
+</body>
+</html>

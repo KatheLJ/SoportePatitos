@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "MarcaAsistencia";
+}
+
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h2>Marcas de Asistencia</h2>
+            </div>
+
+        </div>
+        <br />
+
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+
+
+                <div class="x_content">
+                    <!--Se define el metodo para enviar datos y el action relacionado-->
+                    <form class="" action="EnviarAsistencia" method="post" novalidate>
+
+                        <!--Campo para el ID, pero es autoincremental-->
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <input name="Id" type="hidden" class="form-control" id="id" placeholder="">
+                            </fieldset>
+                        </div>
+                        <br>
+
+
+
+                        <!--Campo para la cedula del empleado--> <!--Campo que se debería traer desde la base de datos-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Cedula<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control p-4" type="number" id="Cedula" name="Cedula" required='required' />
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+
+                        <!--Campo para el tipo de asistencia--> <!--Campo que se debería traer desde la base de datos-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Tipo<span class="required">*</span></label>
+                                <select id="SelectTipo">
+                                    <option value="1"> Entrada </option>
+                                    <option value="2"> Salida </option>
+                                </select>
+                                <br /><br />
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+
+
+
+                        <!--Campo para la fecha de ingreso-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha y Hora <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <!--El valor debe ser dado por el sistema, el usuario no debe poder alterarlo-->
+                                    <input class="form-control" type="datetime" id="Fecha" name="fecha_ingreso" required='required' /> <!--value= DateTime.UtcNow.ToString()/>-->
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+
+                        <!--Campo para estado-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Estado<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control p-4" type="number" id="Estado" name="Estado" required='required' min="1" max="1" value="1" />
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+
+
+
+                        <div class="ln_solid">
+                            <div class="form-group">
+                                <div class="col-md-6 offset-md-3">
+                                    <button type='submit' class="btn btn-primary">Crear Cuenta</button>
+                                    <button type='reset' class="btn btn-info">Limpiar campos</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div>
+
+                        </div>
+
+
+                    </form>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

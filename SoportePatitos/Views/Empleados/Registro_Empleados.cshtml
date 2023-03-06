@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "Registro_Empleados";
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
+    List<SelectListItem> items2 = (List<SelectListItem>)ViewBag.items;
+    List<SelectListItem> items3 = (List<SelectListItem>)ViewBag.items;
+    List<SelectListItem> items4 = (List<SelectListItem>)ViewBag.items;
+}
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h2>Registro de empleados</h2>
+            </div>
+
+        </div>
+        <br />
+
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+
+
+                <div class="x_content">
+                    <!--Se define el metodo para enviar datos y el action relacionado-->
+                    <form class="" action="EnviarEmpleado" method="post" novalidate>
+                        <h4 class="section">Por favor llene todos los campos para registrar el empleado</h4>
+
+
+                        
+
+                        <!--Campo para la cedula del empleado-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Cedula<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control p-4" type="number" id="Cedula" name="Cedula" data-validate-length-range="9,10" required='required' />
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <br />
+                        <!--Campo para el nombre completo del empleado-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Nombre completo<span>*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control p-4" type="text" id="Nombre_empleado" name="Nombre_empleado" required='required' />
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+                        <!--Campo para la fecha de ingreso-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha de ingreso<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" type="date" id="Fecha_ingreso" name="fecha_ingreso" required='required' />
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+
+                        <!--Campo para el departamento del empleado-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Departamento<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    @Html.DropDownList("ID_departamento", items,"Seleccione el departamento", new {@class = "form-control"})
+                                    <!--<input class="form-control" type="number" id="ID_departamento" name="ID_departamento" required='required'>-->
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                        <br />
+
+
+                        <!--Campo para el perfil del empleado-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Perfil<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                   <input class="form-control" type="number" id="ID_perfil" name="ID_perfil" required='required'>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+                        <!--Campo para el puesto del empleado-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Puesto<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" type="number" id="ID_puesto" name="ID_puesto">
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+                        <!--Campo para el horario del empleado-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Horario<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                   <!-- Html.DropDownList("datos", items4, "Seleccione el horario", new { class = "form-control" })-->
+                                    <input class="form-control" type="number" id="ID_horario" name="ID_horario">-->
+                                </div>
+
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+                        <!--Campo para el usuario-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Usuario<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" type="text" id="Usuario" name="Usuario" required='required' data-validate-length-range="8,15" />
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+                        <!--Campo para la contraseña-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Contraseña<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" type="password" id="Contraseña" name="Contraseña" required='required' data-validate-length-range="8,20" />
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+                        <div class="ln_solid">
+                            <div class="form-group">
+                                <div class="col-md-6 offset-md-3">
+                                    <button type='submit' class="btn btn-primary">Crear Cuenta</button>
+                                    <button type='reset' class="btn btn-info">Limpiar campos</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div>
+
+                        </div>
+
+
+                    </form>
+
+
+
+
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SoportePatitosBD.Modelo.Empleado>
+@{
+    ViewBag.Title = "Planilla";
+}
+
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Mantenimiento de Empleados</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <!--Muestra una tabla con todas las columnas del empleado-->
+                    <table class="table table-hover table-bordered">
+                        <tr class="bg-secondary">
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cedula)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nombre_Empleado)
+                            </th>
+                            <th>
+                                Pensión Voluntaria
+                            </th>
+
+                            <th></th>
+                        </tr>
+
+                        <!--Muestra cada registro en la tabla de Empleados-->
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cedula)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre_Empleado)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

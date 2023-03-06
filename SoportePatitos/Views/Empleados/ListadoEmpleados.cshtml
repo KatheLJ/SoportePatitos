@@ -1,0 +1,109 @@
+﻿@model IEnumerable<SoportePatitosBD.Modelo.Empleado>
+@{
+    ViewBag.Title = "ListadoEmpleados";
+}
+
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Mantenimiento de Empleados</h1>
+                <span>Listado de Empleado</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <!--Muestra una tabla con todas las columnas del empleado-->
+                    <table class="table table-hover table-bordered">
+                        <tr class="bg-secondary">
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cedula)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nombre_Empleado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Fecha_ingreso)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ID_departamento)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ID_perfil)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ID_puesto)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ID_horario)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Usuario)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Contraseña)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        <!--Muestra cada registro en la tabla de Empleados-->
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cedula)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre_Empleado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fecha_ingreso)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ID_departamento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ID_perfil)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ID_puesto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ID_horario)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Usuario)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Contraseña)
+                                </td>
+                                <td>
+                                    <!--Permite dirigirse al reporte del empleado-->
+                                    @Html.ActionLink("Evaluación de Desempeño", "ReporteEmpleado", new { id = item.Cedula }, new { @class = "btn btn-info btn-sm" })
+                                    <br><br>
+                                    @Html.ActionLink("Eliminar", "", new { id = item.Cedula }, new { @class = "btn btn-danger btn-sm" })
+                                    <br><br>
+                                    @Html.ActionLink("Actualizar", "", new { id = item.Cedula }, new { @class = "btn btn-danger btn-sm" })
+
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

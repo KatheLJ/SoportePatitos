@@ -1,10 +1,15 @@
 ﻿
 @{
     ViewBag.Title = "Registro_Empleados";
-    List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
-    List<SelectListItem> items2 = (List<SelectListItem>)ViewBag.items;
-    List<SelectListItem> items3 = (List<SelectListItem>)ViewBag.items;
-    List<SelectListItem> items4 = (List<SelectListItem>)ViewBag.items;
+    //List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
+    //List<SelectListItem> items2 = (List<SelectListItem>)ViewBag.items;
+
+    List<SelectListItem> items = (List<SelectListItem>)ViewData["Departamento"];
+    List<SelectListItem> items2 = (List<SelectListItem>)ViewData["Puesto"];
+    List<SelectListItem> items3 = (List<SelectListItem>)ViewData["Perfil"];
+    List<SelectListItem> items4 = (List<SelectListItem>)ViewData["Horario"];
+    // List<SelectListItem> items3 = (List<SelectListItem>)ViewBag.items;
+    //List<SelectListItem> items4 = (List<SelectListItem>)ViewBag.items;
 }
 
 <div class="right_col" role="main">
@@ -86,7 +91,8 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Perfil<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                   <input class="form-control" type="number" id="ID_perfil" name="ID_perfil" required='required'>
+                                    @Html.DropDownList("ID_perfil", items3, "Seleccione el perfil", new { @class = "form-control" })
+                                    <!--<input class="form-control" type="number" id="ID_perfil" name="ID_perfil" required='required'>-->
                                 </div>
                             </div>
                         </fieldset>
@@ -98,7 +104,8 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Puesto<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" type="number" id="ID_puesto" name="ID_puesto">
+                                    @Html.DropDownList("ID_puesto", items2, "Seleccione el puesto", new { @class = "form-control" })
+                                   <!-- <input class="form-control" type="number" id="ID_puesto" name="ID_puesto">-->
                                 </div>
                             </div>
                         </fieldset>
@@ -110,8 +117,8 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Horario<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                   <!-- Html.DropDownList("datos", items4, "Seleccione el horario", new { class = "form-control" })-->
-                                    <input class="form-control" type="number" id="ID_horario" name="ID_horario">-->
+                                    @Html.DropDownList("ID_horario", items4, "Seleccione el horario", new { @class = "form-control" })
+                                   <!-- <input class="form-control" type="number" id="ID_horario" name="ID_horario">-->
                                 </div>
 
                             </div>

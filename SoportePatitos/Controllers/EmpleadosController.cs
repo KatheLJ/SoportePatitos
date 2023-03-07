@@ -66,13 +66,14 @@ namespace SoportePatitos.Controllers
                     };
 
                 });
-                ViewBag.Items = items;
+
+                //ViewBag.Items = items;
 
 
 
 
                 //Permite mostrar un dropdownlist con los puestos almacenados en la base de datos
-                /*lst2 =
+                lst2 =
                 (from d in ContextoBD.Puesto
                  select new Models.ViewModels.Puesto
                  {
@@ -140,10 +141,11 @@ namespace SoportePatitos.Controllers
 
 
 
-                ViewBag.Items = items2;
-                ViewBag.Items = items3;
-                ViewBag.Items = items4;*/
 
+                ViewData["Departamento"] = items;
+                ViewData["Puesto"] = items2;
+                ViewData["Perfil"] = items3;
+                ViewData["Horario"] = items4;
                 return View();
             }
 

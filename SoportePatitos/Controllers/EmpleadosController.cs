@@ -139,9 +139,6 @@ namespace SoportePatitos.Controllers
 
                 });
 
-
-
-
                 ViewData["Departamento"] = items;
                 ViewData["Puesto"] = items2;
                 ViewData["Perfil"] = items3;
@@ -275,10 +272,16 @@ namespace SoportePatitos.Controllers
 
 
         //Accion que muestra la pantalla con el reporte de la evaluacion
-        public ActionResult ReporteEmpleado()
+        public ActionResult ReporteEmpleado(int Cedula)
         {
-            IEnumerable<Evaluacion> evaluacion = _oGestorEvaluacion.ListadoEvaluacion();
-            return View(evaluacion);
+           // IEnumerable<Evaluacion> evaluacion = _oGestorEvaluacion.ListadoEvaluacion();
+          //  return View(evaluacion);
+
+          //  Evaluacion obj = _oGestorEvaluacion.ListadoEvaluacion().Where(x => x.Cedula == Cedula).FirstOrDefault();
+         //   return View(obj);
+
+            Empleado obj = _oGestorEmpleado.ListadoEmpleados().Where(x => x.Cedula == Cedula).FirstOrDefault();
+            return View(obj);
         }
 
 
@@ -286,8 +289,63 @@ namespace SoportePatitos.Controllers
         //Accion que muestra la pantalla para registro el ingreso y la salida del empleado
         public ActionResult MarcaAsistencia()
         {
+            //Se inicializan las listas que se usaran más adelante
+            List<Models.ViewModels.Tipo> lst = null;
+            List<Models.ViewModels.Estado> estadolst = null;
+
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+                //Permite mostrar un dropdownlist con los departamentos almacenados en la base de datos
+                lst =
+                (from d in ContextoBD.Tipo
+                 select new Models.ViewModels.Tipo
+                 {
+                     ID_tipo = d.ID_tipo,
+                     Descripcion = d.Descripcion
+                 }).ToList();
+
+                List<SelectListItem> tipos = lst.ConvertAll(d =>
+                {
+
+                    return new SelectListItem
+                    {
+
+                        Text = d.Descripcion.ToString(),
+                        Value = d.ID_tipo.ToString(),
+                        Selected = false
+                    };
+
+                });
+
+                ViewData["Tipo"] = tipos;
+
+
+                estadolst =
+                (from d in ContextoBD.Estado
+                 select new Models.ViewModels.Estado
+                 {
+                     ID_Estado = d.ID_Estado,
+                     Descripcion = d.Descripcion
+                 }).ToList();
+
+                List<SelectListItem> estados = estadolst.ConvertAll(d =>
+                {
+
+                    return new SelectListItem
+                    {
+
+                        Text = d.Descripcion.ToString(),
+                        Value = d.ID_Estado.ToString(),
+                        Selected = false
+                    };
+
+                });
+
+                ViewData["Estado"] = estados;
+
+                return View();
+            }
             
-            return View();
         }
 
 

@@ -131,6 +131,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\EstadoAsistencia.cs" />
+    <Compile Include="Models\ViewModels\TipoAsistencia.cs" />
     <Compile Include="Models\ViewModels\Planilla.cs" />
     <Compile Include="Models\ViewModels\Perfil.cs" />
     <Compile Include="Models\ViewModels\Horario.cs" />

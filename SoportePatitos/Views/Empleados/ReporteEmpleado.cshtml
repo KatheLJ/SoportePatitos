@@ -1,7 +1,8 @@
-﻿@model IEnumerable<SoportePatitosBD.Modelo.Evaluacion>
+﻿@model SoportePatitosBD.Modelo.Evaluacion
 
 @{
     ViewBag.Title = "ReporteEmpleado";
+    SoportePatitosBD.Modelo.Evaluacion pEvaluacion = new SoportePatitosBD.Modelo.Evaluacion();
 }
 
 
@@ -18,77 +19,79 @@
 </div>
 
 
-<!--Muestra todos los reportes en la base de datos-->
-<div class="single-services">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+
+
+
+<!--Muestra solo un reporte especìfico -->
+@using (Html.BeginForm("ReporteEmleado", "Empleado", FormMethod.Get))
+{
+    <div class="single-services">
+        <div class="container">
+            <div class="row">
                 <div class="col-md-12">
-                    <div class="section-heading">
+                    <div class="col-md-12">
+                        <div class="section-heading">
+                            <h2>Modificar</h2>
+
+                        </div>
                     </div>
+                    <div class="contact-form">
+                        <div class="row">
+
+
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.ID_evaluacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.ID_evaluacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <br>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control" } })
+                                <br>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Pregunta_1, htmlAttributes: new { @class = "control-label col-md-2" })1
+                                @Html.EditorFor(model => model.Pregunta_1, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Pregunta_2, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Pregunta_2, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <br>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Pregunta_3, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Pregunta_3, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <br>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Pregunta_4, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Pregunta_4, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <br>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+
+
+                            </div>
+                            <br><br><br><br>
+                        </div>
+                    </div>
+                    <br><br><br><br>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered">
-                        <tr class="bg-secondary">
-                            <th>
-                                @Html.DisplayNameFor(model => model.ID_evaluacion)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Cedula)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Pregunta_1)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Pregunta_2)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Pregunta_3)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Pregunta_4)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Pregunta_5)
-                            </th>
-                            <th></th>
-                        </tr>
-
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.ID_evaluacion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Cedula)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Pregunta_1)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Pregunta_2)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Pregunta_3)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Pregunta_4)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Pregunta_5)
-                                </td>
-
-                            </tr>
-                        }
-                    </table>
-                </div>
-
-
             </div>
         </div>
     </div>
-</div>
+}
 
 
 

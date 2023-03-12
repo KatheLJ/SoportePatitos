@@ -32,8 +32,8 @@ namespace SoportePatitosBD.Repositorios
 
         {
             //Intenta el código
-            try
-            { 
+           // try
+           // { 
             int n = 0;
             //Utiliza está conexión a la base de datos
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
@@ -42,16 +42,16 @@ namespace SoportePatitosBD.Repositorios
                 n = ContextoBD.SaveChanges();
             }
             return n;
-            }
+          //  }
 
             //Muestra una excepción, si no funciona
-            catch (DbEntityValidationException e)
-            {
+            //catch (DbEntityValidationException e)
+           // {
 
-                Console.WriteLine(e.InnerException.Message);
+               // Console.WriteLine(e.InnerException.Message);
 
-                throw;
-            }
+              //  throw;
+           // }
         }
 
 

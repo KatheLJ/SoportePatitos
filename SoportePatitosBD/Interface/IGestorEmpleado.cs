@@ -22,6 +22,7 @@ namespace SoportePatitosBD.Interface
         int EliminarEmpleado(int pIdEmpleado);
 
 
+
         //Listas para los dropdown list necesarios en la pantalla de registro
         IEnumerable<Departamento> ListadoDepartamento();
         IEnumerable<Puesto> ListadoPuesto();

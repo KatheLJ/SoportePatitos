@@ -15,5 +15,11 @@ namespace SoportePatitosBD.Interface
 
         //Permite realizar una lista de las evaluaciones de todos los empleados
         IEnumerable<Evaluacion> ListadoEvaluacion();
+
+        //Método para poder mostrar el reporte del empleado luego de la evaluación
+        //int EvaluacionEmpleado(int id);
+
+        
+
     }
 }

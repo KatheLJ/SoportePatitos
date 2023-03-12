@@ -12,6 +12,8 @@ namespace SoportePatitosBD.Modelo
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class SoportePatitosEntities : DbContext
     {
@@ -34,5 +36,10 @@ namespace SoportePatitosBD.Modelo
         public virtual DbSet<Perfil> Perfil { get; set; }
         public virtual DbSet<Puesto> Puesto { get; set; }
         public virtual DbSet<Tipo> Tipo { get; set; }
+    
+        public virtual ObjectResult<spEvaluacionEmpleado_Result> spEvaluacionEmpleado()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEvaluacionEmpleado_Result>("spEvaluacionEmpleado");
+        }
     }
 }

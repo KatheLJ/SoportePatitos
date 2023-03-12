@@ -181,7 +181,16 @@ namespace SoportePatitos.Controllers
                 using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
                 {
                     var data = ContextoBD.Empleado.Where(a => a.Usuario.Equals(pEmpleado.Usuario) &&
-                    a.Contraseña.Equals(pEmpleado.Contraseña) && a.Perfil.Equals(pEmpleado.Perfil)).ToList();
+                    a.Contraseña.Equals(pEmpleado.Contraseña) && a.ID_perfil.Equals(1)).ToList();
+
+                    var data2 = ContextoBD.Empleado.Where(a => a.Usuario.Equals(pEmpleado.Usuario) &&
+                    a.Contraseña.Equals(pEmpleado.Contraseña) && a.ID_perfil.Equals(2));
+
+                    var data3 = ContextoBD.Empleado.Where(a => a.Usuario.Equals(pEmpleado.Usuario) &&
+                    a.Contraseña.Equals(pEmpleado.Contraseña) && a.ID_perfil.Equals(3)).ToList();
+
+                    //var data = ContextoBD.Empleado.Where(a => a.Usuario.Equals(pEmpleado.Usuario) &&
+                    //a.Contraseña.Equals(pEmpleado.Contraseña) && a.Perfil.Equals(pEmpleado.Perfil)).ToList();
 
                     /* var data2 = ContextoBD.Empleado.Where(a => a.Usuario.Equals(pEmpleado.Usuario) &&
                      a.Contraseña.Equals(pEmpleado.Contraseña)).ToList();
@@ -197,7 +206,7 @@ namespace SoportePatitos.Controllers
 
                     //Permite el manejo de las sesiones y los perfiles del sistema 
 
-                    if (data.Count() > 0 && pEmpleado.Perfil.Equals(1))
+                    if (data.Count() > 0 )
                     {
                         Session["Gerencia"] = data.FirstOrDefault().Usuario;
 
@@ -205,12 +214,13 @@ namespace SoportePatitos.Controllers
                         Session["Cedula"] = data.FirstOrDefault().Cedula;
                         Session["Nombre"] = data.FirstOrDefault().Nombre_Empleado;
 
+
                         //Cookie que permite manejar el usuario en sesión, en lugar de usar Session
                         // FormsAuthentication.SetAuthCookie(pEmpleado.Usuario, false);
                         return RedirectToAction("Index", "Home");
 
                     }
-                    else if (data.Count() > 0 && pEmpleado.Perfil.Equals(2))
+                    else if (data.Count() > 0 )
                      {
 
                          Session["RH"] = data.FirstOrDefault().Usuario;
@@ -222,7 +232,7 @@ namespace SoportePatitos.Controllers
 
                          return RedirectToAction("Index", "Home");
                      }
-                     else if (data.Count() > 0 && pEmpleado.Perfil.Equals(3))
+                     else if (data3.Count() > 0 )//&& pEmpleado.Perfil.Equals(3))
                      {
 
                          Session["Empleado"] = data.FirstOrDefault().Usuario;
@@ -275,13 +285,15 @@ namespace SoportePatitos.Controllers
         //Accion que muestra la pantalla con el reporte de la evaluacion
         public ActionResult ReporteEmpleado(int Cedula)
         {
-           // IEnumerable<Evaluacion> evaluacion = _oGestorEvaluacion.ListadoEvaluacion();
-          //  return View(evaluacion);
+            // IEnumerable<Evaluacion> evaluacion = _oGestorEvaluacion.ListadoEvaluacion();
+            //  return View(evaluacion);
 
-          //  Evaluacion obj = _oGestorEvaluacion.ListadoEvaluacion().Where(x => x.Cedula == Cedula).FirstOrDefault();
-         //   return View(obj);
+            //  Evaluacion obj = _oGestorEvaluacion.ListadoEvaluacion().Where(x => x.Cedula == Cedula).FirstOrDefault();
+            //   return View(obj);
 
-            Empleado obj = _oGestorEmpleado.ListadoEmpleados().Where(x => x.Cedula == Cedula).FirstOrDefault();
+            // SoportePatitosBD.Modelo.spEvaluacionEmpleado_Result;
+
+           Empleado obj = _oGestorEmpleado.ListadoEmpleados().Where(x => x.Cedula == Cedula).FirstOrDefault();
             return View(obj);
         }
 
@@ -369,10 +381,16 @@ namespace SoportePatitos.Controllers
 
         public ActionResult ValidarAusencias(Asistencia pAsistencia)
         {
+            
+
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
-                if (pAsistencia.Estado.Equals(1))
+
+                var data = ContextoBD.Asistencia.Where(a => a.Fecha.Equals(DateTime.UtcNow)) ;
+
+               /* if (data = DateTime.Now.ToString())
                 {
+                   // Asistencia.Equals(data)
                     //Count <2 AND Count >1 = NO marca entrada o salida
                     //Count = 0 = Ausencia
                     //En bd buscar por cedulas marcas registradas en un día
@@ -382,7 +400,7 @@ namespace SoportePatitos.Controllers
                 else
                 {
 
-                }
+                }*/
             }
             return View();
         }

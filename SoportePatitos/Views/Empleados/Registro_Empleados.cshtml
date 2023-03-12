@@ -40,7 +40,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Cedula<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control p-4" type="number" id="Cedula" name="Cedula" data-validate-length-range="9,10" required='required' />
+                                    <input onclick="validar(valor)" class="form-control p-4" type="number" id="Cedula" name="Cedula" min=9 max=12 maxlength="12" required="required"/>
                                 </div>
                             </div>
                         </fieldset>
@@ -51,7 +51,8 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Nombre completo<span>*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control p-4" type="text" id="Nombre_empleado" name="Nombre_empleado" required='required' />
+                                    <input onclick="validar(valor)" class="form-control p-4" type="text" id="Nombre_empleado" name="Nombre_empleado" required='required' 
+                                           onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))"/>
                                 </div>
                             </div>
                         </fieldset>
@@ -63,7 +64,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha de ingreso<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" type="date" id="Fecha_ingreso" name="fecha_ingreso" required='required' />
+                                    <input onclick="validar(valor)" class="form-control" type="date" id="Fecha_ingreso" name="fecha_ingreso" required="required" />
                                 </div>
                             </div>
                         </fieldset>
@@ -76,7 +77,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Departamento<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    @Html.DropDownList("ID_departamento", items,"Seleccione el departamento", new {@class = "form-control"})
+                                    @Html.DropDownList("ID_departamento", items,"Seleccione el departamento", new {@class = "form-control", required = "required" })
                                     <!--<input class="form-control" type="number" id="ID_departamento" name="ID_departamento" required='required'>-->
                                 </div>
                             </div>
@@ -91,7 +92,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Perfil<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    @Html.DropDownList("ID_perfil", items3, "Seleccione el perfil", new { @class = "form-control" })
+                                    @Html.DropDownList("ID_perfil", items3, "Seleccione el perfil", new { @class = "form-control", required = "required" })
                                     <!--<input class="form-control" type="number" id="ID_perfil" name="ID_perfil" required='required'>-->
                                 </div>
                             </div>
@@ -104,7 +105,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Puesto<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    @Html.DropDownList("ID_puesto", items2, "Seleccione el puesto", new { @class = "form-control" })
+                                    @Html.DropDownList("ID_puesto", items2, "Seleccione el puesto", new { @class = "form-control", required = "required" })
                                    <!-- <input class="form-control" type="number" id="ID_puesto" name="ID_puesto">-->
                                 </div>
                             </div>
@@ -117,7 +118,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Horario<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    @Html.DropDownList("ID_horario", items4, "Seleccione el horario", new { @class = "form-control" })
+                                    @Html.DropDownList("ID_horario", items4, "Seleccione el horario", new { @class = "form-control", required = "required" })
                                    <!-- <input class="form-control" type="number" id="ID_horario" name="ID_horario">-->
                                 </div>
 
@@ -131,7 +132,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Usuario<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" type="text" id="Usuario" name="Usuario" required='required' />
+                                    <input class="form-control" type="text" id="Usuario" name="Usuario" required />
                                 </div>
                             </div>
                         </fieldset>
@@ -143,7 +144,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Contraseña<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" type="password" id="Contraseña" name="Contraseña" required='required'/>
+                                    <input class="form-control" type="password" id="Contraseña" name="Contraseña" required/>
                                 </div>
                             </div>
                         </fieldset>
@@ -153,7 +154,11 @@
                         <div class="ln_solid">
                             <div class="form-group">
                                 <div class="col-md-6 offset-md-3">
-                                    <button type='submit' class="btn btn-primary">Crear Cuenta</button>
+
+                                    <input type="submit" class="btn btn-primary" value="Crear Cuenta" id="enviar">
+
+
+                                    <!--<button type='submit' class="btn btn-primary">Crear Cuenta</button>-->
                                     <button type='reset' class="btn btn-info">Limpiar campos</button>
                                 </div>
                             </div>
@@ -177,3 +182,35 @@
 </div>
 
 
+
+
+<script type="text/javascript">
+    function validar(valor) {
+        valor = valor.replace("&nbsp;", "");
+        valor = valor == undefined ? "" : valor;
+        if (!valor || 0 === valor.trim().length) {
+            return true;
+            }
+        else {
+            return false;
+            }
+        }
+
+    function validarfor(){
+
+    var cedula = document.getElementById("Cedula").value;
+    var nom = document.getElementsByName("Nombre_empleado")[0].value;
+    var dateing = document.getElementsByName("Fecha_ingreso")[0].value;
+    var dep = document.getElementsByName("ID_departamento")[0].value;
+    var puesto = document.getElementsByName("ID_perfil")[0].value;
+    var perfil = document.getElementsByName("ID_puesto")[0].value;
+        //Falta validar horario, usuario, contraseña
+
+        if (validar(cedula.value) || validar(nom.value) || validar(dateing.value) || validar(dep.value) || validar(puesto.value) || validar(perfil.value)) {  
+        alert("Los campos no pueden quedar vacios");
+        return false;
+    }
+    return true;
+    }
+    
+</script>

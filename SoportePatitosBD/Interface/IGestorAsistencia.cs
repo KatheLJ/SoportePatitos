@@ -14,5 +14,8 @@ namespace SoportePatitosBD.Interface
         int CrearAsistencia(Asistencia pAsistencia);
         //Permite hace un listado de todas las marcas de asistencia registradas en el sistema
         IEnumerable<Asistencia> ListadoAsistencia();
+
+        //Método para validar cuando un empleado omite una marca o está ausente
+        int ValidarAsistencia(int Cedula);
     }
 }

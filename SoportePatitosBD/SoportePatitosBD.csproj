@@ -94,6 +94,9 @@
     <Compile Include="Modelo\Puesto.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\spEvaluacionEmpleado_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\Tipo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

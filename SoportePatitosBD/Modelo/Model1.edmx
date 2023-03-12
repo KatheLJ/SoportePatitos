@@ -4,14 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SoportePatitosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SoportePatitosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Asistencia">
           <Key>
             <PropertyRef Name="ID_asistencia" />
           </Key>
           <Property Name="ID_asistencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tipo" Type="int" Nullable="false" />
-          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Fecha" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="Cedula" Type="int" Nullable="false" />
           <Property Name="ID_Estado" Type="int" Nullable="false" />
         </EntityType>
@@ -85,7 +85,7 @@
           <Property Name="ID_tipo" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Asistenci__Cedul__06CD04F7">
+        <Association Name="FK__Asistenci__Cedul__503BEA1C">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
           <ReferentialConstraint>
@@ -97,7 +97,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Asistenci__ID_Es__07C12930">
+        <Association Name="FK__Asistenci__ID_Es__51300E55">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
           <ReferentialConstraint>
@@ -109,7 +109,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Asistencia__Tipo__05D8E0BE">
+        <Association Name="FK__Asistencia__Tipo__4F47C5E3">
           <End Role="Tipo" Type="Self.Tipo" Multiplicity="1" />
           <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
           <ReferentialConstraint>
@@ -193,6 +193,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="spEvaluacionEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="SoportePatitosModelStoreContainer">
           <EntitySet Name="Asistencia" EntityType="Self.Asistencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
@@ -203,15 +204,15 @@
           <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Puesto" EntityType="Self.Puesto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tipo" EntityType="Self.Tipo" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Asistenci__Cedul__06CD04F7" Association="Self.FK__Asistenci__Cedul__06CD04F7">
+          <AssociationSet Name="FK__Asistenci__Cedul__503BEA1C" Association="Self.FK__Asistenci__Cedul__503BEA1C">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Asistencia" EntitySet="Asistencia" />
           </AssociationSet>
-          <AssociationSet Name="FK__Asistenci__ID_Es__07C12930" Association="Self.FK__Asistenci__ID_Es__07C12930">
+          <AssociationSet Name="FK__Asistenci__ID_Es__51300E55" Association="Self.FK__Asistenci__ID_Es__51300E55">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Asistencia" EntitySet="Asistencia" />
           </AssociationSet>
-          <AssociationSet Name="FK__Asistencia__Tipo__05D8E0BE" Association="Self.FK__Asistencia__Tipo__05D8E0BE">
+          <AssociationSet Name="FK__Asistencia__Tipo__4F47C5E3" Association="Self.FK__Asistencia__Tipo__4F47C5E3">
             <End Role="Tipo" EntitySet="Tipo" />
             <End Role="Asistencia" EntitySet="Asistencia" />
           </AssociationSet>
@@ -240,8 +241,7 @@
             <End Role="Puesto" EntitySet="Puesto" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SoportePatitosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -251,7 +251,7 @@
           </Key>
           <Property Name="ID_asistencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Tipo" Type="Int32" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="Cedula" Type="Int32" Nullable="false" />
           <Property Name="ID_Estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK__Asistenci__Cedul__06CD04F7" FromRole="Asistencia" ToRole="Empleado" />
@@ -497,7 +497,17 @@
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Evaluacion" EntitySet="Evaluacion" />
           </AssociationSet>
+          <FunctionImport Name="spEvaluacionEmpleado" ReturnType="Collection(SoportePatitosModel.spEvaluacionEmpleado_Result)" />
         </EntityContainer>
+        <ComplexType Name="spEvaluacionEmpleado_Result">
+          <Property Type="Int32" Name="Cedula" Nullable="false" />
+          <Property Type="Int32" Name="ID_evaluacion" Nullable="false" />
+          <Property Type="Int32" Name="Pregunta_1" Nullable="false" />
+          <Property Type="Int32" Name="Pregunta_2" Nullable="false" />
+          <Property Type="Int32" Name="Pregunta_3" Nullable="false" />
+          <Property Type="Int32" Name="Pregunta_4" Nullable="false" />
+          <Property Type="Int32" Name="Pregunta_5" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -593,6 +603,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spEvaluacionEmpleado" FunctionName="SoportePatitosModel.Store.spEvaluacionEmpleado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SoportePatitosModel.spEvaluacionEmpleado_Result">
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="ID_evaluacion" ColumnName="ID_evaluacion" />
+                <ScalarProperty Name="Pregunta_1" ColumnName="Pregunta_1" />
+                <ScalarProperty Name="Pregunta_2" ColumnName="Pregunta_2" />
+                <ScalarProperty Name="Pregunta_3" ColumnName="Pregunta_3" />
+                <ScalarProperty Name="Pregunta_4" ColumnName="Pregunta_4" />
+                <ScalarProperty Name="Pregunta_5" ColumnName="Pregunta_5" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -10,18 +10,15 @@
 namespace SoportePatitosBD.Modelo
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Asistencia
+    public partial class spEvaluacionEmpleado_Result
     {
-        public int ID_asistencia { get; set; }
-        public int Tipo { get; set; }
-        public System.DateTime Fecha { get; set; }
         public int Cedula { get; set; }
-        public int ID_Estado { get; set; }
-    
-        public virtual Empleado Empleado { get; set; }
-        public virtual Estado Estado { get; set; }
-        public virtual Tipo Tipo1 { get; set; }
+        public int ID_evaluacion { get; set; }
+        public int Pregunta_1 { get; set; }
+        public int Pregunta_2 { get; set; }
+        public int Pregunta_3 { get; set; }
+        public int Pregunta_4 { get; set; }
+        public int Pregunta_5 { get; set; }
     }
 }

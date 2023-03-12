@@ -58,5 +58,21 @@ namespace SoportePatitosBD.Repositorios
                 throw;
             }
         }
+
+        //Método para validar cuando un empleado omite una marca o está ausente
+        int IGestorAsistencia.ValidarAsistencia(int Cedula)
+        {
+
+
+            int n = 0;
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+                ContextoBD.Evaluacion.Count();//debe contar la cèdula
+                //Pasar la cantidad contada a la variable n
+            }
+            return n;
+
+        }
+
     }
 }

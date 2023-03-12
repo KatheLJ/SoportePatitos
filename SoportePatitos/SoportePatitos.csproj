@@ -241,6 +241,9 @@
     <Content Include="Views\Empleados\ReporteEmpleado.cshtml" />
     <Content Include="Views\Empleados\ListadoEmpleados.cshtml" />
     <Content Include="Views\Empleados\Colillas.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Empleados\ListadoAsistencia.cshtml" />
+    <Content Include="Views\Empleados\CambioContraseña.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

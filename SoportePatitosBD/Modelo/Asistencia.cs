@@ -11,11 +11,19 @@ namespace SoportePatitosBD.Modelo
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
     
+    
+
+
     public partial class Asistencia
     {
+        
         public int ID_asistencia { get; set; }
         public int Tipo { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm:ss}", ApplyFormatInEditMode = true)]
         public System.DateTime Fecha { get; set; }
         public int Cedula { get; set; }
         public int ID_Estado { get; set; }

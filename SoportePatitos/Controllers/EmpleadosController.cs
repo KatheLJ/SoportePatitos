@@ -9,6 +9,7 @@ using SoportePatitosBD.Repositorios;
 using System.ComponentModel.Design;
 using Microsoft.Ajax.Utilities;
 using System.Web.Security;
+using System.Threading;
 
 namespace SoportePatitos.Controllers
 {
@@ -358,13 +359,54 @@ namespace SoportePatitos.Controllers
         }
 
 
+        //Accion que muestra el listado de asistencias
+        public ActionResult ListadoAsistencia()
+        {
+            IEnumerable<Asistencia> asistencias = _oGestorAsistencia.ListadoAsistencia();
+            return View(asistencias);
+        }
+
+
+        public ActionResult ValidarAusencias(Asistencia pAsistencia)
+        {
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+                if (pAsistencia.Estado.Equals(1))
+                {
+                    //Count <2 AND Count >1 = NO marca entrada o salida
+                    //Count = 0 = Ausencia
+                    //En bd buscar por cedulas marcas registradas en un día
+
+                }
+
+                else
+                {
+
+                }
+            }
+            return View();
+        }
+
+
+
+        //Accion que muestra el listado de asistencias
+        public ActionResult CambioContraseña(int Cedula)
+        {
+
+            return View();
+
+        }
+
+
+
+
 
         //Accion que muestra la pantalla en donde se maneja la planilla
-       /* public ActionResult Planilla(Planilla pPlanilla)
-        {
-            int registros = _oGestorPlanilla.CrearPLanilla(pPlanillla);
-            return RedirectToAction("Planilla");
-        }*/
+        /* public ActionResult Planilla(Planilla pPlanilla)
+         {
+             int registros = _oGestorPlanilla.CrearPLanilla(pPlanillla);
+             return RedirectToAction("Planilla");
+         }*/
 
 
 

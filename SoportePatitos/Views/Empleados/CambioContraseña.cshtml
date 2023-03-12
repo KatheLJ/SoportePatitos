@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "CambioContraseña";
+}
+
+<!-- Header -->
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!--Título de la sección-->
+                <h1>Cambio de contraseña</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Form de iniciar sesion -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="section-heading">
+                <h3>Se requiere que cambia la contraseña después de entrar por primera vez</em></h3>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="col-md-12">
+            <form id="login" action="InicioSesion" controller="Empleados" method="get">
+                <br />
+
+
+
+                <!--Para digitar la nueva contraseña-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Contraseña<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input name="Contraseña" type="password" class="form-control" placeholder="*******" id="contrasena" required="">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <br />
+
+
+                <!--Para digitar la confirmación de la contraseña-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Contraseña<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input name="Contraseña" type="password" class="form-control" placeholder="*******" id="contrasena" required="">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <br />
+
+
+
+                <!--Botones de ingresar y limpiar campos-->
+                <div class="col-lg-12">
+                    <fieldset>
+                        <button type="submit" class="btn btn-primary" id="btn-Login">Cambiar</button>
+                        <button type='reset' class="btn btn-info">Limpiar campos</button>
+                    </fieldset>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

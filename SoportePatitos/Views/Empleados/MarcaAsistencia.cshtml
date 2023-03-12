@@ -53,7 +53,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Tipo<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    @Html.DropDownList("Tipo", tipos, "Seleccione el tipo", new { @class = "form-control"})
+                                    @Html.DropDownList("Tipo", tipos, new { @class = "form-control"})
                                     <!--<input class="form-control" type="number" id="ID_perfil" name="ID_perfil" required='required'>-->
                                 </div>
                                 <br /><br />
@@ -70,7 +70,10 @@
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha y Hora <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
                                     <!--El valor debe ser dado por el sistema, el usuario no debe poder alterarlo-->
-                                    <input class="form-control" type="datetime-local" id="Fecha" name="Fecha" required='required'/> <!--value= DateTime.UtcNow.ToString()/>-->
+                                    <!--<input class="form-control" type="datetime-local" id="Fecha" name="Fecha" required='required'/> -->
+                                    @Html.TextBox("Fecha", DateTime.Now, new { @class = "form-control", @readonly = true })
+
+                                    <!--<input class="form-control" id="Fecha" name="Fecha" required='required' value=@DateTime.Now readonly />-->
                                 </div>
                             </div>
                         </fieldset>
@@ -83,8 +86,8 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Estado<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    @Html.DropDownList("ID_Estado", estados, "Presente", new { @class = "form-control"})
-                                    <!--<input class="form-control p-4" type="number" id="Estado" name="Estado" min="1" max="1" value="1" readonly />-->
+                                    @Html.DropDownList("ID_Estado", estados, new { @class = "form-control"})
+                                    <!--<input class="form-control p-4" type="number" id="Estado" name="Estado" value="1" readonly placeholder="Presente"/>-->
                                 </div>
                             </div>
                         </fieldset>

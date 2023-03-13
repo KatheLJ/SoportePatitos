@@ -305,6 +305,7 @@ namespace SoportePatitos.Controllers
             //Se inicializan las listas que se usaran más adelante
             List<Models.ViewModels.Tipo> lst = null;
             List<Models.ViewModels.Estado> estadolst = null;
+            int n = 0;
 
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
@@ -341,6 +342,7 @@ namespace SoportePatitos.Controllers
                      Descripcion = d.Descripcion
                  }).ToList();
 
+                
                 List<SelectListItem> estados = estadolst.ConvertAll(d =>
                 {
 
@@ -353,6 +355,8 @@ namespace SoportePatitos.Controllers
                     };
 
                 });
+
+                //Asistencia obj = estadolst.Where(x => x.ID_Estado == 1).FirstOrDefault();
 
                 ViewData["Estado"] = estados;
 
@@ -381,8 +385,6 @@ namespace SoportePatitos.Controllers
 
         public ActionResult ValidarAusencias(Asistencia pAsistencia)
         {
-            
-
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
 

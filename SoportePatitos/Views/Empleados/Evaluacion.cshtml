@@ -1,7 +1,10 @@
-﻿
+﻿<!--Script para funciones especiales-->
+<script src="~/Scripts/Funciones/Funciones.js" defer></script>
+
 @{
     ViewBag.Title = "Evaluacion";
 }
+
 
 <div class="right_col" role="main">
     <div class="">
@@ -19,7 +22,7 @@
 
 
                 <div class="x_content">
-                    <form class="" action="EnviarEvaluacion" method="post" novalidate>
+                    <form class="" action="EnviarEvaluacion" method="post" class="system-forms">
                         <h4 class="section">Responda las siguientes preguntas para evaluar al personal</h4>
 
                         <br />
@@ -30,7 +33,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">ID<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control p-4" type="number" id="ID_evaluacion" name="ID_evaluacion" required='required' />
+                                    <input class="form-control p-4" type="number" id="ID_evaluacion" name="ID_evaluacion" required="" />
                                 </div>
                             </div>
                         </fieldset>
@@ -43,7 +46,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Cédula<span>*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control p-4" type="number" id="Cedula" name="Cedula" required='required' />
+                                    <input class="form-control p-4" type="number" id="Cedula" name="Cedula" required="" />
                                 </div>
                             </div>
                         </fieldset>
@@ -57,8 +60,16 @@
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">1.	Cumple con las tareas asignadas<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
                                     <select id="Pregunta_1">
-                                        <option value="1"> 1 </option>
-                                        <option value="2"> 2 </option>
+                                        <option id="Pregunta_1" value="1" required=""> 1 </option>
+                                        <option id="Pregunta_1" value="2"> 2 </option>
+                                        <option id="Pregunta_1" value="3"> 3 </option>
+                                        <option id="Pregunta_1" value="4"> 4 </option>
+                                        <option id="Pregunta_1" value="5"> 5 </option>
+                                        <option id="Pregunta_1" value="6"> 6 </option>
+                                        <option id="Pregunta_1" value="7"> 7 </option>
+                                        <option id="Pregunta_1" value="8"> 8 </option>
+                                        <option id="Pregunta_1" value="9"> 9 </option>
+                                        <option id="Pregunta_1" value="10"> 10 </option>
                                     </select>
                                     <!--<input class="form-control p-4" type="number" id="Pregunta_1" name="Pregunta_1" min="1" max="10" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required='required' />-->
                                 </div>
@@ -73,7 +84,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">2.	No posee ausencias<span>*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    1 <input name="Pregunta_2" type="radio" value="1" class="custom-radio" id="Pregunta_2">
+                                    1 <input name="Pregunta_2" type="radio" value="1" class="custom-radio" id="Pregunta_2" required="">
                                     2 <input name="Pregunta_2" type="radio" value="2" class="custom-radio" id="Pregunta_2">
                                     3 <input name="Pregunta_2" type="radio" value="3" class="custom-radio" id="Pregunta_2">
                                     4 <input name="Pregunta_2" type="radio" value="4" class="custom-radio" id="Pregunta_2">
@@ -96,7 +107,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">3.	Posee 1 o más llegadas tardía<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    1 <input name="Pregunta_3" type="radio" value="1" class="custom-radio" id="Pregunta_3">
+                                    1 <input name="Pregunta_3" type="radio" value="1" class="custom-radio" id="Pregunta_3" required="">
                                     2 <input name="Pregunta_3" type="radio" value="2" class="custom-radio" id="Pregunta_3">
                                     3 <input name="Pregunta_3" type="radio" value="3" class="custom-radio" id="Pregunta_3">
                                     4 <input name="Pregunta_3" type="radio" value="4" class="custom-radio" id="Pregunta_3">
@@ -120,7 +131,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">4.	Posee buena relación con los compañeros<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
                                     <!-- <input class="form-control p-4" type="number" id="Pregunta_4" name="Pregunta_4" required='required'>-->
-                                    1 <input name="Pregunta_4" type="radio" value="1" class="custom-radio" id="Pregunta_4">
+                                    1 <input name="Pregunta_4" type="radio" value="1" class="custom-radio" id="Pregunta_4" required="">
                                     2 <input name="Pregunta_4" type="radio" value="2" class="custom-radio" id="Pregunta_4">
                                     3 <input name="Pregunta_4" type="radio" value="3" class="custom-radio" id="Pregunta_4">
                                     4 <input name="Pregunta_4" type="radio" value="4" class="custom-radio" id="Pregunta_4">
@@ -144,7 +155,7 @@
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">5.	Fomenta el trabajo en equipo<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
                                     <span>
-                                        1 <input name="Pregunta_5" type="radio" value="1" class="custom-radio" id="Pregunta_5">
+                                        1 <input name="Pregunta_5" type="radio" value="1" class="custom-radio" id="Pregunta_5" required="">
                                         2 <input name="Pregunta_5" type="radio" value="2" class="custom-radio" id="Pregunta_5">
                                         3 <input name="Pregunta_5" type="radio" value="3" class="custom-radio" id="Pregunta_5">
                                         4 <input name="Pregunta_5" type="radio" value="4" class="custom-radio" id="Pregunta_5">
@@ -155,12 +166,29 @@
                                         9 <input name="Pregunta_5" type="radio" value="9" class="custom-radio" id="Pregunta_5">
                                         10 <input name="Pregunta_5" type="radio" value="10" class="custom-radio" id="Pregunta_5">
                                     </span>
-                                        <!--<input class="form-control p-4" type="number" id="Pregunta_5" name="Pregunta_5" required='required'>-->
+                                    <!--<input class="form-control p-4" type="number" id="Pregunta_5" name="Pregunta_5" required='required'>-->
                                 </div>
                             </div>
                         </fieldset>
 
                         <br />
+
+                        <!--Para el manejo de las evaluaciones con estrellas-->
+                        <!--<div class="rating-box">
+                            <div class="stars">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+
+                            </div>
+                        </div>-->
 
                         <div class="ln_solid">
                             <div class="form-group">
@@ -170,6 +198,8 @@
                                 </div>
                             </div>
                         </div>
+                        <br />
+                        <br />
 
                     </form>
                 </div>
@@ -178,6 +208,15 @@
     </div>
 </div>
 
-<!--<label style="float:left"><input type="radio" value="1">Primero</label>
-                                    <label style="float:left"><input type="radio" value="2">Segundo</label>
-                                    <label style="float:left"><input type="radio" value="3">Tercero</label>-->
+
+
+
+<script>
+    var input = document.getElementById('Cedula');
+    input.addEventListener('input', function () {
+
+        if (this.value.length > 12)
+            this.value = this.value.slice(0, 12);
+
+    })
+</script>

@@ -388,19 +388,19 @@ namespace SoportePatitos.Controllers
 
                 var data = ContextoBD.Asistencia.Where(a => a.Fecha.Equals(DateTime.UtcNow)) ;
 
-               /* if (data = DateTime.Now.ToString())
-                {
-                   // Asistencia.Equals(data)
-                    //Count <2 AND Count >1 = NO marca entrada o salida
-                    //Count = 0 = Ausencia
-                    //En bd buscar por cedulas marcas registradas en un día
+                /* if (data = DateTime.Now.ToString())
+                 {
+                    
+                     //En bd buscar por cedulas marcas registradas en un día y si Count <2 AND Count >1 = NO marca entrada o salida
+                     //Si Count = 0 = Ausencia
+                     //Realizar la revision de a las 11PM de cada noche  y asignar las ausencias
 
-                }
+                 }
 
-                else
-                {
+                 else
+                 {
 
-                }*/
+                 }*/
             }
             return View();
         }

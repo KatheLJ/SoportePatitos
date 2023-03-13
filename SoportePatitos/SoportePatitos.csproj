@@ -195,6 +195,7 @@
     <Content Include="Scripts\fontawesome\css\font-awesome.min.css" />
     <Content Include="Scripts\fontawesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Scripts\fontawesome\HELP-US-OUT.txt" />
+    <Content Include="Scripts\Funciones\Funciones.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />

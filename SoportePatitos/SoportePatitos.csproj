@@ -227,11 +227,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Empleados\Login.cshtml" />
-    <Content Include="Views\Empleados\Registro_Empleados.cshtml" />
-    <Content Include="Views\Empleados\Planilla.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\RecursosHumanos\Registro_Empleados.cshtml" />
+    <Content Include="Views\RecursosHumanos\Planilla.cshtml" />
     <Content Include="Views\Empleados\CuentaEmpleados.cshtml" />
-    <Content Include="Views\Empleados\Evaluacion.cshtml" />
+    <Content Include="Views\RecursosHumanos\Evaluacion.cshtml" />
     <Content Include="Views\Empleados\MarcaAsistencia.cshtml" />
     <Content Include="Scripts\nprogress\.bower.json" />
     <Content Include="Scripts\nprogress\bower.json" />
@@ -240,17 +240,16 @@
     <Content Include="Scripts\nprogress\License.md" />
     <Content Include="Scripts\nprogress\Notes.md" />
     <Content Include="Scripts\nprogress\Readme.md" />
-    <Content Include="Views\Empleados\CuentaRH.cshtml" />
-    <Content Include="Views\Empleados\ReporteEmpleado.cshtml" />
-    <Content Include="Views\Empleados\ListadoEmpleados.cshtml" />
+    <Content Include="Views\RecursosHumanos\CuentaRH.cshtml" />
+    <Content Include="Views\RecursosHumanos\ReporteEmpleado.cshtml" />
+    <Content Include="Views\RecursosHumanos\ListadoEmpleados.cshtml" />
     <Content Include="Views\Empleados\Colillas.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
-    <Content Include="Views\Empleados\ListadoAsistencia.cshtml" />
+    <Content Include="Views\RecursosHumanos\ListadoAsistencia.cshtml" />
     <Content Include="Views\Empleados\CambioContraseña.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\RecursosHumanos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

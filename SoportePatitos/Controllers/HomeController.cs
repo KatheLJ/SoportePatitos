@@ -43,7 +43,7 @@ namespace SoportePatitos.Controllers
                     a.Contraseña.Equals(pEmpleado.Contraseña) && a.ID_perfil.Equals(1)).ToList();
 
                     var data2 = ContextoBD.Empleado.Where(a => a.Usuario.Equals(pEmpleado.Usuario) &&
-                    a.Contraseña.Equals(pEmpleado.Contraseña) && a.ID_perfil.Equals(2));
+                    a.Contraseña.Equals(pEmpleado.Contraseña) && a.ID_perfil.Equals(2)).ToList();
 
                     var data3 = ContextoBD.Empleado.Where(a => a.Usuario.Equals(pEmpleado.Usuario) &&
                     a.Contraseña.Equals(pEmpleado.Contraseña) && a.ID_perfil.Equals(3)).ToList();
@@ -65,7 +65,7 @@ namespace SoportePatitos.Controllers
 
                     //Permite el manejo de las sesiones y los perfiles del sistema 
 
-                    if (data.Count() > 0)
+                    if (data.Count() > 0 && pEmpleado.ID_perfil.Equals(1))
                     {
                         Session["Gerencia"] = data.FirstOrDefault().Usuario;
 
@@ -79,26 +79,26 @@ namespace SoportePatitos.Controllers
                         return RedirectToAction("Index", "Home");
 
                     }
-                    else if (data.Count() > 0)
+                    else if (data2.Count() > 0 && pEmpleado.ID_perfil.Equals(2))
                     {
 
-                        Session["RH"] = data.FirstOrDefault().Usuario;
+                        Session["RH"] = data2.FirstOrDefault().Usuario;
 
                         //Para los datos del perfil del tipo perfil 2
-                        Session["Cedula"] = data.FirstOrDefault().Cedula;
-                        Session["Nombre"] = data.FirstOrDefault().Nombre_Empleado;
+                        Session["Cedula"] = data2.FirstOrDefault().Cedula;
+                        Session["Nombre"] = data2.FirstOrDefault().Nombre_Empleado;
 
 
                         return RedirectToAction("Index", "Home");
                     }
-                    else if (data3.Count() > 0)//&& pEmpleado.Perfil.Equals(3))
+                    else if (data3.Count() > 0 && pEmpleado.ID_perfil.Equals(3))
                     {
 
-                        Session["Empleado"] = data.FirstOrDefault().Usuario;
+                        Session["Empleado"] = data3.FirstOrDefault().Usuario;
 
                         //Para los datos del perfil del tipo perfil 3
-                        Session["Cedula"] = data.FirstOrDefault().Cedula;
-                        Session["Nombre"] = data.FirstOrDefault().Nombre_Empleado;
+                        Session["Cedula"] = data3.FirstOrDefault().Cedula;
+                        Session["Nombre"] = data3.FirstOrDefault().Nombre_Empleado;
 
 
                         return RedirectToAction("Index", "Home");
@@ -106,7 +106,7 @@ namespace SoportePatitos.Controllers
                     else
                     {
 
-                        return RedirectToAction("Registro_Empleados");
+                        return RedirectToAction("Registro_Empleados", "RecursosHumanos");
                     }
 
 

@@ -59,20 +59,18 @@ namespace SoportePatitosBD.Repositorios
             }
         }
 
-        /* int IGestorEvaluacion.EvaluacionEmpleado(int id) {
+        int IGestorEvaluacion.EvaluacionEmpleado(int id) {
 
 
              int n = 0;
              using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
              {
-                 ContextoBD.spEvaluacionEmpleado
-
-                 ContextoBD.Entry<Tarjeta>(pTarjeta).State = System.Data.Entity.EntityState.Modified;
-                 n = ContextoBD.SaveChanges();
+                ContextoBD.spEvaluacionEmpleado();
+                n = ContextoBD.SaveChanges();
              }
-             return id;
+             return n;
 
-         }*/
+         }
 
 
         

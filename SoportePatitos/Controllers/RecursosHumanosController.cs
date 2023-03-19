@@ -3,6 +3,7 @@ using SoportePatitosBD.Modelo;
 using SoportePatitosBD.Repositorios;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -177,26 +178,32 @@ namespace SoportePatitos.Controllers
 
 
         //Accion que muestra la pantalla con el reporte de la evaluacion
-        public ActionResult ReporteEmpleado(int Cedula)
+        public ActionResult ReporteEmpleado(int id)
         {
-            // IEnumerable<Evaluacion> evaluacion = _oGestorEvaluacion.ListadoEvaluacion();
-            //  return View(evaluacion);
-
-            //  Evaluacion obj = _oGestorEvaluacion.ListadoEvaluacion().Where(x => x.Cedula == Cedula).FirstOrDefault();
-            //   return View(obj);
-
-            // SoportePatitosBD.Modelo.spEvaluacionEmpleado_Result;
-
-            //ContextoBD.spEvaluacionEmpleado()
-
-            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
-            {
-                Evaluacion obj = _oGestorEvaluacion.ListadoEvaluacion().Where(x => x.Cedula == Cedula).FirstOrDefault();
-                return View(obj);
-            }
-
-
+            Evaluacion obj = _oGestorEvaluacion.ListadoEvaluacion().Where(x => x.Cedula == id).FirstOrDefault();
+            return View(obj);
         }
+
+
+       /* public ActionResult CreatorPDF(string consecutive)
+        {
+            Dictionary<string, string> cookieCollection = new Dictionary<string, string>();
+            foreach (var key in Request.Cookies.AllKeys)
+            {
+                cookieCollection.Add(key, Request.Cookies.Get(key).Value);
+            }
+            string nameFile = consecutive.ToLower().Contains("cot") ? string.Format("{0}.pdf", consecutive) :
+                string.Format("{0}-{1}.pdf", ConfigurationManager.AppSettings["PrefixEstablishment"], consecutive);
+            var pdf = new ActionAsPdf(string.Format("OrderInvoice/{0}", consecutive))
+            {
+                Cookies = cookieCollection,
+                PageSize = Rotativa.Options.Size.A4,
+                CustomSwitches = "--print-media-type",
+                PageMargins = { Left = 1, Right = 1 },
+                FileName = nameFile,
+            };
+            return pdf;
+        }*/
 
 
     }

@@ -31,11 +31,9 @@
                 <div class="col-md-12">
                     <div class="col-md-12">
                         <div class="section-heading">
-                            <h2>Modificar</h2>
-
                         </div>
                     </div>
-                    <div class="contact-form">
+                    <div class="system-forms">
                         <div class="row">
 
 
@@ -53,7 +51,7 @@
                             </div>
 
                             <div class="col-lg-6 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.Pregunta_1, htmlAttributes: new { @class = "control-label col-md-2" })1
+                                @Html.LabelFor(model => model.Pregunta_1, htmlAttributes: new { @class = "control-label col-md-2" })
                                 @Html.EditorFor(model => model.Pregunta_1, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                             </div>
 
@@ -76,9 +74,22 @@
                                 <br>
                             </div>
 
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Pregunta_5, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Pregunta_5, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <br>
+                            </div>
+
 
                             <div class="col-lg-6 col-md-12 col-sm-12">
-
+                                <div class="ln_solid">
+                                    <div class="form-group">
+                                        <div class="col-md-6 offset-md-3">
+                                            <!--Botones para crear un empleado y limpiar el formulario-->
+                                            <button class="btn btn-primary">Descargar</button>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </div>
                             <br><br><br><br>

@@ -10,6 +10,13 @@ namespace SoportePatitos.Controllers
     public class HomeController : Controller
     {
         //Accion que muestra el inicio de la aplicacion
+        public ActionResult Inicio()
+        {
+            return View();
+        }
+
+
+        //Accion que muestra el inicio de la aplicacion (Al iniciar sesiòn)
         public ActionResult Index()
         {
             return View();

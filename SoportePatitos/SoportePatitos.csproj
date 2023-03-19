@@ -226,7 +226,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\RecursosHumanos\Registro_Empleados.cshtml" />
     <Content Include="Views\RecursosHumanos\Planilla.cshtml" />
@@ -247,6 +246,8 @@
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\RecursosHumanos\ListadoAsistencia.cshtml" />
     <Content Include="Views\Empleados\CambioContraseña.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Inicio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

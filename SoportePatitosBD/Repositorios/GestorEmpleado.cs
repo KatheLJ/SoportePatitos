@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SoportePatitosBD.Modelo;
 using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 
 namespace SoportePatitosBD.Repositorios
 {
@@ -29,29 +30,30 @@ namespace SoportePatitosBD.Repositorios
         
         //Método para crear nuevos Empleados 
         int IGestorEmpleado.CrearEmpleado(Empleado pEmpleado)
-
         {
             //Intenta el código
-           // try
-           // { 
-            int n = 0;
-            //Utiliza está conexión a la base de datos
-            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
-            {
-                ContextoBD.Empleado.Add(pEmpleado);
-                n = ContextoBD.SaveChanges();
+            try
+            { 
+                int n = 0;
+                //Utiliza está conexión a la base de datos
+                using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+                {
+                    ContextoBD.Empleado.Add(pEmpleado);
+                    n = ContextoBD.SaveChanges();
+                }
+                return n;
             }
-            return n;
-          //  }
 
             //Muestra una excepción, si no funciona
-            //catch (DbEntityValidationException e)
-           // {
+            catch (SqlException ex)
+            {
+                    if (ex.Number == 544)
+                    {
+                    throw ex;
+                    }
 
-               // Console.WriteLine(e.InnerException.Message);
-
-              //  throw;
-           // }
+                throw new ApplicationException("Exception thrown");
+            }
         }
 
 

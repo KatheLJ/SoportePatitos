@@ -4,6 +4,7 @@ using SoportePatitosBD.Repositorios;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -142,8 +143,10 @@ namespace SoportePatitos.Controllers
         //Accion que permite Registrar un empleado en la base de datos
         public ActionResult EnviarEmpleado(Empleado pEmpleado)
         {
+
             int registros = _oGestorEmpleado.CrearEmpleado(pEmpleado);
             return RedirectToAction("Registro_Empleados");
+
         }
 
 

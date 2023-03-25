@@ -104,6 +104,7 @@
     <Compile Include="Repositorios\GestorAsistencia.cs" />
     <Compile Include="Repositorios\GestorEmpleado.cs" />
     <Compile Include="Repositorios\GestorEvaluacion.cs" />
+    <Compile Include="Repositorios\GestorPlanilla.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

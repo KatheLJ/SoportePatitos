@@ -43,84 +43,40 @@ namespace SoportePatitos.Controllers
         {
             if (ModelState.IsValid)
             {
-                //Se le indica al sistema que utilice dicha entidad para conectarse a la BD
                 using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
                 {
-                    var data = ContextoBD.Empleado.Where(a => a.Usuario.Equals(pEmpleado.Usuario) &&
-                    a.Contraseña.Equals(pEmpleado.Contraseña) && a.ID_perfil.Equals(1)).ToList();
+                    var user = ContextoBD.Empleado.FirstOrDefault(a => a.Usuario.Equals(pEmpleado.Usuario) &&
+                    a.Contraseña.Equals(pEmpleado.Contraseña));
 
-                    var data2 = ContextoBD.Empleado.Where(a => a.Usuario.Equals(pEmpleado.Usuario) &&
-                    a.Contraseña.Equals(pEmpleado.Contraseña) && a.ID_perfil.Equals(2)).ToList();
-
-                    var data3 = ContextoBD.Empleado.Where(a => a.Usuario.Equals(pEmpleado.Usuario) &&
-                    a.Contraseña.Equals(pEmpleado.Contraseña) && a.ID_perfil.Equals(3)).ToList();
-
-                    //var data = ContextoBD.Empleado.Where(a => a.Usuario.Equals(pEmpleado.Usuario) &&
-                    //a.Contraseña.Equals(pEmpleado.Contraseña) && a.Perfil.Equals(pEmpleado.Perfil)).ToList();
-
-                    /* var data2 = ContextoBD.Empleado.Where(a => a.Usuario.Equals(pEmpleado.Usuario) &&
-                     a.Contraseña.Equals(pEmpleado.Contraseña)).ToList();
-
-                     var data3 = ContextoBD.Empleado.Where(a => a.Usuario.Equals(pEmpleado.Usuario) &&
-                    a.Contraseña.Equals(pEmpleado.Contraseña)).ToList();*/
-
-
-                    Session["Gerencia"] = null;
-                    Session["RH"] = null;
-                    Session["Empleado"] = null;
-
-
-                    //Permite el manejo de las sesiones y los perfiles del sistema 
-
-                    if (data.Count() > 0 && pEmpleado.ID_perfil.Equals(1))
+                    if (user != null)
                     {
-                        Session["Gerencia"] = data.FirstOrDefault().Usuario;
+                        // Si se encuentra el usuario, se establecen las variables de sesión correspondientes
+                        if (user.ID_perfil == 1)
+                        {
+                            Session["Gerencia"] = user.Usuario;
+                        }
+                        else if (user.ID_perfil == 2)
+                        {
+                            Session["RH"] = user.Usuario;
+                        }
+                        else if (user.ID_perfil == 3)
+                        {
+                            Session["Empleado"] = user.Usuario;
+                        }
 
-                        //Para los datos del perfil del tipo perfil 1
-                        Session["Cedula"] = data.FirstOrDefault().Cedula;
-                        Session["Nombre"] = data.FirstOrDefault().Nombre_Empleado;
+                        Session["Cedula"] = user.Cedula;
+                        Session["Nombre"] = user.Nombre_Empleado;
 
-
-                        //Cookie que permite manejar el usuario en sesión, en lugar de usar Session
-                        // FormsAuthentication.SetAuthCookie(pEmpleado.Usuario, false);
-                        return RedirectToAction("Index", "Home");
-
-                    }
-                    else if (data2.Count() > 0 && pEmpleado.ID_perfil.Equals(2))
-                    {
-
-                        Session["RH"] = data2.FirstOrDefault().Usuario;
-
-                        //Para los datos del perfil del tipo perfil 2
-                        Session["Cedula"] = data2.FirstOrDefault().Cedula;
-                        Session["Nombre"] = data2.FirstOrDefault().Nombre_Empleado;
-
-
+                        // Redireccionar al usuario a la página de inicio
                         return RedirectToAction("Index", "Home");
                     }
-                    else if (data3.Count() > 0 && pEmpleado.ID_perfil.Equals(3))
-                    {
-
-                        Session["Empleado"] = data3.FirstOrDefault().Usuario;
-
-                        //Para los datos del perfil del tipo perfil 3
-                        Session["Cedula"] = data3.FirstOrDefault().Cedula;
-                        Session["Nombre"] = data3.FirstOrDefault().Nombre_Empleado;
-
-
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
-                    {
-
-                        return RedirectToAction("Registro_Empleados", "RecursosHumanos");
-                    }
-
-
                 }
             }
-            return View();
+
+            // Si no se encuentra el usuario, redireccionar a la página de registro
+            return RedirectToAction("Registro_Empleados", "RecursosHumanos");
         }
+
 
 
 

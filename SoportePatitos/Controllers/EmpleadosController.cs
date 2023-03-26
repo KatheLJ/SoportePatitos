@@ -147,9 +147,7 @@ namespace SoportePatitos.Controllers
         //Accion que muestra el listado de asistencias
         public ActionResult CambioContraseña(int Cedula)
         {
-
             return View();
-
         }
 
 
@@ -157,10 +155,10 @@ namespace SoportePatitos.Controllers
 
 
         //Accion que muestra la pantalla en donde se maneja la planilla
-        /* public ActionResult Planilla(Planilla pPlanilla)
+        /* public ActionResult Colillas(int id)
          {
-             int registros = _oGestorPlanilla.CrearPLanilla(pPlanillla);
-             return RedirectToAction("Planilla");
+            Planilla obj = _oGestorPlanilla.ListadoPlanilla().Where(x => x.Cedula == id).FirstOrDefault();
+            return View(obj);
          }*/
 
 

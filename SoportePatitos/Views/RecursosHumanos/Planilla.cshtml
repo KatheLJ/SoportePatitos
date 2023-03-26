@@ -48,10 +48,18 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Nombre_Empleado)
                                 </td>
+                                <td>
+                                    <!--Permite dirigirse al reporte del empleado-->
+                                    @Html.ActionLink("Calcular renta", "Renta", new { id = item.Cedula }, new { @class = "btn btn-info btn-sm" })
+                                    <br><br>
+                                 
+
+                                </td>
                             </tr>
                         }
                     </table>
                 </div>
+
 
 
             </div>

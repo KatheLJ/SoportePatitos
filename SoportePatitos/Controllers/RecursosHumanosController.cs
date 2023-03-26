@@ -16,6 +16,7 @@ namespace SoportePatitos.Controllers
 
         private readonly IGestorEmpleado _oGestorEmpleado;
         private readonly IGestorEvaluacion _oGestorEvaluacion;
+        private readonly IGestorPlanilla _oGestorPlanilla;
 
 
 
@@ -24,6 +25,7 @@ namespace SoportePatitos.Controllers
         {
             _oGestorEmpleado = new GestorEmpleado();
             _oGestorEvaluacion = new GestorEvaluacion();
+            _oGestorPlanilla = new GestorPlanilla();
         }
 
 
@@ -185,28 +187,68 @@ namespace SoportePatitos.Controllers
         {
             Evaluacion obj = _oGestorEvaluacion.ListadoEvaluacion().Where(x => x.Cedula == id).FirstOrDefault();
             return View(obj);
+
         }
 
 
-       /* public ActionResult CreatorPDF(string consecutive)
+        //Accion que muestra la pantalla en donde se maneja la planilla
+        /*public ActionResult Planilla(Planilla pPlanilla)
         {
-            Dictionary<string, string> cookieCollection = new Dictionary<string, string>();
-            foreach (var key in Request.Cookies.AllKeys)
-            {
-                cookieCollection.Add(key, Request.Cookies.Get(key).Value);
-            }
-            string nameFile = consecutive.ToLower().Contains("cot") ? string.Format("{0}.pdf", consecutive) :
-                string.Format("{0}-{1}.pdf", ConfigurationManager.AppSettings["PrefixEstablishment"], consecutive);
-            var pdf = new ActionAsPdf(string.Format("OrderInvoice/{0}", consecutive))
-            {
-                Cookies = cookieCollection,
-                PageSize = Rotativa.Options.Size.A4,
-                CustomSwitches = "--print-media-type",
-                PageMargins = { Left = 1, Right = 1 },
-                FileName = nameFile,
-            };
-            return pdf;
+            int registros = _oGestorPlanilla.CrearPLanilla(pPlanillla);
+            return RedirectToAction("Planilla");
         }*/
+
+
+        public ActionResult DeducRenta()
+        {
+            return View();
+        }
+
+
+
+        //Accion que muestra la pantalla en donde se maneja la planilla
+        public ActionResult Renta(double salarioBase)
+        {
+            double registros = _oGestorPlanilla.DeducRenta(salarioBase);
+            return RedirectToAction("DeducRenta");
+        }
+
+
+
+        public ActionResult Seguro(double salarioBase)
+        {
+            double registros = _oGestorPlanilla.DeducSeguro(salarioBase);
+            return RedirectToAction("DeducRenta");
+        }
+
+
+        public ActionResult Ausencias(double salarioBase, int cantidadDiasAusentes)
+        {
+            double registros = _oGestorPlanilla.DeducAusencias(salarioBase, cantidadDiasAusentes);
+            return RedirectToAction("DeducRenta");
+        }
+
+
+
+        /* public ActionResult CreatorPDF(string consecutive)
+         {
+             Dictionary<string, string> cookieCollection = new Dictionary<string, string>();
+             foreach (var key in Request.Cookies.AllKeys)
+             {
+                 cookieCollection.Add(key, Request.Cookies.Get(key).Value);
+             }
+             string nameFile = consecutive.ToLower().Contains("cot") ? string.Format("{0}.pdf", consecutive) :
+                 string.Format("{0}-{1}.pdf", ConfigurationManager.AppSettings["PrefixEstablishment"], consecutive);
+             var pdf = new ActionAsPdf(string.Format("OrderInvoice/{0}", consecutive))
+             {
+                 Cookies = cookieCollection,
+                 PageSize = Rotativa.Options.Size.A4,
+                 CustomSwitches = "--print-media-type",
+                 PageMargins = { Left = 1, Right = 1 },
+                 FileName = nameFile,
+             };
+             return pdf;
+         }*/
 
 
     }

@@ -12,20 +12,20 @@ namespace SoportePatitosBD.Interface
         //Permite crear la planilla
         // int CrearPlanilla(Planilla pPlanilla);
 
-        //Permite traer los parametros para la planill
+        //Permite traer los parametros para la planilla
         int ParamPlanilla();
 
         //Permite realizar la deducción de ausencias
-        int DeducAusencias(int salarioBase, int cantidadDiasAusentes);
-
+        double DeducAusencias(double salarioBase, int cantidadDiasAusentes);
+        //?? Se debería ligar a la parte de ausencias?
 
         //Permite realizar las deducciones fiscales
-        int DeducRenta();
+        double DeducRenta(double salarioBase); //int hijos, bool Casado);
 
         //Permite realizar las deducciones de la CCSS
-        int DeducSeguro();
+        double DeducSeguro(double salarioBase);
 
         //Permite calcular el salario final
-        int CalSalarioFinal(int DeducAusencias, int DeducRenta, int DeducSeguro);
+        double CalSalarioFinal(double DeducAusencias, double DeducRenta, double DeducSeguro);
     }
 }

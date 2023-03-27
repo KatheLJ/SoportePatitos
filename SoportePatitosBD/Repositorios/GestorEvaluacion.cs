@@ -59,13 +59,13 @@ namespace SoportePatitosBD.Repositorios
             }
         }
 
-        int IGestorEvaluacion.EvaluacionEmpleado(int id) {
+        int IGestorEvaluacion.EvaluacionEmpleado(int Cedula) {
 
 
              int n = 0;
              using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
              {
-                ContextoBD.spEvaluacionEmpleado();
+                ContextoBD.spEvaluacionEmpleado().Where(x => x.Cedula == Cedula).FirstOrDefault(); ;
                 n = ContextoBD.SaveChanges();
              }
              return n;

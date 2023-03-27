@@ -36,10 +36,16 @@ namespace SoportePatitosBD.Modelo
         public virtual DbSet<Perfil> Perfil { get; set; }
         public virtual DbSet<Puesto> Puesto { get; set; }
         public virtual DbSet<Tipo> Tipo { get; set; }
+        public virtual DbSet<Planilla> Planilla { get; set; }
     
         public virtual ObjectResult<spEvaluacionEmpleado_Result> spEvaluacionEmpleado()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spEvaluacionEmpleado_Result>("spEvaluacionEmpleado");
+        }
+    
+        public virtual ObjectResult<spPLanillla_Result> spPLanillla()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spPLanillla_Result>("spPLanillla");
         }
     }
 }

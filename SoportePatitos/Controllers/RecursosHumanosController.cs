@@ -7,7 +7,9 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 using System.Web.Mvc;
+using SoportePatitos.Models.ViewModels;
 
 namespace SoportePatitos.Controllers
 {
@@ -182,51 +184,104 @@ namespace SoportePatitos.Controllers
 
 
 
+
+
+
         //Accion que muestra la pantalla con el reporte de la evaluacion
-        public ActionResult ReporteEmpleado(int id)
+        public ActionResult ReporteEmpleado(int Cedula)
         {
-            Evaluacion obj = _oGestorEvaluacion.ListadoEvaluacion().Where(x => x.Cedula == id).FirstOrDefault();
-            return View(obj);
+            //Evaluacion obj = _oGestorEvaluacion.ListadoEvaluacion().Where(x => x.Cedula == Cedula).FirstOrDefault();
+            //Evaluacion evaluacion = _oGestorEvaluacion.EvaluacionEmpleado(Cedula);
+            /*using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+                var empleados = ContextoBD.Empleado.Include(a => a.Evaluacion);
+                empleados.ToList().Where(x => x.Cedula == Cedula).FirstOrDefault();
+                return View(empleados);
 
-        }
-
-
-        //Accion que muestra la pantalla en donde se maneja la planilla
-        /*public ActionResult Planilla(Planilla pPlanilla)
-        {
-            int registros = _oGestorPlanilla.CrearPLanilla(pPlanillla);
-            return RedirectToAction("Planilla");
-        }*/
-
-
-        public ActionResult DeducRenta()
-        {
+            }*/
             return View();
+           /* RepEva repEva  = _oGestorEvaluacion.ListadoEvaluacion().Where(x => x.Cedula == Cedula).FirstOrDefault(); ;
+
+            if (ModelState.IsValid)
+            {
+
+            }
+            return View(repEva);*/
+
+
         }
 
+
+
+
+
+
+
+        //Acciones relacionadas a la planilla
+        //Accion que muestra la pantalla con el reporte de la evaluacion
+        public ActionResult ListadoEmpleadosPlanilla()
+        {
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+                var empleados = ContextoBD.Empleado.Include(a => a.Puesto);
+                return View(empleados.ToList());
+
+            }
+        }
 
 
         //Accion que muestra la pantalla en donde se maneja la planilla
-        public ActionResult Renta(double salarioBase)
+        public ActionResult CalculoPlanilla(double salarioBase)
         {
-            double registros = _oGestorPlanilla.DeducRenta(salarioBase);
-            return RedirectToAction("DeducRenta");
+            //Calcula las deducciones de renta, basado en el salario
+            double rebajoR = _oGestorPlanilla.DeducRenta(salarioBase);
+            ViewBag.rebajoR = rebajoR;
+
+            //Calcula las deducciones de seguro, basado en el salario
+            double rebajoS = _oGestorPlanilla.DeducSeguro(salarioBase);
+            ViewBag.rebajoS =  rebajoS;
+
+            //Calcula las deducciones de seguro, basado en el salario
+            double rebajoA = _oGestorPlanilla.DeducAusencias(salarioBase); //, cantidadDiasAusentes);
+            ViewBag.rebajoA = rebajoA;
+
+            //Calcula el salario final, luego de las deducciones
+            double salarioFinal = _oGestorPlanilla.CalSalarioFinal(salarioBase, rebajoR, rebajoS, rebajoA);
+            ViewBag.salariofinal = salarioFinal;
+
+
+
+            return View();
+
+        }
+
+
+        //Accion que muestra la pantalla en donde se maneja la planilla
+        public ActionResult EnviarPlanilla(Planilla pPlanilla)
+        {
+            int registros = _oGestorPlanilla.CrearPlanilla(pPlanilla);
+            return RedirectToAction("ListadoEmpleadosPlanilla"); //Cambiar a un listado de planillas
         }
 
 
 
-        public ActionResult Seguro(double salarioBase)
-        {
-            double registros = _oGestorPlanilla.DeducSeguro(salarioBase);
-            return RedirectToAction("DeducRenta");
-        }
 
 
-        public ActionResult Ausencias(double salarioBase, int cantidadDiasAusentes)
+
+        /* public ActionResult Seguro(double salarioBase)
+         {
+             double rebajoS = _oGestorPlanilla.DeducSeguro(salarioBase);
+             ViewData["Seguro"] = rebajoS;
+             return RedirectToAction("CalculoPlanilla");
+         }*/
+
+
+        /*public ActionResult Ausencias(double salarioBase, int cantidadDiasAusentes)
         {
-            double registros = _oGestorPlanilla.DeducAusencias(salarioBase, cantidadDiasAusentes);
-            return RedirectToAction("DeducRenta");
-        }
+            double rebajoA = _oGestorPlanilla.DeducAusencias(salarioBase, cantidadDiasAusentes);
+            ViewData["Ausencias"] = rebajoA;
+            return RedirectToAction("ListadoEmpleadosPlanilla");
+        }*/
 
 
 

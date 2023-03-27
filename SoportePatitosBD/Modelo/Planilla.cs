@@ -11,28 +11,16 @@ namespace SoportePatitosBD.Modelo
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    public partial class Evaluacion
+    
+    public partial class Planilla
     {
-        [Display(Name = "Identificador")]
-        public int ID_evaluacion { get; set; }
+        public int ID_planilla { get; set; }
         public int Cedula { get; set; }
-
-        [Display(Name = "Pregunta 1")]
-        public int Pregunta_1 { get; set; }
-
-        [Display(Name = "Pregunta 2")]
-        public int Pregunta_2 { get; set; }
-
-        [Display(Name = "Pregunta 3")]
-        public int Pregunta_3 { get; set; }
-
-        [Display(Name = "Pregunta 4")]
-        public int Pregunta_4 { get; set; }
-
-        [Display(Name = "Pregunta 5")]
-        public int Pregunta_5 { get; set; }
+        public int Salario_bruto { get; set; }
+        public double Deducciones_fiscales { get; set; }
+        public double Deducciones_CCSS { get; set; }
+        public double Deducciones_ausencias { get; set; }
+        public double Salario_neto { get; set; }
     
         public virtual Empleado Empleado { get; set; }
     }

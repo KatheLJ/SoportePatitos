@@ -17,7 +17,7 @@ namespace SoportePatitosBD.Interface
         IEnumerable<Evaluacion> ListadoEvaluacion();
 
         //Método para poder mostrar el reporte del empleado luego de la evaluación
-        int EvaluacionEmpleado(int id);
+        int EvaluacionEmpleado(int Cedula);
 
         
 

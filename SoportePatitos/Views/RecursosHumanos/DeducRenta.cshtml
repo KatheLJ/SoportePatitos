@@ -61,7 +61,7 @@
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
                 <!--Botones para crear un empleado y limpiar el formulario-->
-                <button type='submit' class="btn btn-primary">Calcular Renta </button>
+                <button type='submit' class="btn btn-primary">Calcular Seguro </button>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
 
 
 <!--Se define el metodo para enviar datos y el action relacionado-->
-<form id="Renta" action="Renta" method="post" class="system-forms">
+<form id="Ausencias" action="Ausencias" method="post" class="system-forms">
     <h4 class="section">Por favor llene todos los campos para registrar el empleado</h4>
 
 
@@ -92,12 +92,21 @@
         </div>
     </fieldset>
 
+    <!--Campo para la cedula del empleado-->
+    <fieldset>
+        <div class="form-group">
+            <label class="col-form-label col-md-3 col-sm-3  label-align">Cantidad Dias<span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6">
+                <input class="form-control p-4" type="number" id="cantidadDiasAusentes" name="cantidadDiasAusentes" required="" />
+            </div>
+        </div>
+    </fieldset>
 
     <div class="ln_solid">
         <div class="form-group">
             <div class="col-md-6 offset-md-3">
                 <!--Botones para crear un empleado y limpiar el formulario-->
-                <button type='submit' class="btn btn-primary">Calcular Renta </button>
+                <button type='submit' class="btn btn-primary">Calcular Ausencias </button>
             </div>
         </div>
     </div>

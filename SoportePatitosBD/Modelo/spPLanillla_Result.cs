@@ -14,6 +14,7 @@ namespace SoportePatitosBD.Modelo
     public partial class spPLanillla_Result
     {
         public int Cedula { get; set; }
+        public string Nombre_Empleado { get; set; }
         public int Salario { get; set; }
     }
 }

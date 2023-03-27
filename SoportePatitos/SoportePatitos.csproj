@@ -133,8 +133,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\EstadoAsistencia.cs" />
+    <Compile Include="Models\ViewModels\RepEva.cs" />
+    <Compile Include="Models\ViewModels\ReporteEvaluacion.cs" />
     <Compile Include="Models\ViewModels\TipoAsistencia.cs" />
-    <Compile Include="Models\ViewModels\Planilla.cs" />
+    <Compile Include="Models\ViewModels\PlanillaData.cs" />
     <Compile Include="Models\ViewModels\Perfil.cs" />
     <Compile Include="Models\ViewModels\Horario.cs" />
     <Compile Include="Models\ViewModels\Puesto.cs" />
@@ -228,7 +230,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\RecursosHumanos\Registro_Empleados.cshtml" />
-    <Content Include="Views\RecursosHumanos\Planilla.cshtml" />
+    <Content Include="Views\RecursosHumanos\CalculoPlanilla.cshtml" />
     <Content Include="Views\Empleados\CuentaEmpleados.cshtml" />
     <Content Include="Views\RecursosHumanos\Evaluacion.cshtml" />
     <Content Include="Views\Empleados\MarcaAsistencia.cshtml" />
@@ -249,6 +251,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Inicio.cshtml" />
     <Content Include="Views\RecursosHumanos\DeducRenta.cshtml" />
+    <Content Include="Views\RecursosHumanos\ListadoEmpleadosPlanilla.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace SoportePatitos.Models.ViewModels
 {
-    public class Planilla
+    public class PlanillaData
     {
         public int Cedula { get; set; }
         public string Nombre_Empleado { get; set; }

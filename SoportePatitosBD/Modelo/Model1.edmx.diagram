@@ -23,6 +23,8 @@
         <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_per__5812160E" ManuallyRouted="false" />
         <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_pue__59063A47" ManuallyRouted="false" />
         <AssociationConnector Association="SoportePatitosModel.FK__Evaluacio__Cedul__6FE99F9F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SoportePatitosModel.Planilla" Width="1.5" PointX="7.5" PointY="2.875" />
+        <AssociationConnector Association="SoportePatitosModel.FK__Planilla__Cedula__09746778" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

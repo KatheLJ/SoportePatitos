@@ -1,0 +1,135 @@
+﻿@model SoportePatitosBD.Modelo.Planilla
+@{
+    ViewBag.Title = "CalculoPlanilla";
+
+
+
+
+    // double renta = (double)ViewBag.rebajoR;
+}
+
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Calculo de la planilla de planilla</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-services">
+    <div class="container">
+        <div class="">
+            <div class="">
+                <div class="">
+                    <div class="section-heading">
+                    </div>
+                </div>
+
+
+
+                <fieldset>
+                    <div class="">
+                        <label class="">  El rebajo de renta es: @ViewBag.rebajoR </label>
+                    </div>
+                </fieldset>
+
+
+                <fieldset>
+                    <div class="">
+                        <label class="">  El rebajo de seguro es: @ViewBag.rebajoS</label>
+                    </div>
+                </fieldset>
+
+
+                <fieldset>
+                    <div class="">
+                        <label class="">  El rebajo de ausencias es: @ViewBag.rebajoA </label>
+
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <div class="">
+                        <label class=""> El salario final es: @ViewBag.salarioFinal </label>
+
+                    </div>
+                </fieldset>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@using (Html.BeginForm("CalculoPlanilla", "RecursosHumanos", FormMethod.Get))
+{
+    <div class="single-services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="section-heading">
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <div class="row">
+
+                            <!--Campo para el id de la planilla-->
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Identificador<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control p-4" type="number" id="ID_planilla" name="ID_planilla" required="" />
+                                    </div>
+                                </div>
+                            </fieldset>
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.Cedula, "", new { @class = "text-danger" })
+                                <br>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Salario_bruto, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Salario_bruto, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Salario_bruto, "", new { @class = "text-danger" })
+                                <br>
+                            </div>
+
+
+                            <!--Campo para el id de la planilla-->
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Deducción de Renta <span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <label class="">  El rebajo de renta es: @ViewBag.rebajoR </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <input type="submit" id="btn-Update" value="Guardar Cambios" class="btn btn-info" />
+                                @Html.ActionLink("Guardar Planilla", "EnviarPlanilla", "Recursos Humanos", new { @class = "btn btn-success" })
+                                <br>
+
+
+                            </div>
+                            <br><br><br><br>
+                        </div>
+                    </div>
+                    <br><br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+}

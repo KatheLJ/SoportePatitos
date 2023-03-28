@@ -1,4 +1,4 @@
-﻿@model SoportePatitosBD.Modelo.Planilla
+﻿@model SoportePatitosBD.Modelo.Empleado
 @{
     ViewBag.Title = "CalculoPlanilla";
 
@@ -12,13 +12,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Calculo de la planilla de planilla</h1>
+                <h1>Calculo de la planilla</h1>
             </div>
         </div>
     </div>
 </div>
 
-<div class="single-services">
+<!--<div class="single-services">
     <div class="container">
         <div class="">
             <div class="">
@@ -31,28 +31,28 @@
 
                 <fieldset>
                     <div class="">
-                        <label class="">  El rebajo de renta es: @ViewBag.rebajoR </label>
+                        <label class="">  El rebajo de renta es: ViewBag.rebajoR </label>
                     </div>
                 </fieldset>
 
 
                 <fieldset>
                     <div class="">
-                        <label class="">  El rebajo de seguro es: @ViewBag.rebajoS</label>
+                        <label class="">  El rebajo de seguro es: ViewBag.rebajoS</label>
                     </div>
                 </fieldset>
 
 
                 <fieldset>
                     <div class="">
-                        <label class="">  El rebajo de ausencias es: @ViewBag.rebajoA </label>
+                        <label class="">  El rebajo de ausencias es: ViewBag.rebajoA </label>
 
                     </div>
                 </fieldset>
 
                 <fieldset>
                     <div class="">
-                        <label class=""> El salario final es: @ViewBag.salarioFinal </label>
+                        <label class=""> El salario final es: ViewBag.salarioFinal </label>
 
                     </div>
                 </fieldset>
@@ -60,11 +60,11 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
 
 
-@using (Html.BeginForm("CalculoPlanilla", "RecursosHumanos", FormMethod.Get))
+@using (Html.BeginForm("EnviarPlanilla", "RecursosHumanos", FormMethod.Post))
 {
     <div class="single-services">
         <div class="container">
@@ -80,50 +80,94 @@
                             <!--Campo para el id de la planilla-->
                             <fieldset>
                                 <div class="form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Identificador<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-4 col-sm-4  label-align">Identificador </label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control p-4" type="number" id="ID_planilla" name="ID_planilla" required="" />
+                                        <input id="ID_planilla" class="form-control p-4" type="number" id="ID_planilla" name="ID_planilla" required="" />
                                     </div>
                                 </div>
                             </fieldset>
+                            <br />
 
-
-                            <div class="col-lg-6 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                @Html.ValidationMessageFor(model => model.Cedula, "", new { @class = "text-danger" })
-                                <br>
-                            </div>
-
-
-                            <div class="col-lg-6 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.Salario_bruto, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Salario_bruto, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.Salario_bruto, "", new { @class = "text-danger" })
-                                <br>
-                            </div>
-
-
-                            <!--Campo para el id de la planilla-->
                             <fieldset>
                                 <div class="form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Deducción de Renta <span class="required">*</span></label>
+                                    @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "col-form-label col-md-3 col-sm-3  label-align" })
                                     <div class="col-md-6 col-sm-6">
-                                        <label class="">  El rebajo de renta es: @ViewBag.rebajoR </label>
+                                        @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control p-4"} })
+                                    </div>
+                                    <br>
+                                </div>
+                            </fieldset>
+                            <br />
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Puesto.Salario, htmlAttributes: new { id = "Salario_bruto", @class = "col-form-label col-md-3 col-sm-3  label-align" })
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control p-4" type="number" id="Salario_bruto" name="Salario_bruto" value=@ViewBag.salarioBase />
+                                </div>
+                                <br>
+                            </div>
+                            <br />
+
+
+                            <!--Campo para la deducción de renta-->
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-form-label col-md-10 col-sm-10  label-align">Deducción de Renta </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control p-4" type="number" id="Deducciones_fiscales" name="Deducciones_fiscales" value=@ViewBag.rebajoR />
                                     </div>
                                 </div>
                             </fieldset>
 
 
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-form-label col-md-7 col-sm-7  label-align">Deducción de Seguro (CCSS) </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control p-4" type="number" id="Deducciones_CCSS" name="Deducciones_CCSS" value=@ViewBag.rebajoS />
+                                    </div>
+                                </div>
+                            </fieldset>
 
 
-                            <div class="col-lg-6 col-md-12 col-sm-12">
-                                <input type="submit" id="btn-Update" value="Guardar Cambios" class="btn btn-info" />
-                                @Html.ActionLink("Guardar Planilla", "EnviarPlanilla", "Recursos Humanos", new { @class = "btn btn-success" })
-                                <br>
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-form-label col-md-7 col-sm-7  label-align">Deducción por ausencias </label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control p-4" type="number" id="Deducciones_ausencias" name="Deducciones_ausencias" value=@ViewBag.rebajoA />
+                                    </div>
+                                </div>
+                            </fieldset>
 
 
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-form-label col-md-7 col-sm-7  label-align"> Salario Final </label>
+                                    <div class="col-md-7 col-sm-7">
+                                        <input class="form-control p-4" type="number" id="Salario_neto" name="Salario_neto" value=@ViewBag.salarioFinal />
+                                    </div>
+                                </div>
+                            </fieldset>
+
+
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
+                            <div class="ln_solid">
+                            <div class="form-group">
+                                <div class="col-md-6 offset-md-3">
+                                    <button type='submit' class="btn btn-primary">Guardar planilla</button>
+                                </div>
                             </div>
+                        </div>
+
+
+                            <!--<div class="col-lg-6 col-md-12 col-sm-12">
+                                <br />
+                                Html.ActionLink("Guardar Planilla", "EnviarPlanilla", "RecursosHumanos", new { class = "btn btn-success" })
+                            </div>-->
                             <br><br><br><br>
                         </div>
                     </div>

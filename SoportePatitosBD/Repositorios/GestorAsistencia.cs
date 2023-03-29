@@ -2,10 +2,12 @@
 using SoportePatitosBD.Modelo;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace SoportePatitosBD.Repositorios
 {
@@ -27,37 +29,62 @@ namespace SoportePatitosBD.Repositorios
             return Asistencias;
         }
 
+        bool IGestorAsistencia.VerificarMarca(int cedula, DateTime fecha)
+        {
+            using (SoportePatitosEntities contextoBD = new SoportePatitosEntities())
+            {
+                // Obtener la fecha sin la hora
+                DateTime fechaSinHora = fecha.Date;
+
+                // Verificar si hay una asistencia registrada para la cédula y fecha especificadas
+                bool hayMarca = contextoBD.Asistencia.Where(a => a.Cedula == cedula).ToList().Any(a => a.Fecha.Date == fecha.Date);
+                return hayMarca;
+            }
+        }
+
+        public int ContarMarcas(int cedula, DateTime fecha)
+        {
+            // implementación del método
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+                DateTime fechaTruncada = fecha.Date;
+                return ContextoBD.Asistencia.Count(a => a.Cedula == cedula && DbFunctions.TruncateTime(a.Fecha) == fechaTruncada);
+            }
+        }
+
 
 
         //Método para crear nuevos Asistencias 
         int IGestorAsistencia.CrearAsistencia(Asistencia pAsistencia)
-
         {
-            //Intenta el código
             try
             {
                 int n = 0;
-                //Utiliza está conexión a la base de datos
                 using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
                 {
-                    //Añade un objeto de tipo Evaluación
+                    // Verificar si ya hay dos marcas para la fecha y cédula especificadas
+                    DateTime fecha = pAsistencia.Fecha.Date;
+                    int marcasCount = ContextoBD.Asistencia.Count(a => a.Cedula == pAsistencia.Cedula && DbFunctions.TruncateTime(a.Fecha) == fecha);
+                    if (marcasCount >= 2)
+                    {
+                        return -1; // Devolver un valor indicando que no se puede registrar una nueva marca
+                    }
+
+                    //Agregar la nueva marca
                     ContextoBD.Asistencia.Add(pAsistencia);
-                    //Guarda los cambios
                     n = ContextoBD.SaveChanges();
                 }
-                //Regresa los datos en la variable
+
                 return n;
             }
-
-            //Muestra una excepción, si no funciona
-            catch (DbEntityValidationException e)
+            catch (Exception e)
             {
-
-                Console.WriteLine(e.InnerException.Message);
-
-                throw;
+                Console.WriteLine(e.Message);
+                throw new Exception("No se puede registrar la marca porque ya existen dos marcas para la fecha y cédula especificadas.");
             }
         }
+
+
 
         //Método para validar cuando un empleado omite una marca o está ausente
         int IGestorAsistencia.ValidarAsistencia(int Cedula)

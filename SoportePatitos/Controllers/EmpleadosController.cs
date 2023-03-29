@@ -11,6 +11,7 @@ using Microsoft.Ajax.Utilities;
 using System.Web.Security;
 using System.Threading;
 
+
 namespace SoportePatitos.Controllers
 {
     public class EmpleadosController : Controller
@@ -38,35 +39,13 @@ namespace SoportePatitos.Controllers
         public ActionResult MarcaAsistencia()
         {
             //Se inicializan las listas que se usaran más adelante
-            List<Models.ViewModels.Tipo> lst = null;
             List<Models.ViewModels.Estado> estadolst = null;
             int n = 0;
 
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
                 //Permite mostrar un dropdownlist con los departamentos almacenados en la base de datos
-                lst =
-                (from d in ContextoBD.Tipo
-                 select new Models.ViewModels.Tipo
-                 {
-                     ID_tipo = d.ID_tipo,
-                     Descripcion = d.Descripcion
-                 }).ToList();
-
-                List<SelectListItem> tipos = lst.ConvertAll(d =>
-                {
-
-                    return new SelectListItem
-                    {
-
-                        Text = d.Descripcion.ToString(),
-                        Value = d.ID_tipo.ToString(),
-                        Selected = false
-                    };
-
-                });
-
-                ViewData["Tipo"] = tipos;
+                
 
 
                 estadolst =
@@ -95,6 +74,11 @@ namespace SoportePatitos.Controllers
 
                 ViewData["Estado"] = estados;
 
+                // Obtener la cedula del usuario que ha iniciado sesión
+                string cedula = Session["Cedula"].ToString();
+                ViewData["Cedula"] = cedula;
+
+
                 return View();
             }
             
@@ -105,17 +89,25 @@ namespace SoportePatitos.Controllers
         //Accion que muestra la pantalla para enviar el ingreso/salida (Marcas)
         public ActionResult EnviarAsistencia(Asistencia pAsistencia)
         {
-            int registros = _oGestorAsistencia.CrearAsistencia(pAsistencia);
-            return RedirectToAction("MarcaAsistencia");
+            bool hayMarca = _oGestorAsistencia.VerificarMarca(pAsistencia.Cedula, pAsistencia.Fecha);
+            int tipo = hayMarca ? 2 : 1;
+            pAsistencia.Tipo = tipo;
+
+            int marcasRegistradas = _oGestorAsistencia.ContarMarcas(pAsistencia.Cedula, pAsistencia.Fecha);
+
+            if (marcasRegistradas >= 2)
+            {
+                TempData["MensajeError"] = "No se puede agregar una tercera marca para esta fecha y cédula.";
+                return RedirectToAction("MarcaAsistencia");
+            }
+            else
+            {
+                int registros = _oGestorAsistencia.CrearAsistencia(pAsistencia);
+                return RedirectToAction("MarcaAsistencia");
+            }
         }
 
 
-        //Accion que muestra el listado de asistencias
-        public ActionResult ListadoAsistencia()
-        {
-            IEnumerable<Asistencia> asistencias = _oGestorAsistencia.ListadoAsistencia();
-            return View(asistencias);
-        }
 
 
         public ActionResult ValidarAusencias(Asistencia pAsistencia)
@@ -150,16 +142,6 @@ namespace SoportePatitos.Controllers
             return View();
         }
 
-
-
-
-
-        //Accion que muestra la pantalla en donde se maneja la planilla
-        /* public ActionResult Colillas(int id)
-         {
-            Planilla obj = _oGestorPlanilla.ListadoPlanilla().Where(x => x.Cedula == id).FirstOrDefault();
-            return View(obj);
-         }*/
 
 
 

@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "MarcaAsistencia";
-    List<SelectListItem> tipos = (List<SelectListItem>)ViewData["Tipo"];
+
     List<SelectListItem> estados = (List<SelectListItem>)ViewData["Estado"];
 }
 
@@ -34,32 +34,33 @@
                         <br>
 
 
+                        @if (TempData != null && TempData["MensajeError"] != null)
+                        {
+                            <script>
+                                var mensajeError = '@TempData["MensajeError"]';
+                                if (mensajeError.trim() !== "") {
+                                    alert(mensajeError);
+                                }
+                            </script>
+                        }
+
 
                         <!--Campo para la cedula del empleado-->
                         <fieldset>
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Cedula<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control p-4" type="number" id="Cedula" name="Cedula" placeholder="@HttpContext.Current.Session["Cedula"].ToString()" required />
+                                    <input class="form-control p-4" type="number" id="Cedula" name="Cedula" value="@ViewData["Cedula"].ToString()" style="display:none" required />
+                                    <input type="text" id="CedulaLabel" class="form-control" disabled value="@ViewData["Cedula"].ToString()" />
                                 </div>
                             </div>
                         </fieldset>
 
+
                         <br />
 
 
-                        <!--Campo para el tipo de asistencia--> <!--Campo que se debería traer desde la base de datos-->
-                        <fieldset>
-                            <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">Tipo<span class="required">*</span></label>
-                                <div class="col-md-6 col-sm-6">
-                                    @Html.DropDownList("Tipo", tipos, new { @class = "form-control", required = "required" })
-                                    <!--<input class="form-control" type="number" id="ID_perfil" name="ID_perfil" required='required'>-->
-                                </div>
-                                <br /><br />
-                            </div>
-                        </fieldset>
-                        <br />
+
 
 
 

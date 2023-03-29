@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace SoportePatitosBD.Interface
 {
     public interface IGestorAsistencia
@@ -17,5 +18,9 @@ namespace SoportePatitosBD.Interface
 
         //Método para validar cuando un empleado omite una marca o está ausente
         int ValidarAsistencia(int Cedula);
+
+        bool VerificarMarca(int cedula, DateTime fecha);
+
+        int ContarMarcas(int cedula, DateTime fecha);
     }
 }

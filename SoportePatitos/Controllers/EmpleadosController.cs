@@ -45,7 +45,7 @@ namespace SoportePatitos.Controllers
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
                 //Permite mostrar un dropdownlist con los departamentos almacenados en la base de datos
-                
+
 
 
                 estadolst =
@@ -56,7 +56,7 @@ namespace SoportePatitos.Controllers
                      Descripcion = d.Descripcion
                  }).ToList();
 
-                
+
                 List<SelectListItem> estados = estadolst.ConvertAll(d =>
                 {
 
@@ -70,7 +70,7 @@ namespace SoportePatitos.Controllers
 
                 });
 
-               // Asistencia obj = estadolst.Where(x => x.ID_Estado == 1).First();
+                // Asistencia obj = estadolst.Where(x => x.ID_Estado == 1).First();
 
                 ViewData["Estado"] = estados;
 
@@ -81,7 +81,7 @@ namespace SoportePatitos.Controllers
 
                 return View();
             }
-            
+
         }
 
 
@@ -115,7 +115,7 @@ namespace SoportePatitos.Controllers
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
 
-                var data = ContextoBD.Asistencia.Where(a => a.Fecha.Equals(DateTime.UtcNow)) ;
+                var data = ContextoBD.Asistencia.Where(a => a.Fecha.Equals(DateTime.UtcNow));
 
                 /* if (data = DateTime.Now.ToString())
                  {

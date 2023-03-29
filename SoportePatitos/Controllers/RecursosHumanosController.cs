@@ -165,8 +165,7 @@ namespace SoportePatitos.Controllers
         }
 
 
-        //[Authorize] 
-        //Permite manejar a que páginas esta autorizada el usuario y cuales no
+        
         //Accion envia la evaluación realizada a un empleado
         public ActionResult EnviarEvaluacion(Evaluacion pEvaluacion)
         {
@@ -190,24 +189,13 @@ namespace SoportePatitos.Controllers
         //Accion que muestra la pantalla con el reporte de la evaluacion
         public ActionResult ReporteEmpleado(int Cedula)
         {
-            //Evaluacion obj = _oGestorEvaluacion.ListadoEvaluacion().Where(x => x.Cedula == Cedula).FirstOrDefault();
-            //Evaluacion evaluacion = _oGestorEvaluacion.EvaluacionEmpleado(Cedula);
-            /*using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
-                var empleados = ContextoBD.Empleado.Include(a => a.Evaluacion);
-                empleados.ToList().Where(x => x.Cedula == Cedula).FirstOrDefault();
-                return View(empleados);
-
-            }*/
-            return View();
-           /* RepEva repEva  = _oGestorEvaluacion.ListadoEvaluacion().Where(x => x.Cedula == Cedula).FirstOrDefault(); ;
-
-            if (ModelState.IsValid)
-            {
-
+                var empleados = ContextoBD.Evaluacion.Include(a => a.Empleado);
+                return View(empleados.ToList().Where(x => x.Cedula == Cedula).FirstOrDefault());
             }
-            return View(repEva);*/
-
+            
 
         }
 
@@ -233,6 +221,9 @@ namespace SoportePatitos.Controllers
         //Accion que muestra la pantalla en donde se maneja la planilla
         public ActionResult CalculoPlanilla(double salarioBase)
         {
+
+            ViewBag.salariobase = salarioBase;
+
             //Calcula las deducciones de renta, basado en el salario
             double rebajoR = _oGestorPlanilla.DeducRenta(salarioBase);
             ViewBag.rebajoR = rebajoR;
@@ -249,9 +240,16 @@ namespace SoportePatitos.Controllers
             double salarioFinal = _oGestorPlanilla.CalSalarioFinal(salarioBase, rebajoR, rebajoS, rebajoA);
             ViewBag.salariofinal = salarioFinal;
 
+            //Empleado obj = _oGestorEmpleado.ListadoEmpleados().Where(x => x.Cedula == Cedula).FirstOrDefault();
+            // return View(obj);
 
-
-            return View();
+           
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+                var empleados = ContextoBD.Empleado.Include(a => a.Puesto);
+                return View(empleados.ToList().Where(x => x.Puesto.Salario == salarioBase).FirstOrDefault());
+            }
+            //return View();
 
         }
 
@@ -265,45 +263,32 @@ namespace SoportePatitos.Controllers
 
 
 
-
-
-
-        /* public ActionResult Seguro(double salarioBase)
-         {
-             double rebajoS = _oGestorPlanilla.DeducSeguro(salarioBase);
-             ViewData["Seguro"] = rebajoS;
-             return RedirectToAction("CalculoPlanilla");
-         }*/
-
-
-        /*public ActionResult Ausencias(double salarioBase, int cantidadDiasAusentes)
+        /*public ActionResult CreatorPDF(string consecutive)
         {
-            double rebajoA = _oGestorPlanilla.DeducAusencias(salarioBase, cantidadDiasAusentes);
-            ViewData["Ausencias"] = rebajoA;
-            return RedirectToAction("ListadoEmpleadosPlanilla");
+            Dictionary<string, string> cookieCollection = new Dictionary<string, string>();
+            foreach (var key in Request.Cookies.AllKeys)
+            {
+                cookieCollection.Add(key, Request.Cookies.Get(key).Value);
+            }
+            string nameFile = consecutive.ToLower().Contains("cot") ? string.Format("{0}.pdf", consecutive) :
+                string.Format("{0}-{1}.pdf", ConfigurationManager.AppSettings["PrefixEstablishment"], consecutive);
+            var pdf = new Rotativa.ActionAsPdf(string.Format("ReporteEmpleado
+        ", consecutive))
+            {
+                Cookies = cookieCollection,
+                PageSize = Rotativa.Options.Size.A4,
+                CustomSwitches = "--print-media-type",
+                PageMargins = { Left = 1, Right = 1 },
+                FileName = nameFile,
+            };
+            return pdf;
         }*/
 
 
-
-        /* public ActionResult CreatorPDF(string consecutive)
-         {
-             Dictionary<string, string> cookieCollection = new Dictionary<string, string>();
-             foreach (var key in Request.Cookies.AllKeys)
-             {
-                 cookieCollection.Add(key, Request.Cookies.Get(key).Value);
-             }
-             string nameFile = consecutive.ToLower().Contains("cot") ? string.Format("{0}.pdf", consecutive) :
-                 string.Format("{0}-{1}.pdf", ConfigurationManager.AppSettings["PrefixEstablishment"], consecutive);
-             var pdf = new ActionAsPdf(string.Format("OrderInvoice/{0}", consecutive))
-             {
-                 Cookies = cookieCollection,
-                 PageSize = Rotativa.Options.Size.A4,
-                 CustomSwitches = "--print-media-type",
-                 PageMargins = { Left = 1, Right = 1 },
-                 FileName = nameFile,
-             };
-             return pdf;
-         }*/
+        public ActionResult GeneratePDFReporte(int Cedula)
+        {
+            return new Rotativa.ActionAsPdf("ReporteEmpleado");
+        }
 
 
     }

@@ -196,9 +196,7 @@ namespace SoportePatitosBD.Repositorios
         int IGestorPlanilla.CrearPlanilla(Planilla pPlanilla)
 
         {
-            //Intenta el código
-            try
-            {
+           
                 int n = 0;
                 //Utiliza está conexión a la base de datos
                 using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
@@ -210,16 +208,7 @@ namespace SoportePatitosBD.Repositorios
                 }
                 //Regresa los datos en la variable
                 return n;
-            }
-
-            //Muestra una excepción, si no funciona
-            catch (DbEntityValidationException e)
-            {
-
-                Console.WriteLine(e.InnerException.Message);
-
-                throw;
-            }
+            
         }
 
 
@@ -228,13 +217,13 @@ namespace SoportePatitosBD.Repositorios
 }
 
 
-//Se tiene un formulario solo con la cedula, el nombre y el salario
-//Se tiene un boton de calcular planilla
-//Al dar click al boton, el sistema ejecuta el calculo de la planilla segun cada salario
+
 //El sistema guarda los registros **se requiere un ciclo o manejo individual
 //Se muestra un reporte para descargar en pdf
 
 //Las deducciones se manejan individual por empleado
+//Falta en la renta los hijos y en las ausencias que sean tomadas del sistema
+//Ahorita no permite tomar todos los empleados
 
 
 

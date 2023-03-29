@@ -1,9 +1,7 @@
-﻿@model SoportePatitosBD.Modelo.Empleado
+﻿@model SoportePatitosBD.Modelo.Evaluacion
 
 @{
     ViewBag.Title = "ReporteEmpleado";
-    //SoportePatitosBD.Modelo.Empleado pEmpleado = new SoportePatitosBD.Modelo.Empleado();
-   // SoportePatitosBD.Modelo.Evaluacion pEvaluacion = new SoportePatitosBD.Modelo.Evaluacion();
 }
 
 
@@ -24,7 +22,8 @@
 
 
 <!--Muestra solo un reporte especìfico -->
-
+@using (Html.BeginForm("ReporteEmpleado", "RecursosHumanos", FormMethod.Get))
+{
     <div class="single-services">
         <div class="container">
             <div class="row">
@@ -38,45 +37,45 @@
 
 
                             <div class="col-lg-6 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.Evaluacion.ID_evaluacion, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Evaluacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.LabelFor(model => model.ID_evaluacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.ID_evaluacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <br>
                             </div>
 
 
                             <div class="col-lg-6 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.LabelFor(model => model.Empleado.Cedula, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Empleado.Cedula, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <br>
                             </div>
 
                             <div class="col-lg-6 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.Evaluacion, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Evaluacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.LabelFor(model => model.Pregunta_1, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Pregunta_1, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                             </div>
 
 
                             <div class="col-lg-6 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.Evaluacion, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Evaluacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.LabelFor(model => model.Pregunta_2, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Pregunta_2, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <br>
                             </div>
 
                             <div class="col-lg-6 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.Evaluacion, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Evaluacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.LabelFor(model => model.Pregunta_3, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Pregunta_3, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <br>
                             </div>
 
                             <div class="col-lg-6 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.Evaluacion, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Evaluacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.LabelFor(model => model.Pregunta_4, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Pregunta_4, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <br>
                             </div>
 
                             <div class="col-lg-6 col-md-12 col-sm-12">
-                                @Html.LabelFor(model => model.Evaluacion, htmlAttributes: new { @class = "control-label col-md-2" })
-                                @Html.EditorFor(model => model.Evaluacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.LabelFor(model => model.Pregunta_5, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Pregunta_5, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <br>
                             </div>
 
@@ -86,7 +85,15 @@
                                     <div class="form-group">
                                         <div class="col-md-6 offset-md-3">
                                             <!--Botones para crear un empleado y limpiar el formulario-->
-                                            <button class="btn btn-primary">Descargar</button>
+                                            <!--<button class="btn btn-primary">Descargar</button>-->
+
+                                            <div class="ln_solid">
+                                                <div class="form-group">
+                                                    <div class="text-right">
+                                                        @Html.ActionLink("Descargar", "GeneratePDFReporte", new { @class = "btn btn-danger btn-sm" })
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

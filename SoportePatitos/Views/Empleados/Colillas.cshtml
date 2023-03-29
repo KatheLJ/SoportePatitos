@@ -1,7 +1,104 @@
-﻿
+﻿@model SoportePatitosBD.Modelo.Planilla
 @{
     ViewBag.Title = "Collillas";
 }
 
-<h2>Collillas</h2>
+
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Colilla de pago</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--Muestra solo un reporte especìfico -->
+@using (Html.BeginForm("ColillaPago", "Empleado", FormMethod.Get))
+{
+    <div class="single-services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="section-heading">
+                        </div>
+                    </div>
+                    <div class="system-forms">
+                        <div class="row">
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.ID_planilla, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.ID_planilla, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <br>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <br>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Salario_bruto, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Salario_bruto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Deducciones_fiscales, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Deducciones_fiscales, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <br>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Deducciones_CCSS, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Deducciones_CCSS, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <br>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Deducciones_ausencias, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Deducciones_ausencias, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <br>
+                            </div>
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                @Html.LabelFor(model => model.Salario_neto, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.EditorFor(model => model.Salario_neto, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                <br>
+                            </div>
+
+
+                            <div class="col-lg-6 col-md-12 col-sm-12">
+                                <div class="ln_solid">
+                                    <div class="form-group">
+                                        <div class="col-md-6 offset-md-3">
+                                            <!--Botones para crear un empleado y limpiar el formulario-->
+                                            <button class="btn btn-primary">Descargar</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br><br><br><br>
+                        </div>
+                    </div>
+                    <br><br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
 

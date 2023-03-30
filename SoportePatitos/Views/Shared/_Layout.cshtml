@@ -85,7 +85,7 @@
                             {
                                 <ul class="navbar-nav mr-auto py-0">
                                     <a href="@Url.Action("CuentaGerencia", "Empleado")" class="nav-item nav-link">Bienvenido @HttpContext.Current.Session["Gerencia"].ToString()</a>
-                                    <a href="@Url.Action("Salir", "Empleado")" class="nav-item nav-link">Salir</a>
+                                    <a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a>
                                 </ul>
                             }
 
@@ -94,7 +94,7 @@
                             {
                                 <ul class="navbar-nav mr-auto py-0">
                                     <a href="@Url.Action("CuentaRH", "RecursosHumanos")" class="nav-item nav-link">Bienvenido @HttpContext.Current.Session["RH"].ToString()</a>
-                                    <a href="@Url.Action("Salir", "RecursosHumanos")" class="nav-item nav-link">Salir</a>
+                                    <a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a>
                                 </ul>
                             }
 
@@ -102,7 +102,7 @@
                             {
                                 <div class="navbar-nav mr-auto py-0">
                                     <a href="@Url.Action("CuentaEmpleado", "Empleado")" class="nav-item nav-link">Bienvenido @HttpContext.Current.Session["Empleado"].ToString()</a>
-                                    <a href="@Url.Action("Salir", "Empleado")" class="nav-item nav-link">Salir</a>
+                                    <a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a>
                                 </div>
 
                             }

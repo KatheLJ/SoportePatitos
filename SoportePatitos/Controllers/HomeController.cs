@@ -79,7 +79,12 @@ namespace SoportePatitos.Controllers
 
 
 
-
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+            return RedirectToAction("Inicio", "Home");
+        }
 
 
 

@@ -92,7 +92,7 @@
                                 <div class="form-group">
                                     @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "col-form-label col-md-3 col-sm-3  label-align" })
                                     <div class="col-md-6 col-sm-6">
-                                        @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control p-4"} })
+                                        @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control p-4", @readonly = "readonly" } })
                                     </div>
                                     <br>
                                 </div>
@@ -102,7 +102,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.Puesto.Salario, htmlAttributes: new { id = "Salario_bruto", @class = "col-form-label col-md-3 col-sm-3  label-align" })
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control p-4" type="number" id="Salario_bruto" name="Salario_bruto" value=@ViewBag.salarioBase />
+                                    <input class="form-control p-4" type="number" id="Salario_bruto" name="Salario_bruto" value=@ViewBag.salarioBase readonly/>
                                 </div>
                                 <br>
                             </div>
@@ -114,7 +114,7 @@
                                 <div class="form-group">
                                     <label class="col-form-label col-md-10 col-sm-10  label-align">Deducción de Renta </label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control p-4" type="number" id="Deducciones_fiscales" name="Deducciones_fiscales" value=@ViewBag.rebajoR />
+                                        <input class="form-control p-4" type="number" id="Deducciones_fiscales" name="Deducciones_fiscales" value=@ViewBag.rebajoR readonly/>
                                     </div>
                                 </div>
                             </fieldset>
@@ -124,7 +124,7 @@
                                 <div class="form-group">
                                     <label class="col-form-label col-md-7 col-sm-7  label-align">Deducción de Seguro (CCSS) </label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control p-4" type="number" id="Deducciones_CCSS" name="Deducciones_CCSS" value=@ViewBag.rebajoS />
+                                        <input class="form-control p-4" type="number" id="Deducciones_CCSS" name="Deducciones_CCSS" value=@ViewBag.rebajoS readonly/>
                                     </div>
                                 </div>
                             </fieldset>
@@ -134,7 +134,7 @@
                                 <div class="form-group">
                                     <label class="col-form-label col-md-7 col-sm-7  label-align">Deducción por ausencias </label>
                                     <div class="col-md-6 col-sm-6">
-                                        <input class="form-control p-4" type="number" id="Deducciones_ausencias" name="Deducciones_ausencias" value=@ViewBag.rebajoA />
+                                        <input class="form-control p-4" type="number" id="Deducciones_ausencias" name="Deducciones_ausencias" value=@ViewBag.rebajoA readonly/>
                                     </div>
                                 </div>
                             </fieldset>
@@ -144,7 +144,7 @@
                                 <div class="form-group">
                                     <label class="col-form-label col-md-7 col-sm-7  label-align"> Salario Final </label>
                                     <div class="col-md-7 col-sm-7">
-                                        <input class="form-control p-4" type="number" id="Salario_neto" name="Salario_neto" value=@ViewBag.salarioFinal />
+                                        <input class="form-control p-4" type="number" id="Salario_neto" name="Salario_neto" value=@ViewBag.salarioFinal readonly/>
                                     </div>
                                 </div>
                             </fieldset>

@@ -1,6 +1,6 @@
 ﻿@model SoportePatitosBD.Modelo.Planilla
 @{
-    ViewBag.Title = "Collillas";
+    ViewBag.Title = "Colillas";
 }
 
 
@@ -19,7 +19,7 @@
 
 
 <!--Muestra solo un reporte especìfico -->
-@using (Html.BeginForm("ColillaPago", "Empleado", FormMethod.Get))
+@using (Html.BeginForm("Colillas", "Empleados", FormMethod.Get))
 {
     <div class="single-services">
         <div class="container">
@@ -82,7 +82,7 @@
                                     <div class="form-group">
                                         <div class="col-md-6 offset-md-3">
                                             <!--Botones para crear un empleado y limpiar el formulario-->
-                                            <button class="btn btn-primary">Descargar</button>
+
                                         </div>
                                     </div>
                                 </div>
@@ -96,9 +96,6 @@
             </div>
         </div>
     </div>
-}
 
-
-
-
+ }
 

@@ -78,6 +78,12 @@ namespace SoportePatitos.Controllers
         }
 
 
+        public ActionResult CambioContraseña()
+        {
+            return View();
+        }
+
+
 
         public ActionResult Logout()
         {

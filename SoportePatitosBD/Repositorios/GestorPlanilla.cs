@@ -12,6 +12,19 @@ namespace SoportePatitosBD.Repositorios
     public class GestorPlanilla : IGestorPlanilla
     {
 
+        //Método para enlistar las planillas registradas en el sistema
+        IEnumerable<Planilla> IGestorPlanilla.ListadoPlanilla()
+        {
+            List<Planilla> Planillas = new List<Planilla>();
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+                Planillas = ContextoBD.Planilla.ToList();
+            }
+            return Planillas;
+        }
+
+
+
         //Permite realizar la deducción de ausencias
         double IGestorPlanilla.DeducAusencias(double salarioBase) //, int cantidadDiasAusentes)
         {

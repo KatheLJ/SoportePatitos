@@ -10,6 +10,7 @@ using System.ComponentModel.Design;
 using Microsoft.Ajax.Utilities;
 using System.Web.Security;
 using System.Threading;
+using System.Data.Entity;
 
 
 namespace SoportePatitos.Controllers
@@ -34,7 +35,15 @@ namespace SoportePatitos.Controllers
 
 
 
+
         // GET: Empleado
+
+
+
+
+        //****************************************************************************************************************************//
+        //************************************Acciones relacionadas a la marca de asistencias ***************************************//
+        
         //Accion que muestra la pantalla para registro el ingreso y la salida del empleado
         public ActionResult MarcaAsistencia()
         {
@@ -134,15 +143,71 @@ namespace SoportePatitos.Controllers
             return View();
         }
 
+        //****************************************************************************************************************************//
 
 
-        //Accion que muestra el listado de asistencias
-        public ActionResult CambioContraseña(int Cedula)
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //****************************************************************************************************************************//
+        //*****************************Acciones relacionadas a las colillas de pago y las descargas en PDF****************************//
+
+
+        //Permite mostrar el historial de colillas de pago del empleado que está en sesión
+        public ActionResult HistorialColilla()
         {
-            return View();
+            int Cedula = (int)Session["Cedula"];
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+
+                var empleados = ContextoBD.Planilla.Include(a => a.Empleado);
+                return View(empleados.ToList().Where(x => x.Cedula == Cedula));
+            }
+
         }
 
 
+
+        //Permite mostrar una colilla de pago específica (usuario en sesión)
+        public ActionResult Colillas(int ID_planilla)
+        {
+
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+
+                var colilla = ContextoBD.Planilla.Include(a => a.Empleado);
+                return View(colilla.ToList().Where(x => x.ID_planilla == ID_planilla).FirstOrDefault());
+            }
+
+
+        }
+
+
+        //Permite descargar una colilla de pago específica (usuario en sesión)
+        public ActionResult GenerarPDF(int ID_planilla)
+        {
+
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+
+                var colilla = ContextoBD.Planilla.Include(a => a.Empleado);
+                colilla.ToList().Where(x => x.ID_planilla == ID_planilla).FirstOrDefault();
+                return new Rotativa.ActionAsPdf("Colillas", colilla.ToList().Where(x => x.ID_planilla == ID_planilla).FirstOrDefault());
+            }
+
+        }
+
+        //****************************************************************************************************************************//
 
 
     }

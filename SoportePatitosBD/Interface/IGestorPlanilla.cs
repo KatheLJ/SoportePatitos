@@ -10,8 +10,11 @@ namespace SoportePatitosBD.Interface
 {
     public interface IGestorPlanilla
     {
+        //Permite crear una lista con todos los elementos de tipo planilla
+        IEnumerable<Planilla> ListadoPlanilla();
+
         //Permite crear la planilla
-         int CrearPlanilla(Planilla pPlanilla);
+        int CrearPlanilla(Planilla pPlanilla);
 
         //Permite traer los parametros para la planilla
         int ParamPlanilla();

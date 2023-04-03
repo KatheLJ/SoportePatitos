@@ -1,0 +1,97 @@
+﻿@model IEnumerable<SoportePatitosBD.Modelo.Planilla>
+@{
+    ViewBag.Title = "ListadoPlanilla";
+}
+
+<div class="page-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Planillas de empleados</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <!--Muestra una tabla con todas las columnas del empleado-->
+                    <table class="table table-hover table-bordered">
+                        <tr class="bg-secondary">
+                            <th>
+                                @Html.DisplayNameFor(model => model.ID_planilla)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cedula)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Salario_bruto)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Deducciones_fiscales)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Deducciones_CCSS)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Deducciones_ausencias)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Salario_neto)
+                            </th>
+                        </tr>
+
+                        <!--Muestra cada registro en la tabla de Empleados-->
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ID_planilla)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cedula)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Salario_bruto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Deducciones_fiscales)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Deducciones_CCSS)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Deducciones_ausencias)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Salario_neto)
+                                </td>
+
+                            </tr>
+                        }
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="ln_solid">
+    <div class="form-group">
+        <div class="text-right">
+            @Html.ActionLink("Descargar Planilla", "PdfPlanilla","",new { @class = "btn btn-info btn-sm" })
+        </div>
+    </div>
+</div>

@@ -91,7 +91,7 @@
                                     <!--Permite dirigirse al reporte del empleado-->
                                     @Html.ActionLink("Evaluación de Desempeño", "ReporteEmpleado", new { Cedula = item.Cedula }, new { @class = "btn btn-info btn-sm" })
                                     <br><br>
-                                    @Html.ActionLink("Eliminar", "", new { id = item.Cedula }, new { @class = "btn btn btn-primary btn-sm" })
+                                    @Html.ActionLink("Descargar Evaluación", "GeneratePDFReporte", new { Cedula = item.Cedula }, new { @class = "btn btn btn-primary btn-sm" })
                                     <br><br>
                                     @Html.ActionLink("Actualizar", "", new { id = item.Cedula }, new { @class = "btn btn btn-info btn-sm" })
 

@@ -23,7 +23,7 @@ namespace SoportePatitosBD.Interface
         double DeducAusencias(double salarioBase); //, int cantidadDiasAusentes);
 
         //Permite realizar las deducciones fiscales
-        double DeducRenta(double salarioBase); //int hijos, bool Casado);
+        double DeducRenta(double salarioBase, int Cantidad_Hijos, int ID_Estado_Civil);
 
         //Permite realizar las deducciones de la CCSS
         double DeducSeguro(double salarioBase);

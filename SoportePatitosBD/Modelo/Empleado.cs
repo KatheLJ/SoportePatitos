@@ -11,8 +11,6 @@ namespace SoportePatitosBD.Modelo
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
     
     public partial class Empleado
     {
@@ -23,29 +21,18 @@ namespace SoportePatitosBD.Modelo
             this.Evaluacion = new HashSet<Evaluacion>();
             this.Planilla = new HashSet<Planilla>();
         }
-
+    
         public int Cedula { get; set; }
-
-        [Display(Name = "Nombre")]
         public string Nombre_Empleado { get; set; }
-
-        [Display(Name = "Fecha de ingreso")]
         public System.DateTime Fecha_ingreso { get; set; }
-
-        [Display(Name = "Departamento")]
         public int ID_departamento { get; set; }
-
-        [Display(Name = "Perfil")]
         public int ID_perfil { get; set; }
-
-        [Display(Name = "Puesto")]
         public int ID_puesto { get; set; }
-
-        [Display(Name = "Horario")]
         public int ID_horario { get; set; }
-
         public string Usuario { get; set; }
         public string Contraseña { get; set; }
+        public int Cantidad_Hijos { get; set; }
+        public int ID_Estado_Civil { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asistencia> Asistencia { get; set; }
@@ -57,5 +44,6 @@ namespace SoportePatitosBD.Modelo
         public virtual ICollection<Evaluacion> Evaluacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Planilla> Planilla { get; set; }
+        public virtual Estado_Civil Estado_Civil { get; set; }
     }
 }

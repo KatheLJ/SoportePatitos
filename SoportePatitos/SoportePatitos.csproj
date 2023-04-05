@@ -136,6 +136,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\EstadoAsistencia.cs" />
+    <Compile Include="Models\ViewModels\Estado_civil.cs" />
     <Compile Include="Models\ViewModels\RepEva.cs" />
     <Compile Include="Models\ViewModels\ReporteEvaluacion.cs" />
     <Compile Include="Models\ViewModels\TipoAsistencia.cs" />

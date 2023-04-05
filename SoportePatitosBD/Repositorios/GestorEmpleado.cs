@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using SoportePatitosBD.Modelo;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace SoportePatitosBD.Repositorios
 {
@@ -39,7 +40,14 @@ namespace SoportePatitosBD.Repositorios
                 using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
                 {
                     ContextoBD.Empleado.Add(pEmpleado);
-                    n = ContextoBD.SaveChanges();
+                    /* if (n == 0)
+                    {
+                        MessageBox.Show("No se puede llevar a cabo el registro. Intente denuevo.");
+                    }
+                    else
+                    {*/
+                        n = ContextoBD.SaveChanges();
+                    //}
                 }
                 return n;
             }

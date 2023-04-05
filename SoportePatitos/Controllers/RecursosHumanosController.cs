@@ -10,6 +10,7 @@ using System.Web;
 using System.Data.Entity;
 using System.Web.Mvc;
 using SoportePatitos.Models.ViewModels;
+using System.Web.Optimization;
 
 namespace SoportePatitos.Controllers
 {
@@ -47,6 +48,7 @@ namespace SoportePatitos.Controllers
             List<Models.ViewModels.Puesto> lst2 = null;
             List<Models.ViewModels.Perfil> lst3 = null;
             List<Models.ViewModels.Horario> lst4 = null;
+            List<Models.ViewModels.Estado_civil> lst5 = null;
 
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
@@ -138,10 +140,34 @@ namespace SoportePatitos.Controllers
                     };
 
                 });
+
+                //Permite mostrar un dropdownlist con los estados civiles almacenados en la base de datos
+                lst5 =
+                (from d in ContextoBD.Estado_Civil
+                 select new Models.ViewModels.Estado_civil
+                 {
+                     ID_Estado_Civil = d.ID_Estado_Civil,
+                     Descripcion = d.Descripcion
+                 }).ToList();
+
+                List<SelectListItem> items5 = lst5.ConvertAll(d =>
+                {
+                    return new SelectListItem
+                    {
+
+                        Text = d.Descripcion.ToString(),
+                        Value = d.ID_Estado_Civil.ToString(),
+                        Selected = false
+                    };
+
+                });
+
+
                 ViewData["Departamento"] = items;
                 ViewData["Puesto"] = items2;
                 ViewData["Perfil"] = items3;
                 ViewData["Horario"] = items4;
+                ViewData["Estado_civil"] = items5;
                 return View();
             }
         }
@@ -154,6 +180,8 @@ namespace SoportePatitos.Controllers
 
             int registros = _oGestorEmpleado.CrearEmpleado(pEmpleado);
             return RedirectToAction("Registro_Empleados");
+            
+            
 
         }
         //****************************************************************************************************************************//
@@ -255,7 +283,7 @@ namespace SoportePatitos.Controllers
 
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
-                var empleados = ContextoBD.Empleado.Include(a => a.Puesto);
+                var empleados = ContextoBD.Empleado.Include(a => a.Puesto).Include(a => a.Estado_Civil);
                 return View(empleados.ToList());
 
             }
@@ -264,13 +292,20 @@ namespace SoportePatitos.Controllers
 
 
         //Accion que muestra la pantalla en donde se maneja la planilla
-        public ActionResult CalculoPlanilla(double salarioBase)
+        public ActionResult CalculoPlanilla(double salarioBase, int Cedula, int Cantidad_Hijos, int ID_Estado_Civil)
         {
 
             ViewBag.salariobase = salarioBase;
+            ViewBag.Cedula = Cedula;
+
+            /* ViewBag.hijos = Cantidad_Hijos;
+             ViewBag.ID_Estado_Civil = ID_Estado_Civil;
+
+            */
+
 
             //Calcula las deducciones de renta, basado en el salario
-            double rebajoR = _oGestorPlanilla.DeducRenta(salarioBase);
+            double rebajoR = _oGestorPlanilla.DeducRenta(salarioBase, Cantidad_Hijos, ID_Estado_Civil);
             ViewBag.rebajoR = rebajoR;
 
             //Calcula las deducciones de seguro, basado en el salario
@@ -291,8 +326,8 @@ namespace SoportePatitos.Controllers
            
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
-                var empleados = ContextoBD.Empleado.Include(a => a.Puesto);
-                return View(empleados.ToList().Where(x => x.Puesto.Salario == salarioBase).FirstOrDefault());
+                var empleados = ContextoBD.Empleado.Include(a => a.Puesto).Include(a => a.Estado_Civil);
+                return View(empleados.ToList().Where(x => x.Cedula == Cedula).FirstOrDefault());
             }
             //return View();
 
@@ -348,6 +383,27 @@ namespace SoportePatitos.Controllers
         }
 
         //****************************************************************************************************************************//
+
+
+
+
+
+        /*public ActionResult DeducRenta(double salarioBase, int Cantidad_Hijos, int ID_Estado_Civil)
+        {
+            double rebajoR = _oGestorPlanilla.DeducRenta(salarioBase, Cantidad_Hijos, ID_Estado_Civil);
+            return rebajoR;
+        }
+
+
+
+        public ActionResult Renta(double salarioBase, int Cantidad_Hijos, int ID_Estado_Civil)
+        {
+            double rebajoR = _oGestorPlanilla.DeducRenta(salarioBase, Cantidad_Hijos, ID_Estado_Civil);
+            ViewBag.rebajoR = rebajoR;
+            return View(rebajoR);
+        }*/
+
+
 
 
 

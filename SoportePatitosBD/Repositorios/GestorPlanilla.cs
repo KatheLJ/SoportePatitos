@@ -36,7 +36,7 @@ namespace SoportePatitosBD.Repositorios
 
 
         //Permite realizar las deducciones fiscales
-        double IGestorPlanilla.DeducRenta(double salarioBase)//  int hijos, bool Casado)
+        double IGestorPlanilla.DeducRenta(double salarioBase, int Cantidad_Hijos, int ID_Estado_Civil)
         {
            
             //Variables a utilizar
@@ -60,10 +60,16 @@ namespace SoportePatitosBD.Repositorios
             double Impuesto3 = 0.0;
             double Impuesto4 = 0.0;
 
+         
+
+            double ReducHijos = 1750.00;
+            double ReducCasado = 2650.00;
+
+            double ReducFinalHijos = (double)Cantidad_Hijos * ReducHijos;
 
 
-    
-            
+
+
             //Si el salario base es menor que el monto exento de 941000, el impuesto de renta es 0
             if (salarioBase < exento)
             {
@@ -165,6 +171,30 @@ namespace SoportePatitosBD.Repositorios
                     }
                 }
 
+            }
+
+
+            //Permite realizar el rebajo de los hijos y el conyuge, al monto final del impuesto
+            if (Cantidad_Hijos != 0 && ID_Estado_Civil == 1)
+            {
+                Impuesto = Impuesto - ReducCasado - ReducFinalHijos;
+
+            }
+            else if (Cantidad_Hijos != 0 && ID_Estado_Civil != 1)
+            {
+
+                Impuesto = Impuesto - ReducFinalHijos;
+
+            }
+            else if (Cantidad_Hijos == 0 && ID_Estado_Civil == 1)
+            {
+
+                Impuesto = Impuesto - ReducCasado;
+
+            }
+            else
+            {
+                
             }
 
             return Impuesto;

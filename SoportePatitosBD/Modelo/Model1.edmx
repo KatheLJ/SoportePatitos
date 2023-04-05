@@ -35,12 +35,21 @@
           <Property Name="ID_horario" Type="int" Nullable="false" />
           <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Contraseña" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cantidad_Hijos" Type="int" Nullable="false" />
+          <Property Name="ID_Estado_Civil" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Estado">
           <Key>
             <PropertyRef Name="ID_Estado" />
           </Key>
           <Property Name="ID_Estado" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado_Civil">
+          <Key>
+            <PropertyRef Name="ID_Estado_Civil" />
+          </Key>
+          <Property Name="ID_Estado_Civil" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Evaluacion">
@@ -145,6 +154,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Empleado__ID_Est__41B8C09B">
+          <End Role="Estado_Civil" Type="Self.Estado_Civil" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Civil">
+              <PropertyRef Name="ID_Estado_Civil" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="ID_Estado_Civil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Empleado__ID_hor__59FA5E80">
           <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
@@ -224,6 +245,7 @@
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado_Civil" EntityType="Self.Estado_Civil" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Evaluacion" EntityType="Self.Evaluacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Horario" EntityType="Self.Horario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
@@ -244,6 +266,10 @@
           </AssociationSet>
           <AssociationSet Name="FK__Empleado__ID_dep__571DF1D5" Association="Self.FK__Empleado__ID_dep__571DF1D5">
             <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__ID_Est__41B8C09B" Association="Self.FK__Empleado__ID_Est__41B8C09B">
+            <End Role="Estado_Civil" EntitySet="Estado_Civil" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
           <AssociationSet Name="FK__Empleado__ID_hor__59FA5E80" Association="Self.FK__Empleado__ID_hor__59FA5E80">
@@ -317,6 +343,9 @@
           <NavigationProperty Name="Puesto" Relationship="Self.FK__Empleado__ID_pue__59063A47" FromRole="Empleado" ToRole="Puesto" />
           <NavigationProperty Name="Evaluacion" Relationship="Self.FK__Evaluacio__Cedul__6FE99F9F" FromRole="Empleado" ToRole="Evaluacion" />
           <NavigationProperty Name="Planilla" Relationship="SoportePatitosModel.FK__Planilla__Cedula__09746778" FromRole="Empleado" ToRole="Planilla" />
+          <Property Name="Cantidad_Hijos" Type="Int32" Nullable="false" />
+          <Property Name="ID_Estado_Civil" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estado_Civil" Relationship="SoportePatitosModel.FK__Empleado__ID_Est__41B8C09B" FromRole="Empleado" ToRole="Estado_Civil" />
         </EntityType>
         <EntityType Name="Estado">
           <Key>
@@ -535,6 +564,11 @@
             <End Role="Planilla" EntitySet="Planilla" />
           </AssociationSet>
           <FunctionImport Name="spPLanillla" ReturnType="Collection(SoportePatitosModel.spPLanillla_Result)" />
+          <EntitySet Name="Estado_Civil" EntityType="SoportePatitosModel.Estado_Civil" />
+          <AssociationSet Name="FK__Empleado__ID_Est__41B8C09B" Association="SoportePatitosModel.FK__Empleado__ID_Est__41B8C09B">
+            <End Role="Estado_Civil" EntitySet="Estado_Civil" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="spEvaluacionEmpleado_Result">
           <Property Type="Int32" Name="Cedula" Nullable="false" />
@@ -575,6 +609,26 @@
           <Property Type="String" Name="Nombre_Empleado" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="Salario" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Estado_Civil">
+          <Key>
+            <PropertyRef Name="ID_Estado_Civil" />
+          </Key>
+          <Property Name="ID_Estado_Civil" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empleadoes" Relationship="SoportePatitosModel.FK__Empleado__ID_Est__41B8C09B" FromRole="Estado_Civil" ToRole="Empleado" />
+        </EntityType>
+        <Association Name="FK__Empleado__ID_Est__41B8C09B">
+          <End Type="SoportePatitosModel.Estado_Civil" Role="Estado_Civil" Multiplicity="1" />
+          <End Type="SoportePatitosModel.Empleado" Role="Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado_Civil">
+              <PropertyRef Name="ID_Estado_Civil" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="ID_Estado_Civil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -603,6 +657,8 @@
           <EntitySetMapping Name="Empleado">
             <EntityTypeMapping TypeName="SoportePatitosModel.Empleado">
               <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="ID_Estado_Civil" ColumnName="ID_Estado_Civil" />
+                <ScalarProperty Name="Cantidad_Hijos" ColumnName="Cantidad_Hijos" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="Nombre_Empleado" ColumnName="Nombre_Empleado" />
                 <ScalarProperty Name="Fecha_ingreso" ColumnName="Fecha_ingreso" />
@@ -705,6 +761,14 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Estado_Civil">
+            <EntityTypeMapping TypeName="SoportePatitosModel.Estado_Civil">
+              <MappingFragment StoreEntitySet="Estado_Civil">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="ID_Estado_Civil" ColumnName="ID_Estado_Civil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -719,7 +783,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

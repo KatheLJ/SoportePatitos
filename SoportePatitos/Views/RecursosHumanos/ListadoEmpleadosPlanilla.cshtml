@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<SoportePatitosBD.Modelo.Empleado>
 @{
     ViewBag.Title = "ListadoEmpleados";
+
 }
 
 <div class="page-heading header-text">
@@ -35,6 +36,12 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Puesto.Salario)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cantidad_Hijos)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Estado_Civil.ID_Estado_Civil)
+                            </th>
 
                             <th></th>
                         </tr>
@@ -52,10 +59,16 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Puesto.Salario)
                                 </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cantidad_Hijos)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Estado_Civil.ID_Estado_Civil)
+                                </td>
 
                                 <td>
                                     <!--Permite dirigirse al reporte del empleado-->
-                                    @Html.ActionLink("Calcular planilla", "CalculoPlanilla", new { salarioBase = item.Puesto.Salario}, new { @class = "btn btn-info btn-sm" })
+                                    @Html.ActionLink("Calcular planilla", "CalculoPlanilla", new { salarioBase = item.Puesto.Salario, Cedula = item.Cedula, Cantidad_Hijos = item.Cantidad_Hijos, ID_Estado_Civil = item.ID_Estado_Civil }, new { @class = "btn btn-info btn-sm" })
                                     <br><br>
                                 </td>
                             </tr>

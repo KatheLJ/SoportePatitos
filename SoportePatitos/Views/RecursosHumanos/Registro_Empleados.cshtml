@@ -8,8 +8,7 @@
     List<SelectListItem> items2 = (List<SelectListItem>)ViewData["Puesto"];
     List<SelectListItem> items3 = (List<SelectListItem>)ViewData["Perfil"];
     List<SelectListItem> items4 = (List<SelectListItem>)ViewData["Horario"];
-    // List<SelectListItem> items3 = (List<SelectListItem>)ViewBag.items;
-    //List<SelectListItem> items4 = (List<SelectListItem>)ViewBag.items;
+    List<SelectListItem> items5 = (List<SelectListItem>)ViewData["Estado_civil"];
 }
 
 <div class="right_col" role="main">
@@ -31,7 +30,8 @@
                     <!--Se define el metodo para enviar datos y el action relacionado-->
                     <form id="registro" action="EnviarEmpleado" method="post" class="system-forms">
                         <h4 class="section">Por favor llene todos los campos para registrar el empleado</h4>
-
+                        <h6 class="section">Los últimos campos se deben llenar por motivos fiscales</h6>
+                        <br />
 
 
 
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Cedula<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="Cedula" class="form-control p-4" type="number" name="Cedula" min="9" required="" />
+                                    <input id="Cedula" class="form-control p-4" type="text" name="Cedula" pattern="[0-9]{9,12}" required="" placeholder="Ej:121121121. Igual a la cédula (9-12 dígitos)." />
                                 </div>
                             </div>
                         </fieldset>
@@ -51,8 +51,8 @@
                             <div class="form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Nombre completo<span>*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control p-4" type="text" id="Nombre_empleado" name="Nombre_empleado"
-                                           onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))" required="" />
+                                    <input class="form-control p-4" type="text" id="Nombre_empleado" name="Nombre_empleado" pattern="[a-zA-Z ]{4,30}" required="" placeholder="Ej: Mario Perez. Solo incluya letras." />
+                                    <!--onkeypress="return (event.charCode == 65 && event.charCode == 90) || (charCode == 32)" required=""/>-->
                                 </div>
                             </div>
                         </fieldset>
@@ -132,7 +132,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Usuario<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" type="text" id="Usuario" name="Usuario" required />
+                                    <input class="form-control" type="text" id="Usuario" name="Usuario" required placeholder="Ej: Mario236" />
                                 </div>
                             </div>
                         </fieldset>
@@ -144,12 +144,41 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Contraseña<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" type="password" id="Contraseña" name="Contraseña" required />
+                                    <input class="form-control" type="password" id="Contraseña" name="Contraseña" required placeholder="Ej: M01p89aft78*.01" />
                                 </div>
                             </div>
                         </fieldset>
 
                         <br />
+
+
+
+                        <!--Campo para la cantidad de hijos-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Cantidad de Hijos<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    <input class="form-control" type="number" id="Cantidad_Hijos" name="Cantidad_Hijos" required placeholder="Ej: 1"/>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+                        <!--Campo para el estado civil-->
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-3 col-sm-3  label-align">Estado Civil<span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6">
+                                    @Html.DropDownList("ID_Estado_Civil", items5, "Seleccione el estado civil", new { @class = "form-control", required = "required" })
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+
+
 
                         <div class="ln_solid">
                             <div class="form-group">
@@ -182,8 +211,28 @@
     var input = document.getElementById('Cedula');
     input.addEventListener('input', function () {
 
-        if (this.value.length > 12)
+        if (9 <= this.value.length > 12 )
             this.value = this.value.slice(0, 12);
 
+        //Debe mostrar un mensaje cuando el dato llega a 12 de que ese es el máximo
+        //Debe validar que el mìnimo sea 9
+
     })
+
+
+    function validartexto() {
+        const input = document.getElementById('Nombre_empleado');
+        if (!input.checkValidity()) {
+            alert('El nombre no es válido, incluya solo letras.');
+        } else {
+            
+        }
+    }
+
+    function cedula() {
+        pattern = "\d{9, 12}"; 
+    }
+
+    
+
 </script>

@@ -19,6 +19,14 @@ namespace SoportePatitosBD.Interface
         //Permite traer los parametros para la planilla
         int ParamPlanilla();
 
+
+
+       // double RentaHijosEstado(int Cantidad_Hijos, int ID_Estado_Civil);
+
+
+
+
+
         //Permite realizar la deducción de ausencias
         double DeducAusencias(double salarioBase); //, int cantidadDiasAusentes);
 

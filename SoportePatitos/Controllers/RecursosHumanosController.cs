@@ -206,8 +206,35 @@ namespace SoportePatitos.Controllers
         //Accion que muestra la pantalla de para evaluar a un empleado
         public ActionResult Evaluacion()
         {
+            List<Models.ViewModels.EmpleadoData> lst1 = null;
 
-            return View();
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+                //Permite mostrar un dropdownlist con los departamentos almacenados en la base de datos
+                lst1 =
+                (from d in ContextoBD.Empleado
+                 select new Models.ViewModels.EmpleadoData
+                 {
+                     Cedula = d.Cedula,
+                     Nombre_Empleado = d.Nombre_Empleado
+                 }).ToList();
+
+                List<SelectListItem> items = lst1.ConvertAll(d =>
+                {
+
+                    return new SelectListItem
+                    {
+
+                        Text = d.Nombre_Empleado.ToString(),
+                        Value = d.Cedula.ToString(),
+                        Selected = false
+                    };
+
+                });
+                ViewData["Empleados"] = items;
+                return View();
+            }
+                
         }
 
 
@@ -222,8 +249,12 @@ namespace SoportePatitos.Controllers
 
 
         //Accion que muestra la pantalla con el listado de los empleados, donde se puede ver y descargar el reporte de la evaluación
-        public ActionResult ListadoEmpleados()
+        public ActionResult ListadoEmpleados(string sortOrder)
         {
+
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+           
             IEnumerable<Empleado> empleados = _oGestorEmpleado.ListadoEmpleados();
             return View(empleados);
         }
@@ -388,20 +419,19 @@ namespace SoportePatitos.Controllers
 
 
 
-        /*public ActionResult DeducRenta(double salarioBase, int Cantidad_Hijos, int ID_Estado_Civil)
+        public ActionResult DeducRenta()
         {
-            double rebajoR = _oGestorPlanilla.DeducRenta(salarioBase, Cantidad_Hijos, ID_Estado_Civil);
-            return rebajoR;
+            return View();
         }
 
-
+        
 
         public ActionResult Renta(double salarioBase, int Cantidad_Hijos, int ID_Estado_Civil)
         {
             double rebajoR = _oGestorPlanilla.DeducRenta(salarioBase, Cantidad_Hijos, ID_Estado_Civil);
             ViewBag.rebajoR = rebajoR;
-            return View(rebajoR);
-        }*/
+            return RedirectToAction("DeducRenta");
+        }
 
 
 

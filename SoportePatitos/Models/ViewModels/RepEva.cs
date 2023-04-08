@@ -8,7 +8,7 @@ namespace SoportePatitos.Models.ViewModels
 {
     public class RepEva
     {
-        public Empleado empleados;
+        public EmpleadoData empleados;
         public Evaluacion evaluaciones;
     }
 }

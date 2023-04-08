@@ -1,8 +1,8 @@
-﻿<!--Script para funciones especiales-->
-<script src="~/Scripts/Funciones/Funciones.js" defer></script>
+﻿
 
 @{
     ViewBag.Title = "Evaluacion";
+    List<SelectListItem> items = (List<SelectListItem>)ViewData["Empleados"];
 }
 
 
@@ -33,7 +33,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">ID evaluacion<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input id="ID_evaluacion" class="form-control p-4" type="number" name="ID_evaluacion" required="" />
+                                    <input id="ID_evaluacion" class="form-control p-4" type="text" name="ID_evaluacion" pattern="[0-9]{10,10}" required="" placeholder="Ej:202304060355. Máximo 10 dígitos." />
                                 </div>
                             </div>
                         </fieldset>
@@ -46,7 +46,8 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Cédula<span>*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control p-4" type="number" id="Cedula" name="Cedula" required="" />
+                                    @Html.DropDownList("Cedula", items, "Seleccione el empleado a evaluar", new { @class = "form-control", required = "required" })
+                                    <!--<input class="form-control p-4" type="number" id="Cedula" name="Cedula" required="" />-->
                                 </div>
                             </div>
                         </fieldset>
@@ -59,17 +60,18 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">1.	Cumple con las tareas asignadas<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <select id="Pregunta_1" name="Pregunta_1" required="">
-                                        <option id="Pregunta_1" value="1" required=""> 1 </option>
-                                        <option id="Pregunta_1" value="2"> 2 </option>
-                                        <option id="Pregunta_1" value="3"> 3 </option>
-                                        <option id="Pregunta_1" value="4"> 4 </option>
-                                        <option id="Pregunta_1" value="5"> 5 </option>
-                                        <option id="Pregunta_1" value="6"> 6 </option>
-                                        <option id="Pregunta_1" value="7"> 7 </option>
-                                        <option id="Pregunta_1" value="8"> 8 </option>
-                                        <option id="Pregunta_1" value="9"> 9 </option>
-                                        <option id="Pregunta_1" value="10"> 10 </option>
+                                    <select required id="Pregunta_1" name="Pregunta_1">
+                                        <option value="">Selecciona una calificación</option>
+                                        <option value="1"> 1 </option>
+                                        <option value="2"> 2 </option>
+                                        <option value="3"> 3 </option>
+                                        <option  value="4"> 4 </option>
+                                        <option value="5"> 5 </option>
+                                        <option value="6"> 6 </option>
+                                        <option value="7"> 7 </option>
+                                        <option value="8"> 8 </option>
+                                        <option value="9"> 9 </option>
+                                        <option value="10"> 10 </option>
                                     </select>
                                     <!--<input class="form-control p-4" type="number" id="Pregunta_1" name="Pregunta_1" min="1" max="10" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required='required' />-->
                                 </div>
@@ -84,17 +86,18 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">2.	No posee ausencias<span>*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <select id="Pregunta_2" name="Pregunta_2" required="">
-                                        <option id="Pregunta_2" value="1" required=""> 1 </option>
-                                        <option id="Pregunta_2" value="2"> 2 </option>
-                                        <option id="Pregunta_2" value="3"> 3 </option>
-                                        <option id="Pregunta_2" value="4"> 4 </option>
-                                        <option id="Pregunta_2" value="5"> 5 </option>
-                                        <option id="Pregunta_2" value="6"> 6 </option>
-                                        <option id="Pregunta_2" value="7"> 7 </option>
-                                        <option id="Pregunta_2" value="8"> 8 </option>
-                                        <option id="Pregunta_2" value="9"> 9 </option>
-                                        <option id="Pregunta_2" value="10"> 10 </option>
+                                    <select required id="Pregunta_2" name="Pregunta_2">
+                                        <option value="">Selecciona una calificación</option>
+                                        <option value="1"> 1 </option>
+                                        <option value="2"> 2 </option>
+                                        <option value="3"> 3 </option>
+                                        <option value="4"> 4 </option>
+                                        <option value="5"> 5 </option>
+                                        <option value="6"> 6 </option>
+                                        <option value="7"> 7 </option>
+                                        <option value="8"> 8 </option>
+                                        <option value="9"> 9 </option>
+                                        <option value="10"> 10 </option>
                                     </select>
                                     <!--<input class="form-control p-4" type="number" id="Pregunta_2" name="Pregunta_2" min="1" max="10" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required='required' />-->
                                 </div>
@@ -109,17 +112,18 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">3.	Posee 1 o más llegadas tardía<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <select id="Pregunta_3" name="Pregunta_3" required="">
-                                        <option id="Pregunta_3" value="1" required=""> 1 </option>
-                                        <option id="Pregunta_3" value="2"> 2 </option>
-                                        <option id="Pregunta_3" value="3"> 3 </option>
-                                        <option id="Pregunta_3" value="4"> 4 </option>
-                                        <option id="Pregunta_3" value="5"> 5 </option>
-                                        <option id="Pregunta_3" value="6"> 6 </option>
-                                        <option id="Pregunta_3" value="7"> 7 </option>
-                                        <option id="Pregunta_3" value="8"> 8 </option>
-                                        <option id="Pregunta_3" value="9"> 9 </option>
-                                        <option id="Pregunta_3" value="10"> 10 </option>
+                                    <select required id="Pregunta_3" name="Pregunta_3" >
+                                        <option value="">Selecciona una calificación</option>
+                                        <option value="1"> 1 </option>
+                                        <option value="2"> 2 </option>
+                                        <option value="3"> 3 </option>
+                                        <option value="4"> 4 </option>
+                                        <option value="5"> 5 </option>
+                                        <option value="6"> 6 </option>
+                                        <option value="7"> 7 </option>
+                                        <option value="8"> 8 </option>
+                                        <option value="9"> 9 </option>
+                                        <option value="10"> 10 </option>
                                     </select>
                                     <!--<input class="form-control p-4" type="number" id="Pregunta_3" name="Pregunta_3" min="1" max="10" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required='required' />-->
                                 </div>
@@ -134,17 +138,18 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">4.	Posee buena relación con los compañeros<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <select id="Pregunta_4" name="Pregunta_4" required="">
-                                        <option id="Pregunta_4" value="1" required=""> 1 </option>
-                                        <option id="Pregunta_4" value="2"> 2 </option>
-                                        <option id="Pregunta_4" value="3"> 3 </option>
-                                        <option id="Pregunta_4" value="4"> 4 </option>
-                                        <option id="Pregunta_4" value="5"> 5 </option>
-                                        <option id="Pregunta_4" value="6"> 6 </option>
-                                        <option id="Pregunta_4" value="7"> 7 </option>
-                                        <option id="Pregunta_4" value="8"> 8 </option>
-                                        <option id="Pregunta_4" value="9"> 9 </option>
-                                        <option id="Pregunta_4" value="10"> 10 </option>
+                                    <select required id="Pregunta_4" name="Pregunta_4" >
+                                        <option value="">Selecciona una calificación</option>
+                                        <option value="1"> 1 </option>
+                                        <option value="2"> 2 </option>
+                                        <option value="3"> 3 </option>
+                                        <option value="4"> 4 </option>
+                                        <option value="5"> 5 </option>
+                                        <option value="6"> 6 </option>
+                                        <option value="7"> 7 </option>
+                                        <option value="8"> 8 </option>
+                                        <option value="9"> 9 </option>
+                                        <option value="10"> 10 </option>
                                     </select>
                                 </div>
                             </div>
@@ -159,17 +164,18 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">5.	Fomenta el trabajo en equipo<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <select id="Pregunta_5" name="Pregunta_5" required="">
-                                        <option id="Pregunta_5" value="1" required=""> 1 </option>
-                                        <option id="Pregunta_5" value="2"> 2 </option>
-                                        <option id="Pregunta_5" value="3"> 3 </option>
-                                        <option id="Pregunta_5" value="4"> 4 </option>
-                                        <option id="Pregunta_5" value="5"> 5 </option>
-                                        <option id="Pregunta_5" value="6"> 6 </option>
-                                        <option id="Pregunta_5" value="7"> 7 </option>
-                                        <option id="Pregunta_5" value="8"> 8 </option>
-                                        <option id="Pregunta_5" value="9"> 9 </option>
-                                        <option id="Pregunta_5" value="10"> 10 </option>
+                                    <select required id="Pregunta_5" name="Pregunta_5">
+                                        <option value="">Selecciona una calificación</option>
+                                        <option value="1"> 1 </option>
+                                        <option value="2"> 2 </option>
+                                        <option value="3"> 3 </option>
+                                        <option value="4"> 4 </option>
+                                        <option value="5"> 5 </option>
+                                        <option value="6"> 6 </option>
+                                        <option value="7"> 7 </option>
+                                        <option value="8"> 8 </option>
+                                        <option value="9"> 9 </option>
+                                        <option value="10"> 10 </option>
                                     </select>
                                 </div>
                             </div>

@@ -158,7 +158,7 @@
                             <div class="field item form-group">
                                 <label class="col-form-label col-md-3 col-sm-3  label-align">Cantidad de Hijos<span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6">
-                                    <input class="form-control" type="number" id="Cantidad_Hijos" name="Cantidad_Hijos" required placeholder="Ej: 1"/>
+                                    <input class="form-control" type="number" id="Cantidad_Hijos" name="Cantidad_Hijos" required placeholder="Ej: 1" />
                                 </div>
                             </div>
                         </fieldset>
@@ -184,7 +184,7 @@
                             <div class="form-group">
                                 <div class="col-md-6 offset-md-3">
                                     <!--Botones para crear un empleado y limpiar el formulario-->
-                                    <button type='submit' class="btn btn-primary">Registrar empleado</button>
+                                    <button type='submit' onclick="return validarUsuario()" class="btn btn-primary">Registrar empleado</button>
                                     <button type='reset' class="btn btn-info">Limpiar campos</button>
                                 </div>
                             </div>
@@ -198,7 +198,7 @@
 
 
 
-            </div>
+                </div>
             </div>
         </div>
     </div>
@@ -206,33 +206,3 @@
 
 
 
-
-<script>
-    var input = document.getElementById('Cedula');
-    input.addEventListener('input', function () {
-
-        if (9 <= this.value.length > 12 )
-            this.value = this.value.slice(0, 12);
-
-        //Debe mostrar un mensaje cuando el dato llega a 12 de que ese es el máximo
-        //Debe validar que el mìnimo sea 9
-
-    })
-
-
-    function validartexto() {
-        const input = document.getElementById('Nombre_empleado');
-        if (!input.checkValidity()) {
-            alert('El nombre no es válido, incluya solo letras.');
-        } else {
-            
-        }
-    }
-
-    function cedula() {
-        pattern = "\d{9, 12}"; 
-    }
-
-    
-
-</script>

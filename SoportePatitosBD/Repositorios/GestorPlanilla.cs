@@ -61,10 +61,9 @@ namespace SoportePatitosBD.Repositorios
             double Impuesto4 = 0.0;
 
          
-
+            
             double ReducHijos = 1750.00;
             double ReducCasado = 2650.00;
-
             double ReducFinalHijos = (double)Cantidad_Hijos * ReducHijos;
 
 
@@ -160,7 +159,7 @@ namespace SoportePatitosBD.Repositorios
                             {
                                 Impuesto4 = monto * porcentaje4;
                                 Impuesto = Impuesto + Impuesto4;
-                                // return Impuesto4;
+                                 return Impuesto;
                                 // return Salario_impuesto;
 
                             }
@@ -173,23 +172,26 @@ namespace SoportePatitosBD.Repositorios
 
             }
 
+            double ImpuestoFinal = 0.0;
+           // ImpuestoFinal = Impuesto;
 
             //Permite realizar el rebajo de los hijos y el conyuge, al monto final del impuesto
             if (Cantidad_Hijos != 0 && ID_Estado_Civil == 1)
             {
-                Impuesto = Impuesto - ReducCasado - ReducFinalHijos;
+                ImpuestoFinal = Impuesto - ReducCasado - ReducFinalHijos;
+                return ImpuestoFinal;
 
             }
             else if (Cantidad_Hijos != 0 && ID_Estado_Civil != 1)
             {
 
-                Impuesto = Impuesto - ReducFinalHijos;
+                ImpuestoFinal = Impuesto - ReducFinalHijos;
 
             }
             else if (Cantidad_Hijos == 0 && ID_Estado_Civil == 1)
             {
 
-                Impuesto = Impuesto - ReducCasado;
+                ImpuestoFinal = Impuesto - ReducCasado;
 
             }
             else
@@ -197,7 +199,7 @@ namespace SoportePatitosBD.Repositorios
                 
             }
 
-            return Impuesto;
+            return ImpuestoFinal;
 
 
         }

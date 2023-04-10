@@ -11,7 +11,8 @@ namespace SoportePatitosBD.Modelo
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Empleado
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +24,9 @@ namespace SoportePatitosBD.Modelo
         }
     
         public int Cedula { get; set; }
+        [Display(Name = "Nombre completo")]
         public string Nombre_Empleado { get; set; }
+        [Display(Name = "Fecha de ingreso")]
         public System.DateTime Fecha_ingreso { get; set; }
         public int ID_departamento { get; set; }
         public int ID_perfil { get; set; }
@@ -31,6 +34,7 @@ namespace SoportePatitosBD.Modelo
         public int ID_horario { get; set; }
         public string Usuario { get; set; }
         public string Contraseña { get; set; }
+        [Display(Name = "Cantidad de Hijos")]
         public int Cantidad_Hijos { get; set; }
         public int ID_Estado_Civil { get; set; }
     

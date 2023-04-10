@@ -257,8 +257,14 @@ namespace SoportePatitos.Controllers
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
            
-            IEnumerable<Empleado> empleados = _oGestorEmpleado.ListadoEmpleados();
-            return View(empleados);
+            //IEnumerable<Empleado> empleados = _oGestorEmpleado.ListadoEmpleados().Include();
+            //return View(empleados);
+
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+                var empleados = ContextoBD.Empleado.Include(a => a.Departamento).Include(a => a.Puesto).Include(a => a.Horario).Include(a => a.Perfil);
+                return View(empleados.ToList());
+            }
         }
 
 
@@ -442,8 +448,15 @@ namespace SoportePatitos.Controllers
 
         public ActionResult ListadoAsistencia(string sortOrder)
         {
-            IEnumerable<Asistencia> asistencia = _oGestorAsistencia.ListadoAsistencia();
-            return View(asistencia);
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+                var asistencia  = ContextoBD.Asistencia.Include(a => a.Estado);
+                return View(asistencia.ToList());
+
+            }
+
+            //IEnumerable<Asistencia> asistencia = _oGestorAsistencia.ListadoAsistencia().;
+            //return View(asistencia);
         }
 
 

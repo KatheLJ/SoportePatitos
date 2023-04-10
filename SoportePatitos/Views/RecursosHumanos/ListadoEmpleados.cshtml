@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SoportePatitosBD.Modelo.Empleado>
+﻿
+@model IEnumerable<SoportePatitosBD.Modelo.Empleado>
 @{
     ViewBag.Title = "ListadoEmpleados";
 }
@@ -34,16 +35,16 @@
                                 @Html.DisplayNameFor(model => model.Fecha_ingreso)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.ID_departamento)
+                                @Html.DisplayNameFor(model => model.Departamento.Descripcion)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.ID_perfil)
+                                @Html.DisplayNameFor(model => model.Perfil.Descripcion)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.ID_puesto)
+                                @Html.DisplayNameFor(model => model.Puesto.Descripcion)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.ID_horario)
+                                @Html.DisplayNameFor(model => model.Horario.Descripcion)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Usuario)
@@ -68,16 +69,16 @@
                                     @Html.DisplayFor(modelItem => item.Fecha_ingreso)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.ID_departamento)
+                                    @Html.DisplayFor(modelItem => item.Departamento.Descripcion)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.ID_perfil)
+                                    @Html.DisplayFor(modelItem => item.Perfil.Descripcion)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.ID_puesto)
+                                    @Html.DisplayFor(modelItem => item.Puesto.Descripcion)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.ID_horario)
+                                    @Html.DisplayFor(modelItem => item.Horario.Descripcion)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Usuario)

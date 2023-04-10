@@ -6,217 +6,207 @@
 }
 
 
-<div class="right_col" role="main">
-    <div class="">
-        <div class="page-title">
-            <div class="title_left">
-                <h2>Evaluación del personal</h2>
-            </div>
-
-        </div>
-        <br />
-
-
+<div id="contact" class="contact">
+    <div class="container">
         <div class="row">
-            <div class="col-md-12 col-sm-12">
-
-
-                <div class="x_content">
-                    <form action="EnviarEvaluacion" method="post" class="system-forms">
-                        <h4 class="section">Responda las siguientes preguntas para evaluar al personal</h4>
-
-                        <br />
-
-
-                        <!--Campo para la identificación de la evaluación-->
-                        <fieldset>
-                            <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">ID evaluacion<span class="required">*</span></label>
-                                <div class="col-md-6 col-sm-6">
-                                    <input id="ID_evaluacion" class="form-control p-4" type="text" name="ID_evaluacion" pattern="[0-9]{10,10}" required="" placeholder="Ej:202304060355. Máximo 10 dígitos." />
-                                </div>
-                            </div>
-                        </fieldset>
-
-                        <br />
-
-
-                        <!--Campo para la cédula del empleado-->
-                        <fieldset>
-                            <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">Cédula<span>*</span></label>
-                                <div class="col-md-6 col-sm-6">
-                                    @Html.DropDownList("Cedula", items, "Seleccione el empleado a evaluar", new { @class = "form-control", required = "required" })
-                                    <!--<input class="form-control p-4" type="number" id="Cedula" name="Cedula" required="" />-->
-                                </div>
-                            </div>
-                        </fieldset>
-
-                        <br />
-
-
-                        <!--Campo para la pregunta 1-->
-                        <fieldset>
-                            <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">1.	Cumple con las tareas asignadas<span class="required">*</span></label>
-                                <div class="col-md-6 col-sm-6">
-                                    <select required id="Pregunta_1" name="Pregunta_1">
-                                        <option value="">Selecciona una calificación</option>
-                                        <option value="1"> 1 </option>
-                                        <option value="2"> 2 </option>
-                                        <option value="3"> 3 </option>
-                                        <option  value="4"> 4 </option>
-                                        <option value="5"> 5 </option>
-                                        <option value="6"> 6 </option>
-                                        <option value="7"> 7 </option>
-                                        <option value="8"> 8 </option>
-                                        <option value="9"> 9 </option>
-                                        <option value="10"> 10 </option>
-                                    </select>
-                                    <!--<input class="form-control p-4" type="number" id="Pregunta_1" name="Pregunta_1" min="1" max="10" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required='required' />-->
-                                </div>
-                            </div>
-                        </fieldset>
-
-                        <br />
-
-
-                        <!--Campo para la pregunta 2-->
-                        <fieldset>
-                            <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">2.	No posee ausencias<span>*</span></label>
-                                <div class="col-md-6 col-sm-6">
-                                    <select required id="Pregunta_2" name="Pregunta_2">
-                                        <option value="">Selecciona una calificación</option>
-                                        <option value="1"> 1 </option>
-                                        <option value="2"> 2 </option>
-                                        <option value="3"> 3 </option>
-                                        <option value="4"> 4 </option>
-                                        <option value="5"> 5 </option>
-                                        <option value="6"> 6 </option>
-                                        <option value="7"> 7 </option>
-                                        <option value="8"> 8 </option>
-                                        <option value="9"> 9 </option>
-                                        <option value="10"> 10 </option>
-                                    </select>
-                                    <!--<input class="form-control p-4" type="number" id="Pregunta_2" name="Pregunta_2" min="1" max="10" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required='required' />-->
-                                </div>
-                            </div>
-                        </fieldset>
-
-                        <br />
-
-
-                        <!--Campo para la pregunta 3-->
-                        <fieldset>
-                            <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">3.	Posee 1 o más llegadas tardía<span class="required">*</span></label>
-                                <div class="col-md-6 col-sm-6">
-                                    <select required id="Pregunta_3" name="Pregunta_3" >
-                                        <option value="">Selecciona una calificación</option>
-                                        <option value="1"> 1 </option>
-                                        <option value="2"> 2 </option>
-                                        <option value="3"> 3 </option>
-                                        <option value="4"> 4 </option>
-                                        <option value="5"> 5 </option>
-                                        <option value="6"> 6 </option>
-                                        <option value="7"> 7 </option>
-                                        <option value="8"> 8 </option>
-                                        <option value="9"> 9 </option>
-                                        <option value="10"> 10 </option>
-                                    </select>
-                                    <!--<input class="form-control p-4" type="number" id="Pregunta_3" name="Pregunta_3" min="1" max="10" maxlength="2" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required='required' />-->
-                                </div>
-                            </div>
-                        </fieldset>
-
-                        <br />
-
-
-                        <!--Campo para la pregunta 4-->
-                        <fieldset>
-                            <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">4.	Posee buena relación con los compañeros<span class="required">*</span></label>
-                                <div class="col-md-6 col-sm-6">
-                                    <select required id="Pregunta_4" name="Pregunta_4" >
-                                        <option value="">Selecciona una calificación</option>
-                                        <option value="1"> 1 </option>
-                                        <option value="2"> 2 </option>
-                                        <option value="3"> 3 </option>
-                                        <option value="4"> 4 </option>
-                                        <option value="5"> 5 </option>
-                                        <option value="6"> 6 </option>
-                                        <option value="7"> 7 </option>
-                                        <option value="8"> 8 </option>
-                                        <option value="9"> 9 </option>
-                                        <option value="10"> 10 </option>
-                                    </select>
-                                </div>
-                            </div>
-
-                        </fieldset>
-
-                        <br />
-
-
-                        <!--Campo para la pregunta 5-->
-                        <fieldset>
-                            <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">5.	Fomenta el trabajo en equipo<span class="required">*</span></label>
-                                <div class="col-md-6 col-sm-6">
-                                    <select required id="Pregunta_5" name="Pregunta_5">
-                                        <option value="">Selecciona una calificación</option>
-                                        <option value="1"> 1 </option>
-                                        <option value="2"> 2 </option>
-                                        <option value="3"> 3 </option>
-                                        <option value="4"> 4 </option>
-                                        <option value="5"> 5 </option>
-                                        <option value="6"> 6 </option>
-                                        <option value="7"> 7 </option>
-                                        <option value="8"> 8 </option>
-                                        <option value="9"> 9 </option>
-                                        <option value="10"> 10 </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </fieldset>
-
-                        <br />
-
-                        <!--Para el manejo de las evaluaciones con estrellas-->
-                        <!--<div class="rating-box">
-                            <div class="stars">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-
-                            </div>
-                        </div>-->
-
-                        <div class="ln_solid">
-                            <div class="form-group">
-                                <div class="col-md-6 offset-md-3">
-                                    <button type='submit' class="btn btn-primary">Enviar Evaluacion</button>
-                                    <button type='reset' class="btn btn-info">Limpiar campos</button>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                        <br />
-
-                    </form>
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2> Formulario de Evaluación </h2>
+                    <p> Responda a todas las preguntas para evaluar al empleado </p>
                 </div>
             </div>
         </div>
+
+        <form action="EnviarEvaluacion" method="post" class="contact">
+            <!--Campo para la identificación de la evaluación-->
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <fieldset>
+                        <div class="field item form-group">
+                            <label class="col-form-label col-md-12 col-sm-12  label-align">ID evaluacion<span class="required">*</span></label>
+                            <div class="col-md-12 col-sm-12">
+                                <input id="ID_evaluacion" class="form-control p-1" type="text" name="ID_evaluacion" pattern="[0-9]{10,10}" required="" placeholder="Ej:202304060355. Máximo 10 dígitos." />
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+
+
+            <!--Campo para la cédula del empleado-->
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <fieldset>
+                        <div class="field item form-group">
+                            <label class="col-form-label col-md-12 col-sm-12  label-align">Cédula<span>*</span></label>
+                            <div class="col-md-12 col-sm-12">
+                                @Html.DropDownList("Cedula", items, "Seleccione el empleado a evaluar", new { @class = "form-control p-1", required = "required" })
+                                <!--<input class="form-control p-4" type="number" id="Cedula" name="Cedula" required="" />-->
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+
+            <!--Campo para la pregunta 1-->
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <fieldset>
+                        <div class="field item form-group">
+                            <label class="col-form-label col-md-12 col-sm-12  label-align">1.	Cumple con las tareas asignadas<span class="required">*</span></label>
+                            <div class="col-md-12 col-sm-12">
+                                <select class="form-control p-1" required id="Pregunta_1" name="Pregunta_1">
+
+                                    <option value="">Selecciona una calificación</option>
+                                    <option value="1"> 1 </option>
+                                    <option value="2"> 2 </option>
+                                    <option value="3"> 3 </option>
+                                    <option value="4"> 4 </option>
+                                    <option value="5"> 5 </option>
+                                    <option value="6"> 6 </option>
+                                    <option value="7"> 7 </option>
+                                    <option value="8"> 8 </option>
+                                    <option value="9"> 9 </option>
+                                    <option value="10"> 10 </option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            
+
+
+            <!--Campo para la pregunta 2-->
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <fieldset>
+                        <div class="field item form-group">
+                            <label class="col-form-label col-md-12 col-sm-12  label-align">2.	No posee ausencias<span class="required">*</span></label>
+                            <div class="col-md-12 col-sm-12">
+                                <select class="form-control p-1" required id="Pregunta_2" name="Pregunta_2">
+                                    <option value="">Selecciona una calificación</option>
+                                    <option value="1"> 1 </option>
+                                    <option value="2"> 2 </option>
+                                    <option value="3"> 3 </option>
+                                    <option value="4"> 4 </option>
+                                    <option value="5"> 5 </option>
+                                    <option value="6"> 6 </option>
+                                    <option value="7"> 7 </option>
+                                    <option value="8"> 8 </option>
+                                    <option value="9"> 9 </option>
+                                    <option value="10"> 10 </option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            
+
+            <!--Campo para la pregunta 3-->
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <fieldset>
+                        <div class="field item form-group">
+                            <label class="col-form-label col-md-12 col-sm-12  label-align">3.	Posee 1 o más llegadas tardía<span class="required">*</span></label>
+                            <div class="col-md-12 col-sm-12">
+                                <select class="form-control p-1" required id="Pregunta_3" name="Pregunta_3">
+                                    <option value="">Selecciona una calificación</option>
+                                    <option value="1"> 1 </option>
+                                    <option value="2"> 2 </option>
+                                    <option value="3"> 3 </option>
+                                    <option value="4"> 4 </option>
+                                    <option value="5"> 5 </option>
+                                    <option value="6"> 6 </option>
+                                    <option value="7"> 7 </option>
+                                    <option value="8"> 8 </option>
+                                    <option value="9"> 9 </option>
+                                    <option value="10"> 10 </option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            
+
+
+            <!--Campo para la pregunta 4-->
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <fieldset>
+                        <div class="field item form-group">
+                            <label class="col-form-label col-md-12 col-sm-12  label-align">4.	Posee buena relación con los compañeros<span class="required">*</span></label>
+                            <div class="col-md-12 col-sm-12">
+                                <select class="form-control p-1" required id="Pregunta_4" name="Pregunta_4">
+                                    <option value="">Selecciona una calificación</option>
+                                    <option value="1"> 1 </option>
+                                    <option value="2"> 2 </option>
+                                    <option value="3"> 3 </option>
+                                    <option value="4"> 4 </option>
+                                    <option value="5"> 5 </option>
+                                    <option value="6"> 6 </option>
+                                    <option value="7"> 7 </option>
+                                    <option value="8"> 8 </option>
+                                    <option value="9"> 9 </option>
+                                    <option value="10"> 10 </option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+
+            <!--Campo para la pregunta 5-->
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <fieldset>
+                        <div class="field item form-group">
+                            <label class="col-form-label col-md-12 col-sm-12  label-align">5.	Fomenta el trabajo en equipo<span class="required">*</span></label>
+                            <div class="col-md-12 col-sm-12">
+                                <select class="form-control p-1" required id="Pregunta_5" name="Pregunta_5">
+                                    <option value="">Selecciona una calificación</option>
+                                    <option value="1"> 1 </option>
+                                    <option value="2"> 2 </option>
+                                    <option value="3"> 3 </option>
+                                    <option value="4"> 4 </option>
+                                    <option value="5"> 5 </option>
+                                    <option value="6"> 6 </option>
+                                    <option value="7"> 7 </option>
+                                    <option value="8"> 8 </option>
+                                    <option value="9"> 9 </option>
+                                    <option value="10"> 10 </option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+
+
+            <!--Botones de enviar el formulario y limpiar campos-->
+            <div class="text-center">
+                <fieldset>
+                    <br />
+                    <button type="submit" class="btn btn-warning" id="btn-Login">Enviar Evaluación</button>
+                    <button type='reset' class="btn btn-dark">Limpiar campos</button>
+                </fieldset>
+            </div>
+
+        </form>
     </div>
 </div>
+       
+
+
+
+
+
 
 
 

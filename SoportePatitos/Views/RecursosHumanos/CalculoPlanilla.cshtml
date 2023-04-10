@@ -2,21 +2,9 @@
 @{
     ViewBag.Title = "CalculoPlanilla";
 
-
-
-
     // double renta = (double)ViewBag.rebajoR;
 }
 
-<div class="page-heading header-text">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Calculo de la planilla</h1>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!--<div class="single-services">
     <div class="container">
@@ -64,116 +52,141 @@
 
 
 
-@using (Html.BeginForm("EnviarPlanilla", "RecursosHumanos", FormMethod.Post))
+@using (Html.BeginForm("EnviarPlanilla", "RecursosHumanos", FormMethod.Post, new { @class = "contact" }))
 {
-    <div class="single-services">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="col-md-12">
-                        <div class="section-heading">
-                        </div>
-                    </div>
-                    <div class="contact-form">
-                        <div class="row">
-
-                            <!--Campo para el id de la planilla-->
-                            <fieldset>
-                                <div class="form-group">
-                                    <label class="col-form-label col-md-4 col-sm-4  label-align">Identificador </label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input id="ID_planilla" class="form-control p-4" type="number" id="ID_planilla" name="ID_planilla" required="" />
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <br />
-
-                            <fieldset>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "col-form-label col-md-3 col-sm-3  label-align" })
-                                    <div class="col-md-6 col-sm-6">
-                                        @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control p-4", @readonly = "readonly" } })
-                                    </div>
-                                    <br>
-                                </div>
-                            </fieldset>
-                            <br />
-
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Puesto.Salario, htmlAttributes: new { id = "Salario_bruto", @class = "col-form-label col-md-3 col-sm-3  label-align" })
-                                <div class="col-md-6 col-sm-6">
-                                    <input class="form-control p-4" type="number" id="Salario_bruto" name="Salario_bruto" value=@ViewBag.salarioBase readonly/>
-                                </div>
-                                <br>
-                            </div>
-                            <br />
-
-
-                            <!--Campo para la deducción de renta-->
-                            <fieldset>
-                                <div class="form-group">
-                                    <label class="col-form-label col-md-10 col-sm-10  label-align">Deducción de Renta </label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control p-4" type="number" id="Deducciones_fiscales" name="Deducciones_fiscales" value=@ViewBag.rebajoR readonly/>
-                                    </div>
-                                </div>
-                            </fieldset>
-
-
-                            <fieldset>
-                                <div class="form-group">
-                                    <label class="col-form-label col-md-7 col-sm-7  label-align">Deducción de Seguro (CCSS) </label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control p-4" type="number" id="Deducciones_CCSS" name="Deducciones_CCSS" value=@ViewBag.rebajoS readonly/>
-                                    </div>
-                                </div>
-                            </fieldset>
-
-
-                            <fieldset>
-                                <div class="form-group">
-                                    <label class="col-form-label col-md-7 col-sm-7  label-align">Deducción por ausencias </label>
-                                    <div class="col-md-6 col-sm-6">
-                                        <input class="form-control p-4" type="number" id="Deducciones_ausencias" name="Deducciones_ausencias" value=@ViewBag.rebajoA readonly/>
-                                    </div>
-                                </div>
-                            </fieldset>
-
-
-                            <fieldset>
-                                <div class="form-group">
-                                    <label class="col-form-label col-md-7 col-sm-7  label-align"> Salario Final </label>
-                                    <div class="col-md-7 col-sm-7">
-                                        <input class="form-control p-4" type="number" id="Salario_neto" name="Salario_neto" value=@ViewBag.salarioFinal readonly/>
-                                    </div>
-                                </div>
-                            </fieldset>
-
-
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-
-                            <div class="ln_solid">
-                            <div class="form-group">
-                                <div class="col-md-6 offset-md-3">
-                                    <button type='submit' class="btn btn-primary">Guardar planilla</button>
-                                </div>
-                            </div>
-                        </div>
-
-
-                            <!--<div class="col-lg-6 col-md-12 col-sm-12">
-                                <br />
-                                Html.ActionLink("Guardar Planilla", "EnviarPlanilla", "RecursosHumanos", new { class = "btn btn-success" })
-                            </div>-->
-                            <br><br><br><br>
-                        </div>
-                    </div>
-                    <br><br><br><br>
+    <div id="contact" class="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2> Cálculo de la planilla </h2>
                 </div>
             </div>
         </div>
-    </div>
+            <div class="col-md-12">
+
+                <!--Campo para el id de la planilla-->
+
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-6 col-sm-6  label-align">Identificador </label>
+                                <div class="col-md-12 col-sm-12">
+                                    <input id="ID_planilla" class="form-control p-1" type="number" name="ID_planilla" required="" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+
+                <!--Campo para la cédula-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <fieldset>
+                            <div class="field item form-group">
+                                @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "col-form-label col-md-6 col-sm-6  label-align" })
+                                <div class="col-md-12 col-sm-12">
+                                    @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control p-1", @readonly = "readonly" } })
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <!--Campo para el salario base-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <fieldset>
+                            <div class="field item form-group">
+                                @Html.LabelFor(model => model.Puesto.Salario, htmlAttributes: new { id = "Salario_bruto", @class = "col-form-label col-md-6 col-sm-6  label-align" })
+                                <div class="col-md-12 col-sm-12">
+                                    <input class="form-control p-1" type="number" id="Salario_bruto" name="Salario_bruto" value=@ViewBag.salarioBase readonly />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+
+
+                <!--Campo para la deducción de renta-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-10 col-sm-10  label-align">Deducción de Renta </label>
+                                <div class="col-md-12 col-sm-12">
+                                    <input class="form-control p-1" type="number" id="Deducciones_fiscales" name="Deducciones_fiscales" value=@ViewBag.rebajoR readonly />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+
+
+
+
+                <!--Campo para la deducción de la CCSS-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-7 col-sm-7  label-align">Deducción de Seguro (CCSS) </label>
+                                <div class="col-md-12 col-sm-12">
+                                    <input class="form-control p-1" type="number" id="Deducciones_CCSS" name="Deducciones_CCSS" value=@ViewBag.rebajoS readonly />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <!--Campo para la deducción de ausencias-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-7 col-sm-7  label-align">Deducción por ausencias </label>
+                                <div class="col-md-12 col-sm-12">
+                                    <input class="form-control p-1" type="number" id="Deducciones_ausencias" name="Deducciones_ausencias" value=@ViewBag.rebajoA readonly />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <!--Campo para la deducción del Salario Final-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <fieldset>
+                            <div class="field item form-group">
+                                <label class="col-form-label col-md-6 col-sm-6  label-align"> Salario Final </label>
+                                <div class="col-md-12 col-sm-12">
+                                    <input class="form-control p-1" type="number" id="Salario_neto" name="Salario_neto" value=@ViewBag.salarioFinal readonly />
+                                </div>
+
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <fieldset>
+                        <br />
+                        <button type="submit" class="btn btn-warning" id="btn-Login">Guardar planilla</button>
+                    </fieldset>
+                </div>
+
+                <div class="ln_solid">
+
+                </div>
+
+            </div>
+         </div>
+                    
+  </div>
+            
 }

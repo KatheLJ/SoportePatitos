@@ -4,13 +4,13 @@
 
 }
 
-<div class="page-heading header-text">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Mantenimiento de Empleados</h1>
-                <span>Listado de Empleado</span>
-            </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="titlepage">
+            <br />
+            <br />
+            <h2> Listado de Empleados disponibles </h2>
+            <p> Seleccione el usuario al que desea calcular la planilla </p>
         </div>
     </div>
 </div>
@@ -26,7 +26,7 @@
                 <div class="table-responsive">
                     <!--Muestra una tabla con todas las columnas del empleado-->
                     <table class="table table-hover table-bordered">
-                        <tr class="bg-secondary">
+                        <tr class="bg-warning text-white">
                             <th>
                                 @Html.DisplayNameFor(model => model.Cedula)
                             </th>
@@ -68,7 +68,7 @@
 
                                 <td>
                                     <!--Permite dirigirse al reporte del empleado-->
-                                    @Html.ActionLink("Calcular planilla", "CalculoPlanilla", new { salarioBase = item.Puesto.Salario, Cedula = item.Cedula, Cantidad_Hijos = item.Cantidad_Hijos, ID_Estado_Civil = item.ID_Estado_Civil }, new { @class = "btn btn-info btn-sm" })
+                                    @Html.ActionLink("Calcular planilla", "CalculoPlanilla", new { salarioBase = item.Puesto.Salario, Cedula = item.Cedula, Cantidad_Hijos = item.Cantidad_Hijos, ID_Estado_Civil = item.ID_Estado_Civil }, new { @class = "btn btn-dark btn-sm" })
                                     <br><br>
                                 </td>
                             </tr>

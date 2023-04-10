@@ -3,12 +3,14 @@
     ViewBag.Title = "ListadoPlanilla";
 }
 
-<div class="page-heading header-text">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Planillas de empleados</h1>
-            </div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="titlepage">
+            <br />
+            <br />
+            <h2> Planillas de empleados </h2>
         </div>
     </div>
 </div>
@@ -25,7 +27,7 @@
                 <div class="table-responsive">
                     <!--Muestra una tabla con todas las columnas del empleado-->
                     <table class="table table-hover table-bordered">
-                        <tr class="bg-secondary">
+                        <tr class="bg-warning text-white">
                             <th>
                                 @Html.DisplayNameFor(model => model.ID_planilla)
                             </th>
@@ -91,7 +93,7 @@
 <div class="ln_solid">
     <div class="form-group">
         <div class="text-right">
-            @Html.ActionLink("Descargar Planilla", "PdfPlanilla","",new { @class = "btn btn-info btn-sm" })
+            @Html.ActionLink("Descargar Planilla", "PdfPlanilla", "", new { @class = "btn btn-dark btn-sm" })
         </div>
     </div>
 </div>

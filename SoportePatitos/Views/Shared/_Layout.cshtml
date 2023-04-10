@@ -3,132 +3,140 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <!-- bootstrap css -->
+    <link href="~/Content/Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- style css -->
+    <link href="~/Content/Assets/css/style.css" rel="stylesheet" />
+    <!-- Responsive-->
+    <link href="~/Content/Assets/css/responsive.css" rel="stylesheet" />
+
+    <!-- Scrollbar Custom CSS -->
+    <link href="~/Content/Assets/css/jquery.mCustomScrollbar.min.css" rel="stylesheet" />
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+
+    <script src="~/Content/Assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Assets/js/custom.js"></script>
+    <script src="~/Content/Assets/js/jquery-3.0.0.min.js"></script>
+    <script src="~/Content/Assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/Content/Assets/js/jquery.min.js"></script>
+    <script src="~/Content/Assets/js/jquery.validate.js"></script>
+    <script src="~/Content/Assets/js/plugin.js"></script>
+    <script src="~/Content/Assets/js/popper.min.js"></script>
+
+
+    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
 </head>
 <body>
 
 
-    <!-- Bootstrap -->
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <!-- Font Awesome -->
-    <link href="~/Scripts/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
-    <!-- NProgress -->
-    <script src="~/Scripts/nprogress/nprogress.js"></script>
-    <!-- iCheck -->
-    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-
-    <!-- Custom Theme Style -->
-    <link href="~/Content/css/style.min.css" rel="stylesheet" />
-    <link href="~/Content/css/style.css" rel="stylesheet" />
 
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-
-
-
-    <!-- Navbar Start -->
-    <div class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
-            <a href="index.html" class="navbar-brand d-block d-lg-none">
-                <h4 class="m-0 display-4 text-uppercase text-primary">Soporte Patitos</h4>
-            </a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
-                <div class="navbar-nav mr-auto py-0">
-                    <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a>
-                    <!--<a href="Url.Action("Login", "Home")" class="nav-item nav-link">Iniciar Sesión</a> -->
-                    @if (Session["Gerencia"] != null)
-                    {
-                        <div class="navbar-nav mr-auto py-0">
-                            <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Asistencia</a> <!-- Formulario para Marcar Asistencia -->
-                            <a href="@Url.Action("Evaluacion", "RecursosHumanos")" class="nav-item nav-link">Evaluación</a> <!-- Formulario de Evaluaciòn -->
+    <!-- header inner -->
+    <header>
+        <div class="header-top">
+            <div class="header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                            <div class="full">
+                                <div class="center-desk">
+                                    <div class="logo">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                            <div class="menu-area">
+                                <div class="limit-box">
+                                    <nav class="main-menu">
+                                        @if (Session["Empleado"] != null)
+                                        {
+                                            <ul class="menu-area-main">
+                                                <li> <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a> </li>
+                                                <li> <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Asistencia</a> <!-- Formulario para Marcar Asistencia --> </li>
+                                                <li> <a href="@Url.Action("HistorialColilla", "Empleados")" class="nav-item nav-link">Colillas</a> <!-- Colillas de pago de planilla  --></li>
+                                                <li><a href="" class="nav-item nav-link">Bienvenido @HttpContext.Current.Session["Empleado"].ToString()</a></li>
+                                                <li><a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a></li>
+                                            </ul>
+                                        }
 
-                    }
+                                        @if (Session["Gerencia"] != null)
+                                        {
+                                            <ul class="menu-area-main">
+                                                <li> <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a> </li>
+                                                <li> <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Asistencia</a> <!-- Formulario para Marcar Asistencia --> </li>
+                                                <li> <a href="@Url.Action("Evaluacion", "RecursosHumanos")" class="nav-item nav-link">Evaluación</a> <!-- Formulario de Evaluaciòn --></li>
+                                                <li><a href="" class="nav-item nav-link">Bienvenido @HttpContext.Current.Session["Gerencia"].ToString()</a></li>
+                                                <li><a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a></li>
+                                            </ul>
+                                        }
 
 
-                    @if (Session["Empleado"] != null)
-                    {
-                        <div class="navbar-nav mr-auto py-0">
-                            <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Asistencia</a> <!-- Formulario para Marcar Asistencia -->
-                            <a href="@Url.Action("HistorialColilla", "Empleados")" class="nav-item nav-link">Colillas</a> <!-- Colillas de pago de planilla  -->
+                                        @if (Session["RH"] != null)
+                                        {
+                                            <div class="dropdown">
+                                                <button class="dropbtn">Bienvenido @HttpContext.Current.Session["RH"].ToString()</button>
+                                                <div class="dropdown-content">
+                                                    <a href="" class="nav-item nav-link">Mi perfil</a>
+                                                    <li> <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a> </li>
+                                                    <a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="dropdown">
+                                                <button class="dropbtn">Planilla</button>
+                                                <div class="dropdown-content">
+                                                    <a href="@Url.Action("HistorialColilla", "Empleados")" class="nav-item nav-link">Mi Historial de Colilla</a> <!-- Colillas de pago del usuario -->
+                                                    <a href="@Url.Action("ListadoPlanilla", "RecursosHumanos")" class="nav-item nav-link">Mant.Planilla</a> <!-- Listado de Planillas  -->
+                                                    <a href="@Url.Action("ListadoEmpleadosPlanilla", "RecursosHumanos")" class="nav-item nav-link">Calculo de planilla</a> <!-- Manejo de Planillas -->
+                                                </div>
+                                            </div>
+
+                                            <div class="dropdown">
+                                                <button class="dropbtn">Gestión de empleados</button>
+                                                <div class="dropdown-content">
+                                                    <a href="@Url.Action("Registro_Empleados", "RecursosHumanos")" class="nav-item nav-link">Registro</a> <!-- Registro de Empleados -->
+                                                    <a href="@Url.Action("Evaluacion", "RecursosHumanos")" class="nav-item nav-link">Formulario de Evaluación</a> <!-- Formulario de Evaluaciòn -->
+                                                    <a href="@Url.Action("ListadoEmpleados", "RecursosHumanos")" class="nav-item nav-link">Mant.Empleados</a> <!-- Listado de empleados  -->
+
+                                                </div>
+                                            </div>
+
+                                            <div class="dropdown">
+                                                <button class="dropbtn">Asistencia</button>
+                                                <div class="dropdown-content">
+                                                    <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Mi Asistencia</a> <!-- Formulario para Marcar Asistencia -->
+                                                </div>
+                                            </div>
+
+                                        }
+
+                                    </nav>
+                                </div>
+                            </div>
                         </div>
-
-                    }
-
-
-                    @if (Session["RH"] != null)
-                    {
-                        <ul class="navbar-nav mr-auto py-0">
-
-                            <a href="@Url.Action("Registro_Empleados", "RecursosHumanos")" class="nav-item nav-link">Registro</a> <!-- Registro de Empleados -->
-                            <a href="@Url.Action("Evaluacion", "RecursosHumanos")" class="nav-item nav-link">Evaluación</a> <!-- Formulario de Evaluaciòn -->
-                            <a href="@Url.Action("ListadoEmpleadosPlanilla", "RecursosHumanos")" class="nav-item nav-link">Planilla</a> <!-- Manejo de Planillas -->
-                            <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Asistencia</a> <!-- Formulario para Marcar Asistencia -->
-                            <a href="@Url.Action("HistorialColilla", "Empleados")" class="nav-item nav-link">Historial de Colilla</a> <!-- Colillas de pago del usuario -->
-                            <a href="@Url.Action("ListadoEmpleados", "RecursosHumanos")" class="nav-item nav-link">Mant.Empleados</a> <!-- Listado de empleados  -->
-                            <a href="@Url.Action("ListadoPlanilla", "RecursosHumanos")" class="nav-item nav-link">Mant.Planilla</a> <!-- Listado de Planillas  -->
-                        </ul>
-                    }
-
-
-
-                </div>
-                <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 200px;">
-                    <!-- <input type="text" class="form-control border-0" placeholder="Keyword">
-                     <div class="input-group-append">
-                         <button class="input-group-text bg-primary text-dark border-0 px-3">
-                             <i class="fa fa-search"></i>
-                         </button>-->
-
-                    @if (Session["Gerencia"] != null)
-                    {
-                        <ul class="navbar-nav mr-auto py-0">
-                            <a href="@Url.Action("CuentaGerencia", "Empleado")" class="nav-item nav-link">Bienvenido @HttpContext.Current.Session["Gerencia"].ToString()</a>
-                            <a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a>
-                        </ul>
-                    }
-
-
-                    @if (Session["RH"] != null)
-                    {
-                        <ul class="navbar-nav mr-auto py-0">
-                            <a href="@Url.Action("CuentaRH", "RecursosHumanos")" class="nav-item nav-link">Bienvenido @HttpContext.Current.Session["RH"].ToString()</a>
-                            <a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a>
-                        </ul>
-                    }
-
-                    @if (Session["Empleado"] != null)
-                    {
-                        <div class="navbar-nav mr-auto py-0">
-                            <a href="@Url.Action("CuentaEmpleado", "Empleado")" class="nav-item nav-link">Bienvenido @HttpContext.Current.Session["Empleado"].ToString()</a>
-                            <a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a>
-                        </div>
-
-                    }
-
-
+                    </div>
                 </div>
             </div>
-
-        </nav>
-    </div>
-    <!-- Navbar End -->
-
+        </div>
+    </header>
+        <!-- end header inner -->
 
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
 
-    </div>
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+
+        </div>
 
 
 

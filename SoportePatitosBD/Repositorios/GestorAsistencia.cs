@@ -7,6 +7,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 
 namespace SoportePatitosBD.Repositorios
@@ -87,17 +88,72 @@ namespace SoportePatitosBD.Repositorios
 
 
         //Método para validar cuando un empleado omite una marca o está ausente
-        int IGestorAsistencia.ValidarAsistencia(int Cedula)
+        int IGestorAsistencia.ValidarAsistencia(Asistencia pAsistencia)
         {
-
-
+            DateTime fecha = DateTime.UtcNow;
             int n = 0;
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
-                ContextoBD.Evaluacion.Count();//debe contar la cèdula
-                //Pasar la cantidad contada a la variable n
+                
+                
+                foreach (var asistencia in ContextoBD.Asistencia)
+                {
+                    int marcasCount = ContextoBD.Asistencia.Count(a => a.Cedula == pAsistencia.Cedula && DbFunctions.TruncateTime(a.Fecha) == fecha);
+                    if (marcasCount == 2)
+                    {
+                        pAsistencia.ID_Estado = 1;
+                    }
+                    else if (marcasCount == 1)
+                    {
+                        pAsistencia.ID_Estado = 9;
+                    }
+                    else
+                    {
+                        pAsistencia.ID_Estado = 2;
+                    }
+
+                    
+
+                    /*  var hora = asistencia.FechaHora.TimeOfDay;
+                      var diaSemana = asistencia.FechaHora.DayOfWeek;
+
+                      if (pAsistencia.Tipo == 1 && pAsistencia.Fecha = )
+                      {
+
+                      }*/
+
+
+
+                    /*diaSemana == DayOfWeek.Saturday || diaSemana == DayOfWeek.Sunday)
+                {
+                    asistencia.ID_Estado = 7;
+                }
+
+                else if ((hora >= new TimeSpan(8, 0, 0) && hora < new TimeSpan(9, 0, 0)) && (hora >= new TimeSpan(16, 0, 0) && hora < new TimeSpan(17, 0, 0)))
+                {
+                    asistencia.ID_Estado = 1;
+                }
+
+                else if (hora >= new TimeSpan(9, 0, 0) && hora < new TimeSpan(10, 0, 0))
+                {
+                    asistencia.ID_Estado = 6;
+                }
+
+
+                else if (hora >= new TimeSpan(15, 0, 0) && hora < new TimeSpan(16, 0, 0))
+                {
+                    asistencia.ID_Estado = 5;
+                }
+                else
+                {
+                    asistencia.ID_Estado = 2;
+                }*/
+                }
+               // ContextoBD.Entry<Asistencia>(pAsistencia).State = System.Data.Entity.EntityState.Modified;
+                n = ContextoBD.SaveChanges();
+                return n;
             }
-            return n;
+            
 
         }
 

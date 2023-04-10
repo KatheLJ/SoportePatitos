@@ -3,12 +3,12 @@
     ViewBag.Title = "ListadoAsistencia";
 }
 
-<div class="page-heading header-text">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Listado de Asistencia</h1>
-            </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="titlepage">
+            <br />
+            <br />
+            <h2> Listado de Asistencias (Marcas) </h2>
         </div>
     </div>
 </div>
@@ -21,11 +21,11 @@
                     <div class="section-heading">
                     </div>
                 </div>
-               
+
                 <div class="table-responsive">
                     <!--Muestra una tabla con todas las columnas del empleado-->
                     <table class="table table-hover table-bordered">
-                        <tr class="bg-secondary">
+                        <tr class="bg-warning text-white">
                             <th>
                                 @Html.DisplayNameFor(model => model.ID_asistencia)
                             </th>
@@ -41,7 +41,7 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.ID_Estado)
                             </th>
-                            
+
                         </tr>
 
                         <!--Muestra cada registro en la tabla de Empleados-->
@@ -63,16 +63,8 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.ID_Estado)
                                 </td>
-                               
-                                <td>
-                                    <!--Permite dirigirse al reporte del empleado-->
-                                    @Html.ActionLink("Evaluación de Desempeño", "ReporteEmpleado", new { id = item.ID_asistencia }, new { @class = "btn btn-info btn-sm" })
-                                    <br><br>
-                                    @Html.ActionLink("Eliminar", "", new { id = item.ID_asistencia }, new { @class = "btn btn-danger btn-sm" })
-                                    <br><br>
-                                    @Html.ActionLink("Actualizar", "", new { id = item.ID_asistencia }, new { @class = "btn btn-danger btn-sm" })
 
-                                </td>
+                                
                             </tr>
                         }
                     </table>
@@ -84,3 +76,7 @@
     </div>
 </div>
 
+
+<div class="text-center">
+    @Html.ActionLink("Calcular Ausencias", "ValidarAusencias", new { }, new { @class = "btn btn-secondary btn-sm" })
+</div>

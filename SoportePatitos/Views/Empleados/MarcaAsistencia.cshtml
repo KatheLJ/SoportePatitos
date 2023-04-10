@@ -5,117 +5,107 @@
 }
 
 
-<div class="right_col" role="main">
-    <div class="">
-        <div class="page-title">
-            <div class="title_left">
-                <h2>Marcas de Asistencia</h2>
-            </div>
-
-        </div>
-        <br />
-
-
+<div id="contact" class="contact">
+    <div class="container">
         <div class="row">
-            <div class="col-md-12 col-sm-12">
+            <div class="col-md-12">
+                <div class="titlepage">
+                    <h2> Marcar Asistencia </h2>
+                    <p> Recuerde que debe marcar a la hora de entrada y a la hora de salida</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <!--Se define el metodo para enviar datos y el action relacionado-->
+            <form action="EnviarAsistencia" method="post" class="system-forms">
+
+                <!--Campo para el ID, pero es autoincremental-->
+                <div class="col-lg-12">
+                    <fieldset>
+                        <input name="Id" type="hidden" class="form-control" id="id" placeholder="">
+                    </fieldset>
+                </div>
 
 
-                <div class="x_content">
-                    <!--Se define el metodo para enviar datos y el action relacionado-->
-                    <form action="EnviarAsistencia" method="post" class="system-forms">
-
-                        <!--Campo para el ID, pero es autoincremental-->
-                        <div class="col-lg-12">
-                            <fieldset>
-                                <input name="Id" type="hidden" class="form-control" id="id" placeholder="">
-                            </fieldset>
-                        </div>
-                        <br>
-
-
-                        @if (TempData != null && TempData["MensajeError"] != null)
-                        {
-                            <script>
+                @if (TempData != null && TempData["MensajeError"] != null)
+                {
+                    <script>
                                 var mensajeError = '@TempData["MensajeError"]';
                                 if (mensajeError.trim() !== "") {
                                     alert(mensajeError);
                                 }
-                            </script>
-                        }
+                    </script>
+                }
 
 
-                        <!--Campo para la cedula del empleado-->
+                <!--Campo para la cedula del empleado-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
                         <fieldset>
                             <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">Cedula<span class="required">*</span></label>
-                                <div class="col-md-6 col-sm-6">
-                                    <input class="form-control p-4" type="number" id="Cedula" name="Cedula" value="@ViewData["Cedula"].ToString()" style="display:none" required />
-                                    <input type="text" id="CedulaLabel" class="form-control" disabled value="@ViewData["Cedula"].ToString()" />
+
+                                <label class="col-form-label col-md-6 col-sm-6  label-align">Cedula<span class="required">*</span></label>
+                                <div class="col-md-12 col-sm-12">
+                                    <input class="form-control p-2" type="number" id="Cedula" name="Cedula" value="@ViewData["Cedula"].ToString()" style="display:none" required />
+                                    <input type="text" id="CedulaLabel" class="form-control p-2" disabled value="@ViewData["Cedula"].ToString()" />
                                 </div>
                             </div>
                         </fieldset>
-
-
-                        <br />
-
-
+                    </div>
+                </div>
 
 
 
 
 
-                        <!--Campo para la fecha de ingreso-->
+
+
+
+                <!--Campo para la fecha de ingreso-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
                         <fieldset>
                             <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha y Hora <span class="required">*</span></label>
-                                <div class="col-md-6 col-sm-6">
-                                    <!--El valor debe ser dado por el sistema, el usuario no debe poder alterarlo-->
-                                    <!--<input class="form-control" type="datetime-local" id="Fecha" name="Fecha" required='required'/> -->
-                                    @Html.TextBox("Fecha", DateTime.Now, new { @class = "form-control", @readonly = true, required = "required" })
+                                <label class="col-form-label col-md-6 col-sm-6  label-align">Fecha y Hora <span class="required">*</span></label>
+                                <div class="col-md-12 col-sm-12">
+                                    @Html.TextBox("Fecha", DateTime.Now, new { @class = "form-control p-2", @readonly = true, required = "required" })
 
                                     <!--<input class="form-control" id="Fecha" name="Fecha" required='required' value=@DateTime.Now readonly />-->
                                 </div>
                             </div>
                         </fieldset>
-
-                        <br />
-
-
-                        <!--Campo para estado-->
-                        <fieldset>
-                            <div class="field item form-group">
-                                <label class="col-form-label col-md-3 col-sm-3  label-align">Estado<span class="required">*</span></label>
-                                <div class="col-md-6 col-sm-6">
-                                    @Html.DropDownList("ID_Estado", estados, new { @class = "form-control", required = "required" })
-                                    <!--<input class="form-control p-4" type="number" id="Estado" name="Estado" value="1" readonly placeholder="Presente"/>-->
-                                </div>
-                            </div>
-                        </fieldset>
-
-                        <br />
-
-
-
-                        <!--Botones para registrar asistencia y limpiar los campos del formulario-->
-                        <div class="ln_solid">
-                            <div class="form-group">
-                                <div class="col-md-6 offset-md-3">
-                                    <button type='submit' class="btn btn-primary">Registrar Asistencia</button>
-                                    <button type='reset' class="btn btn-info">Limpiar campos</button>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                        <br />
-
-                    </form>
-
-
-
-
-
+                    </div>
                 </div>
-            </div>
+
+               
+
+
+                <!--Campo para estado-->
+                <fieldset>
+                    <div class="field item form-group">
+                        <!--<label class="col-form-label col-md-3 col-sm-3  label-align">Estado<span class="required">*</span></label>-->
+                        <div class="col-md-6 col-sm-6">
+                            <!--Html.DropDownList("ID_Estado", estados, new { class = "form-control", required = "required" })-->
+                            <input class="form-control p-4" type="number" id="ID_estado" name="ID_Estado" value="8" hidden required="" />
+                        </div>
+                    </div>
+                </fieldset>
+
+                <br />
+
+
+
+                <!--Botones para registrar asistencia y limpiar los campos del formulario-->
+                <div class="text-center">
+                    <fieldset>
+                        <br />
+                        <button type="submit" class="btn btn-warning" id="btn-Login">Registrar Asistencia</button>
+                    </fieldset>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+    
+
+

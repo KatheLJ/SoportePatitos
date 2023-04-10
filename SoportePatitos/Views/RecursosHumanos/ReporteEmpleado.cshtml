@@ -7,12 +7,11 @@
 
 
 
-<div class="page-heading header-text">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>Reporte de la Evaluación de desempeño del empleado</h1>
-            </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="titlepage">
+            <h2> Evaluación de desempeño </h2>
+            <p> Fecha de Descarga: @DateTime.UtcNow </p>
         </div>
     </div>
 </div>
@@ -80,25 +79,7 @@
                             </div>
 
 
-                            <div class="col-lg-6 col-md-12 col-sm-12">
-                                <div class="ln_solid">
-                                    <div class="form-group">
-                                        <div class="col-md-6 offset-md-3">
-                                            <!--Botones para crear un empleado y limpiar el formulario-->
-                                            <!--<button class="btn btn-primary">Descargar</button>-->
-
-                                            <div class="ln_solid">
-                                                <div class="form-group">
-                                                    <div class="text-right">
-                                                        @Html.ActionLink("Descargar", "GeneratePDFReporte", new { @class = "btn btn btn-primary btn-sm" })
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
+                            
                             <br><br><br><br>
                         </div>
                     </div>

@@ -21,6 +21,7 @@ namespace SoportePatitos.Controllers
         private readonly IGestorEmpleado _oGestorEmpleado;
         private readonly IGestorEvaluacion _oGestorEvaluacion;
         private readonly IGestorPlanilla _oGestorPlanilla;
+        private readonly IGestorAsistencia _oGestorAsistencia;
 
 
 
@@ -30,6 +31,7 @@ namespace SoportePatitos.Controllers
             _oGestorEmpleado = new GestorEmpleado();
             _oGestorEvaluacion = new GestorEvaluacion();
             _oGestorPlanilla = new GestorPlanilla();
+            _oGestorAsistencia = new GestorAsistencia();
         }
 
 
@@ -435,6 +437,29 @@ namespace SoportePatitos.Controllers
 
 
 
+
+
+
+        public ActionResult ListadoAsistencia(string sortOrder)
+        {
+            IEnumerable<Asistencia> asistencia = _oGestorAsistencia.ListadoAsistencia();
+            return View(asistencia);
+        }
+
+
+        public ActionResult ValidarAusencias(Asistencia pAsistencia)
+        {
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+
+                var data = ContextoBD.Asistencia.Where(a => a.Fecha.Equals(DateTime.UtcNow));
+
+                int registros = _oGestorAsistencia.ValidarAsistencia(pAsistencia);
+                return RedirectToAction("ListadoAsistencia");
+
+
+            }
+        }
 
 
 

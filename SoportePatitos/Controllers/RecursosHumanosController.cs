@@ -28,6 +28,7 @@ namespace SoportePatitos.Controllers
         //Constructores necesarios para realizar diferentes acciones
         public RecursosHumanosController()
         {
+            //Se inicializan para poder utilizar los métodos de dichas clases (métodos descritos en las interfaces)
             _oGestorEmpleado = new GestorEmpleado();
             _oGestorEvaluacion = new GestorEvaluacion();
             _oGestorPlanilla = new GestorPlanilla();
@@ -45,13 +46,15 @@ namespace SoportePatitos.Controllers
         public ActionResult Registro_Empleados()
         {
 
-            //Se inicializan las listas que se usaran más adelante
+            //Se inicializan las listas que se usaran más adelante para que el usuario pueda ver un datos y no números.
+            //Ej: En lugar de ver departamento 1 ve departamento de Gerencia
             List<Models.ViewModels.Departamento> lst = null;
             List<Models.ViewModels.Puesto> lst2 = null;
             List<Models.ViewModels.Perfil> lst3 = null;
             List<Models.ViewModels.Horario> lst4 = null;
             List<Models.ViewModels.Estado_civil> lst5 = null;
 
+            //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
                 //Permite mostrar un dropdownlist con los departamentos almacenados en la base de datos
@@ -78,6 +81,7 @@ namespace SoportePatitos.Controllers
 
 
                 //Permite mostrar un dropdownlist con los puestos almacenados en la base de datos
+                //Misma Lógica que la lista de Departamento (lst)
                 lst2 =
                 (from d in ContextoBD.Puesto
                  select new Models.ViewModels.Puesto
@@ -101,6 +105,7 @@ namespace SoportePatitos.Controllers
 
 
                 //Permite mostrar un dropdownlist con los perfiles almacenados en la base de datos
+                //Misma Lógica que la lista de Departamento (lst)
                 lst3 =
                 (from d in ContextoBD.Perfil
                  select new Models.ViewModels.Perfil
@@ -123,6 +128,7 @@ namespace SoportePatitos.Controllers
                 });
 
                 //Permite mostrar un dropdownlist con los horarios almacenados en la base de datos
+                //Misma Lógica que la lista de Departamento (lst)
                 lst4 =
                 (from d in ContextoBD.Horario
                  select new Models.ViewModels.Horario
@@ -144,6 +150,7 @@ namespace SoportePatitos.Controllers
                 });
 
                 //Permite mostrar un dropdownlist con los estados civiles almacenados en la base de datos
+                //Misma Lógica que la lista de Departamento (lst)
                 lst5 =
                 (from d in ContextoBD.Estado_Civil
                  select new Models.ViewModels.Estado_civil
@@ -164,12 +171,13 @@ namespace SoportePatitos.Controllers
 
                 });
 
-
+                //Se regresan las listas por medio de ViewData
                 ViewData["Departamento"] = items;
                 ViewData["Puesto"] = items2;
                 ViewData["Perfil"] = items3;
                 ViewData["Horario"] = items4;
                 ViewData["Estado_civil"] = items5;
+                //Se retorna la vista
                 return View();
             }
         }
@@ -179,8 +187,9 @@ namespace SoportePatitos.Controllers
         //Accion que permite Registrar un empleado en la base de datos
         public ActionResult EnviarEmpleado(Empleado pEmpleado)
         {
-
+            //Se llama al método de Crear Empleado, que recibe un objeto de tipo empleado por parámetro
             int registros = _oGestorEmpleado.CrearEmpleado(pEmpleado);
+            //Se regresa a la pantalla de Registro de Empleados al terminar
             return RedirectToAction("Registro_Empleados");
             
             
@@ -244,7 +253,9 @@ namespace SoportePatitos.Controllers
         //Accion envia la evaluación realizada a un empleado
         public ActionResult EnviarEvaluacion(Evaluacion pEvaluacion)
         {
+            //Se llama al método de Crear Evaluación, que recibe un objeto de tipo evaluación por parámetro
             int registros = _oGestorEvaluacion.CrearEvaluacion(pEvaluacion);
+            //Se regresa a la pantalla de Evaluación al terminar
             return RedirectToAction("Evaluacion");
         }
 
@@ -256,10 +267,11 @@ namespace SoportePatitos.Controllers
 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-           
+
             //IEnumerable<Empleado> empleados = _oGestorEmpleado.ListadoEmpleados().Include();
             //return View(empleados);
 
+            //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
                 var empleados = ContextoBD.Empleado.Include(a => a.Departamento).Include(a => a.Puesto).Include(a => a.Horario).Include(a => a.Perfil);
@@ -272,7 +284,7 @@ namespace SoportePatitos.Controllers
         //Accion que muestra la pantalla con el reporte de la evaluacion
         public ActionResult ReporteEmpleado(int Cedula)
         {
-            
+            //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
                 var empleados = ContextoBD.Evaluacion.Include(a => a.Empleado);
@@ -286,6 +298,7 @@ namespace SoportePatitos.Controllers
         //Permite descargar la evaluación del empleado en PDF 
         public ActionResult GeneratePDFReporte(int Cedula)
         {
+            //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
                 var empleados = ContextoBD.Evaluacion.Include(a => a.Empleado);
@@ -319,7 +332,7 @@ namespace SoportePatitos.Controllers
         //Accion que muestra la pantalla con los diferentes empleados a los que se debe realizar la planilla
         public ActionResult ListadoEmpleadosPlanilla()
         {
-
+            //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
                 var empleados = ContextoBD.Empleado.Include(a => a.Puesto).Include(a => a.Estado_Civil);
@@ -362,7 +375,7 @@ namespace SoportePatitos.Controllers
             //Empleado obj = _oGestorEmpleado.ListadoEmpleados().Where(x => x.Cedula == Cedula).FirstOrDefault();
             // return View(obj);
 
-           
+            //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
                 var empleados = ContextoBD.Empleado.Include(a => a.Puesto).Include(a => a.Estado_Civil);
@@ -445,11 +458,13 @@ namespace SoportePatitos.Controllers
 
 
 
-
-        public ActionResult ListadoAsistencia(string sortOrder)
+        //Permite ver todas las marcas realizadas durante el día
+        public ActionResult ListadoAsistencia()
         {
+            //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
+                //Se crea un variable asistencia que trae todos los registros de la tabla de Asistencia de la BD con su estado respectivo
                 var asistencia  = ContextoBD.Asistencia.Include(a => a.Estado);
                 return View(asistencia.ToList());
 
@@ -459,9 +474,10 @@ namespace SoportePatitos.Controllers
             //return View(asistencia);
         }
 
-
+        //Permite validar las ausencias que tuvieron los empleados a lo largo del día
         public ActionResult ValidarAusencias(Asistencia pAsistencia)
         {
+            //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
 

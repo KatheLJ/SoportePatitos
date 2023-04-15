@@ -11,21 +11,19 @@ namespace SoportePatitosBD.Modelo
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Estado_Civil
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Estado_Civil()
         {
-            this.Empleadoes = new HashSet<Empleado>();
+            this.Empleado = new HashSet<Empleado>();
         }
     
         public int ID_Estado_Civil { get; set; }
-        [Display(Name = "Estado Civil")]
         public string Descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Empleado> Empleadoes { get; set; }
+        public virtual ICollection<Empleado> Empleado { get; set; }
     }
 }

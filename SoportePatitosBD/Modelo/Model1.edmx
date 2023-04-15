@@ -96,8 +96,8 @@
           </Key>
           <Property Name="ID_puesto" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Salario" Type="int" Nullable="false" />
-          <Property Name="Departamento" Type="int" Nullable="false" />
+          <Property Name="Salario" Type="float" Nullable="false" />
+          <Property Name="ID_departamento" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Tipo">
           <Key>
@@ -106,7 +106,7 @@
           <Property Name="ID_tipo" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Asistenci__Cedul__503BEA1C">
+        <Association Name="FK__Asistenci__Cedul__5FB337D6">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
           <ReferentialConstraint>
@@ -118,7 +118,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Asistenci__ID_Es__51300E55">
+        <Association Name="FK__Asistenci__ID_Es__60A75C0F">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
           <ReferentialConstraint>
@@ -130,7 +130,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Asistencia__Tipo__4F47C5E3">
+        <Association Name="FK__Asistencia__Tipo__5EBF139D">
           <End Role="Tipo" Type="Self.Tipo" Multiplicity="1" />
           <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
           <ReferentialConstraint>
@@ -142,7 +142,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__ID_dep__571DF1D5">
+        <Association Name="FK__Empleado__ID_dep__5441852A">
           <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -154,7 +154,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__ID_Est__41B8C09B">
+        <Association Name="FK__Empleado__ID_Est__5812160E">
           <End Role="Estado_Civil" Type="Self.Estado_Civil" Multiplicity="1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -166,7 +166,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__ID_hor__59FA5E80">
+        <Association Name="FK__Empleado__ID_hor__571DF1D5">
           <End Role="Horario" Type="Self.Horario" Multiplicity="1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -178,7 +178,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__ID_per__5812160E">
+        <Association Name="FK__Empleado__ID_per__5535A963">
           <End Role="Perfil" Type="Self.Perfil" Multiplicity="1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -190,7 +190,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__ID_pue__59063A47">
+        <Association Name="FK__Empleado__ID_pue__5629CD9C">
           <End Role="Puesto" Type="Self.Puesto" Multiplicity="1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -202,7 +202,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Evaluacio__Cedul__6FE99F9F">
+        <Association Name="FK__Evaluacio__Cedul__656C112C">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Evaluacion" Type="Self.Evaluacion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -214,7 +214,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Planilla__Cedula__09746778">
+        <Association Name="FK__Planilla__Cedula__68487DD7">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Planilla" Type="Self.Planilla" Multiplicity="*" />
           <ReferentialConstraint>
@@ -226,7 +226,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Puesto__Departam__60A75C0F">
+        <Association Name="FK__Puesto__ID_depar__4D94879B">
           <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
           <End Role="Puesto" Type="Self.Puesto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -234,12 +234,10 @@
               <PropertyRef Name="ID_departamento" />
             </Principal>
             <Dependent Role="Puesto">
-              <PropertyRef Name="Departamento" />
+              <PropertyRef Name="ID_departamento" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="spEvaluacionEmpleado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="spPLanillla" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="SoportePatitosModelStoreContainer">
           <EntitySet Name="Asistencia" EntityType="Self.Asistencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
@@ -252,47 +250,47 @@
           <EntitySet Name="Planilla" EntityType="Self.Planilla" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Puesto" EntityType="Self.Puesto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tipo" EntityType="Self.Tipo" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Asistenci__Cedul__503BEA1C" Association="Self.FK__Asistenci__Cedul__503BEA1C">
+          <AssociationSet Name="FK__Asistenci__Cedul__5FB337D6" Association="Self.FK__Asistenci__Cedul__5FB337D6">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Asistencia" EntitySet="Asistencia" />
           </AssociationSet>
-          <AssociationSet Name="FK__Asistenci__ID_Es__51300E55" Association="Self.FK__Asistenci__ID_Es__51300E55">
+          <AssociationSet Name="FK__Asistenci__ID_Es__60A75C0F" Association="Self.FK__Asistenci__ID_Es__60A75C0F">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Asistencia" EntitySet="Asistencia" />
           </AssociationSet>
-          <AssociationSet Name="FK__Asistencia__Tipo__4F47C5E3" Association="Self.FK__Asistencia__Tipo__4F47C5E3">
+          <AssociationSet Name="FK__Asistencia__Tipo__5EBF139D" Association="Self.FK__Asistencia__Tipo__5EBF139D">
             <End Role="Tipo" EntitySet="Tipo" />
             <End Role="Asistencia" EntitySet="Asistencia" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleado__ID_dep__571DF1D5" Association="Self.FK__Empleado__ID_dep__571DF1D5">
+          <AssociationSet Name="FK__Empleado__ID_dep__5441852A" Association="Self.FK__Empleado__ID_dep__5441852A">
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleado__ID_Est__41B8C09B" Association="Self.FK__Empleado__ID_Est__41B8C09B">
+          <AssociationSet Name="FK__Empleado__ID_Est__5812160E" Association="Self.FK__Empleado__ID_Est__5812160E">
             <End Role="Estado_Civil" EntitySet="Estado_Civil" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleado__ID_hor__59FA5E80" Association="Self.FK__Empleado__ID_hor__59FA5E80">
+          <AssociationSet Name="FK__Empleado__ID_hor__571DF1D5" Association="Self.FK__Empleado__ID_hor__571DF1D5">
             <End Role="Horario" EntitySet="Horario" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleado__ID_per__5812160E" Association="Self.FK__Empleado__ID_per__5812160E">
+          <AssociationSet Name="FK__Empleado__ID_per__5535A963" Association="Self.FK__Empleado__ID_per__5535A963">
             <End Role="Perfil" EntitySet="Perfil" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Empleado__ID_pue__59063A47" Association="Self.FK__Empleado__ID_pue__59063A47">
+          <AssociationSet Name="FK__Empleado__ID_pue__5629CD9C" Association="Self.FK__Empleado__ID_pue__5629CD9C">
             <End Role="Puesto" EntitySet="Puesto" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Evaluacio__Cedul__6FE99F9F" Association="Self.FK__Evaluacio__Cedul__6FE99F9F">
+          <AssociationSet Name="FK__Evaluacio__Cedul__656C112C" Association="Self.FK__Evaluacio__Cedul__656C112C">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Evaluacion" EntitySet="Evaluacion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Planilla__Cedula__09746778" Association="Self.FK__Planilla__Cedula__09746778">
+          <AssociationSet Name="FK__Planilla__Cedula__68487DD7" Association="Self.FK__Planilla__Cedula__68487DD7">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Planilla" EntitySet="Planilla" />
           </AssociationSet>
-          <AssociationSet Name="FK__Puesto__Departam__60A75C0F" Association="Self.FK__Puesto__Departam__60A75C0F">
+          <AssociationSet Name="FK__Puesto__ID_depar__4D94879B" Association="Self.FK__Puesto__ID_depar__4D94879B">
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Puesto" EntitySet="Puesto" />
           </AssociationSet>
@@ -301,19 +299,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SoportePatitosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Asistencia">
-          <Key>
-            <PropertyRef Name="ID_asistencia" />
-          </Key>
-          <Property Name="ID_asistencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Tipo" Type="Int32" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Cedula" Type="Int32" Nullable="false" />
-          <Property Name="ID_Estado" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Empleado" Relationship="Self.FK__Asistenci__Cedul__06CD04F7" FromRole="Asistencia" ToRole="Empleado" />
-          <NavigationProperty Name="Estado" Relationship="Self.FK__Asistenci__ID_Es__07C12930" FromRole="Asistencia" ToRole="Estado" />
-          <NavigationProperty Name="Tipo1" Relationship="Self.FK__Asistencia__Tipo__05D8E0BE" FromRole="Asistencia" ToRole="Tipo" />
-        </EntityType>
         <EntityType Name="Departamento">
           <Key>
             <PropertyRef Name="ID_departamento" />
@@ -321,7 +306,7 @@
           <Property Name="ID_departamento" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__ID_dep__571DF1D5" FromRole="Departamento" ToRole="Empleado" />
-          <NavigationProperty Name="Puesto" Relationship="Self.FK__Puesto__Departam__60A75C0F" FromRole="Departamento" ToRole="Puesto" />
+          <NavigationProperty Name="Puesto" Relationship="SoportePatitosModel.FK__Puesto__ID_depar__4D94879B" FromRole="Departamento" ToRole="Puesto" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -336,16 +321,16 @@
           <Property Name="ID_horario" Type="Int32" Nullable="false" />
           <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Contraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Asistencia" Relationship="Self.FK__Asistenci__Cedul__06CD04F7" FromRole="Empleado" ToRole="Asistencia" />
           <NavigationProperty Name="Departamento" Relationship="Self.FK__Empleado__ID_dep__571DF1D5" FromRole="Empleado" ToRole="Departamento" />
           <NavigationProperty Name="Horario" Relationship="Self.FK__Empleado__ID_hor__59FA5E80" FromRole="Empleado" ToRole="Horario" />
           <NavigationProperty Name="Perfil" Relationship="Self.FK__Empleado__ID_per__5812160E" FromRole="Empleado" ToRole="Perfil" />
-          <NavigationProperty Name="Puesto" Relationship="Self.FK__Empleado__ID_pue__59063A47" FromRole="Empleado" ToRole="Puesto" />
           <NavigationProperty Name="Evaluacion" Relationship="Self.FK__Evaluacio__Cedul__6FE99F9F" FromRole="Empleado" ToRole="Evaluacion" />
           <NavigationProperty Name="Planilla" Relationship="SoportePatitosModel.FK__Planilla__Cedula__09746778" FromRole="Empleado" ToRole="Planilla" />
           <Property Name="Cantidad_Hijos" Type="Int32" Nullable="false" />
           <Property Name="ID_Estado_Civil" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Estado_Civil" Relationship="SoportePatitosModel.FK__Empleado__ID_Est__41B8C09B" FromRole="Empleado" ToRole="Estado_Civil" />
+          <NavigationProperty Name="Asistencia" Relationship="SoportePatitosModel.FK__Asistenci__Cedul__5FB337D6" FromRole="Empleado" ToRole="Asistencia" />
+          <NavigationProperty Name="Estado_Civil" Relationship="SoportePatitosModel.FK__Empleado__ID_Est__5812160E" FromRole="Empleado" ToRole="Estado_Civil" />
+          <NavigationProperty Name="Puesto" Relationship="SoportePatitosModel.FK__Empleado__ID_pue__5629CD9C" FromRole="Empleado" ToRole="Puesto" />
         </EntityType>
         <EntityType Name="Estado">
           <Key>
@@ -353,7 +338,7 @@
           </Key>
           <Property Name="ID_Estado" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Asistencia" Relationship="Self.FK__Asistenci__ID_Es__07C12930" FromRole="Estado" ToRole="Asistencia" />
+          <NavigationProperty Name="Asistencia" Relationship="SoportePatitosModel.FK__Asistenci__ID_Es__60A75C0F" FromRole="Estado" ToRole="Asistencia" />
         </EntityType>
         <EntityType Name="Evaluacion">
           <Key>
@@ -384,61 +369,14 @@
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__ID_per__5812160E" FromRole="Perfil" ToRole="Empleado" />
         </EntityType>
-        <EntityType Name="Puesto">
-          <Key>
-            <PropertyRef Name="ID_puesto" />
-          </Key>
-          <Property Name="ID_puesto" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Salario" Type="Int32" Nullable="false" />
-          <Property Name="Departamento" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Departamento1" Relationship="Self.FK__Puesto__Departam__60A75C0F" FromRole="Puesto" ToRole="Departamento" />
-          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__ID_pue__59063A47" FromRole="Puesto" ToRole="Empleado" />
-        </EntityType>
         <EntityType Name="Tipo">
           <Key>
             <PropertyRef Name="ID_tipo" />
           </Key>
           <Property Name="ID_tipo" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Asistencia" Relationship="Self.FK__Asistencia__Tipo__05D8E0BE" FromRole="Tipo" ToRole="Asistencia" />
+          <NavigationProperty Name="Asistencia" Relationship="SoportePatitosModel.FK__Asistencia__Tipo__5EBF139D" FromRole="Tipo" ToRole="Asistencia" />
         </EntityType>
-        <Association Name="FK__Asistenci__Cedul__06CD04F7">
-          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
-          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleado">
-              <PropertyRef Name="Cedula" />
-            </Principal>
-            <Dependent Role="Asistencia">
-              <PropertyRef Name="Cedula" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Asistenci__ID_Es__07C12930">
-          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
-          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estado">
-              <PropertyRef Name="ID_Estado" />
-            </Principal>
-            <Dependent Role="Asistencia">
-              <PropertyRef Name="ID_Estado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Asistencia__Tipo__05D8E0BE">
-          <End Role="Tipo" Type="Self.Tipo" Multiplicity="1" />
-          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tipo">
-              <PropertyRef Name="ID_tipo" />
-            </Principal>
-            <Dependent Role="Asistencia">
-              <PropertyRef Name="Tipo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Empleado__ID_dep__571DF1D5">
           <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
@@ -448,18 +386,6 @@
             </Principal>
             <Dependent Role="Empleado">
               <PropertyRef Name="ID_departamento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Puesto__Departam__60A75C0F">
-          <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
-          <End Role="Puesto" Type="Self.Puesto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Departamento">
-              <PropertyRef Name="ID_departamento" />
-            </Principal>
-            <Dependent Role="Puesto">
-              <PropertyRef Name="Departamento" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -487,18 +413,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Empleado__ID_pue__59063A47">
-          <End Role="Puesto" Type="Self.Puesto" Multiplicity="1" />
-          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Puesto">
-              <PropertyRef Name="ID_puesto" />
-            </Principal>
-            <Dependent Role="Empleado">
-              <PropertyRef Name="ID_puesto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Evaluacio__Cedul__6FE99F9F">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Evaluacion" Type="Self.Evaluacion" Multiplicity="*" />
@@ -512,34 +426,16 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SoportePatitosEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Asistencia" EntityType="Self.Asistencia" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" />
           <EntitySet Name="Estado" EntityType="Self.Estado" />
           <EntitySet Name="Evaluacion" EntityType="Self.Evaluacion" />
           <EntitySet Name="Horario" EntityType="Self.Horario" />
           <EntitySet Name="Perfil" EntityType="Self.Perfil" />
-          <EntitySet Name="Puesto" EntityType="Self.Puesto" />
           <EntitySet Name="Tipo" EntityType="Self.Tipo" />
-          <AssociationSet Name="FK__Asistenci__Cedul__06CD04F7" Association="Self.FK__Asistenci__Cedul__06CD04F7">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="Asistencia" EntitySet="Asistencia" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Asistenci__ID_Es__07C12930" Association="Self.FK__Asistenci__ID_Es__07C12930">
-            <End Role="Estado" EntitySet="Estado" />
-            <End Role="Asistencia" EntitySet="Asistencia" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Asistencia__Tipo__05D8E0BE" Association="Self.FK__Asistencia__Tipo__05D8E0BE">
-            <End Role="Tipo" EntitySet="Tipo" />
-            <End Role="Asistencia" EntitySet="Asistencia" />
-          </AssociationSet>
           <AssociationSet Name="FK__Empleado__ID_dep__571DF1D5" Association="Self.FK__Empleado__ID_dep__571DF1D5">
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Empleado" EntitySet="Empleado" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Puesto__Departam__60A75C0F" Association="Self.FK__Puesto__Departam__60A75C0F">
-            <End Role="Departamento" EntitySet="Departamento" />
-            <End Role="Puesto" EntitySet="Puesto" />
           </AssociationSet>
           <AssociationSet Name="FK__Empleado__ID_hor__59FA5E80" Association="Self.FK__Empleado__ID_hor__59FA5E80">
             <End Role="Horario" EntitySet="Horario" />
@@ -547,10 +443,6 @@
           </AssociationSet>
           <AssociationSet Name="FK__Empleado__ID_per__5812160E" Association="Self.FK__Empleado__ID_per__5812160E">
             <End Role="Perfil" EntitySet="Perfil" />
-            <End Role="Empleado" EntitySet="Empleado" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Empleado__ID_pue__59063A47" Association="Self.FK__Empleado__ID_pue__59063A47">
-            <End Role="Puesto" EntitySet="Puesto" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
           <AssociationSet Name="FK__Evaluacio__Cedul__6FE99F9F" Association="Self.FK__Evaluacio__Cedul__6FE99F9F">
@@ -564,9 +456,31 @@
             <End Role="Planilla" EntitySet="Planilla" />
           </AssociationSet>
           <FunctionImport Name="spPLanillla" ReturnType="Collection(SoportePatitosModel.spPLanillla_Result)" />
+          <EntitySet Name="Asistencia" EntityType="SoportePatitosModel.Asistencia" />
           <EntitySet Name="Estado_Civil" EntityType="SoportePatitosModel.Estado_Civil" />
-          <AssociationSet Name="FK__Empleado__ID_Est__41B8C09B" Association="SoportePatitosModel.FK__Empleado__ID_Est__41B8C09B">
+          <EntitySet Name="Puesto" EntityType="SoportePatitosModel.Puesto" />
+          <AssociationSet Name="FK__Asistenci__Cedul__5FB337D6" Association="SoportePatitosModel.FK__Asistenci__Cedul__5FB337D6">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Asistencia" EntitySet="Asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistenci__ID_Es__60A75C0F" Association="SoportePatitosModel.FK__Asistenci__ID_Es__60A75C0F">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Asistencia" EntitySet="Asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Asistencia__Tipo__5EBF139D" Association="SoportePatitosModel.FK__Asistencia__Tipo__5EBF139D">
+            <End Role="Tipo" EntitySet="Tipo" />
+            <End Role="Asistencia" EntitySet="Asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Puesto__ID_depar__4D94879B" Association="SoportePatitosModel.FK__Puesto__ID_depar__4D94879B">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Puesto" EntitySet="Puesto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__ID_Est__5812160E" Association="SoportePatitosModel.FK__Empleado__ID_Est__5812160E">
             <End Role="Estado_Civil" EntitySet="Estado_Civil" />
+            <End Role="Empleado" EntitySet="Empleado" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empleado__ID_pue__5629CD9C" Association="SoportePatitosModel.FK__Empleado__ID_pue__5629CD9C">
+            <End Role="Puesto" EntitySet="Puesto" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
         </EntityContainer>
@@ -609,15 +523,87 @@
           <Property Type="String" Name="Nombre_Empleado" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="Salario" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Asistencia">
+          <Key>
+            <PropertyRef Name="ID_asistencia" />
+          </Key>
+          <Property Name="ID_asistencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Cedula" Type="Int32" Nullable="false" />
+          <Property Name="ID_Estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="SoportePatitosModel.FK__Asistenci__Cedul__5FB337D6" FromRole="Asistencia" ToRole="Empleado" />
+          <NavigationProperty Name="Estado" Relationship="SoportePatitosModel.FK__Asistenci__ID_Es__60A75C0F" FromRole="Asistencia" ToRole="Estado" />
+          <NavigationProperty Name="Tipo1" Relationship="SoportePatitosModel.FK__Asistencia__Tipo__5EBF139D" FromRole="Asistencia" ToRole="Tipo" />
+        </EntityType>
         <EntityType Name="Estado_Civil">
           <Key>
             <PropertyRef Name="ID_Estado_Civil" />
           </Key>
           <Property Name="ID_Estado_Civil" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Empleadoes" Relationship="SoportePatitosModel.FK__Empleado__ID_Est__41B8C09B" FromRole="Estado_Civil" ToRole="Empleado" />
+          <NavigationProperty Name="Empleado" Relationship="SoportePatitosModel.FK__Empleado__ID_Est__5812160E" FromRole="Estado_Civil" ToRole="Empleado" />
         </EntityType>
-        <Association Name="FK__Empleado__ID_Est__41B8C09B">
+        <EntityType Name="Puesto">
+          <Key>
+            <PropertyRef Name="ID_puesto" />
+          </Key>
+          <Property Name="ID_puesto" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Salario" Type="Double" Nullable="false" />
+          <Property Name="ID_departamento" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Departamento" Relationship="SoportePatitosModel.FK__Puesto__ID_depar__4D94879B" FromRole="Puesto" ToRole="Departamento" />
+          <NavigationProperty Name="Empleado" Relationship="SoportePatitosModel.FK__Empleado__ID_pue__5629CD9C" FromRole="Puesto" ToRole="Empleado" />
+        </EntityType>
+        <Association Name="FK__Asistenci__Cedul__5FB337D6">
+          <End Type="SoportePatitosModel.Empleado" Role="Empleado" Multiplicity="1" />
+          <End Type="SoportePatitosModel.Asistencia" Role="Asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Cedula" />
+            </Principal>
+            <Dependent Role="Asistencia">
+              <PropertyRef Name="Cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asistenci__ID_Es__60A75C0F">
+          <End Type="SoportePatitosModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="SoportePatitosModel.Asistencia" Role="Asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="ID_Estado" />
+            </Principal>
+            <Dependent Role="Asistencia">
+              <PropertyRef Name="ID_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Asistencia__Tipo__5EBF139D">
+          <End Type="SoportePatitosModel.Tipo" Role="Tipo" Multiplicity="1" />
+          <End Type="SoportePatitosModel.Asistencia" Role="Asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo">
+              <PropertyRef Name="ID_tipo" />
+            </Principal>
+            <Dependent Role="Asistencia">
+              <PropertyRef Name="Tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Puesto__ID_depar__4D94879B">
+          <End Type="SoportePatitosModel.Departamento" Role="Departamento" Multiplicity="1" />
+          <End Type="SoportePatitosModel.Puesto" Role="Puesto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="ID_departamento" />
+            </Principal>
+            <Dependent Role="Puesto">
+              <PropertyRef Name="ID_departamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empleado__ID_Est__5812160E">
           <End Type="SoportePatitosModel.Estado_Civil" Role="Estado_Civil" Multiplicity="1" />
           <End Type="SoportePatitosModel.Empleado" Role="Empleado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -629,23 +615,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Empleado__ID_pue__5629CD9C">
+          <End Type="SoportePatitosModel.Puesto" Role="Puesto" Multiplicity="1" />
+          <End Type="SoportePatitosModel.Empleado" Role="Empleado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Puesto">
+              <PropertyRef Name="ID_puesto" />
+            </Principal>
+            <Dependent Role="Empleado">
+              <PropertyRef Name="ID_puesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SoportePatitosModelStoreContainer" CdmEntityContainer="SoportePatitosEntities">
-          <EntitySetMapping Name="Asistencia">
-            <EntityTypeMapping TypeName="SoportePatitosModel.Asistencia">
-              <MappingFragment StoreEntitySet="Asistencia">
-                <ScalarProperty Name="ID_asistencia" ColumnName="ID_asistencia" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Departamento">
             <EntityTypeMapping TypeName="SoportePatitosModel.Departamento">
               <MappingFragment StoreEntitySet="Departamento">
@@ -708,16 +695,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Puesto">
-            <EntityTypeMapping TypeName="SoportePatitosModel.Puesto">
-              <MappingFragment StoreEntitySet="Puesto">
-                <ScalarProperty Name="ID_puesto" ColumnName="ID_puesto" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Salario" ColumnName="Salario" />
-                <ScalarProperty Name="Departamento" ColumnName="Departamento" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Tipo">
             <EntityTypeMapping TypeName="SoportePatitosModel.Tipo">
               <MappingFragment StoreEntitySet="Tipo">
@@ -726,19 +703,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="spEvaluacionEmpleado" FunctionName="SoportePatitosModel.Store.spEvaluacionEmpleado">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SoportePatitosModel.spEvaluacionEmpleado_Result">
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="ID_evaluacion" ColumnName="ID_evaluacion" />
-                <ScalarProperty Name="Pregunta_1" ColumnName="Pregunta_1" />
-                <ScalarProperty Name="Pregunta_2" ColumnName="Pregunta_2" />
-                <ScalarProperty Name="Pregunta_3" ColumnName="Pregunta_3" />
-                <ScalarProperty Name="Pregunta_4" ColumnName="Pregunta_4" />
-                <ScalarProperty Name="Pregunta_5" ColumnName="Pregunta_5" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="Planilla">
             <EntityTypeMapping TypeName="SoportePatitosModel.Planilla">
               <MappingFragment StoreEntitySet="Planilla">
@@ -752,20 +716,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="spPLanillla" FunctionName="SoportePatitosModel.Store.spPLanillla">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SoportePatitosModel.spPLanillla_Result">
+          <EntitySetMapping Name="Asistencia">
+            <EntityTypeMapping TypeName="SoportePatitosModel.Asistencia">
+              <MappingFragment StoreEntitySet="Asistencia">
+                <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="Nombre_Empleado" ColumnName="Nombre_Empleado" />
-                <ScalarProperty Name="Salario" ColumnName="Salario" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="ID_asistencia" ColumnName="ID_asistencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Estado_Civil">
             <EntityTypeMapping TypeName="SoportePatitosModel.Estado_Civil">
               <MappingFragment StoreEntitySet="Estado_Civil">
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="ID_Estado_Civil" ColumnName="ID_Estado_Civil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Puesto">
+            <EntityTypeMapping TypeName="SoportePatitosModel.Puesto">
+              <MappingFragment StoreEntitySet="Puesto">
+                <ScalarProperty Name="ID_departamento" ColumnName="ID_departamento" />
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="ID_puesto" ColumnName="ID_puesto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -783,7 +759,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

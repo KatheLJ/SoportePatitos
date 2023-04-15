@@ -35,7 +35,12 @@ namespace SoportePatitos.Controllers
             _oGestorAsistencia = new GestorAsistencia();
         }
 
-
+        public ActionResult ActualizarAsistencia()
+        {
+            var gestorAsistencia = new GestorAsistencia();
+            gestorAsistencia.ActualizarAsistencia();
+            return RedirectToAction("ListadoAsistencia");
+        }
 
         // GET: RecursosHumanos
 
@@ -475,20 +480,7 @@ namespace SoportePatitos.Controllers
         }
 
         //Permite validar las ausencias que tuvieron los empleados a lo largo del día
-        public ActionResult ValidarAusencias(Asistencia pAsistencia)
-        {
-            //Se llama a una conexión de tipo SoportePatitosEntities
-            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
-            {
-
-                var data = ContextoBD.Asistencia.Where(a => a.Fecha.Equals(DateTime.UtcNow));
-
-                int registros = _oGestorAsistencia.ValidarAsistencia(pAsistencia);
-                return RedirectToAction("ListadoAsistencia");
-
-
-            }
-        }
+        
 
 
 

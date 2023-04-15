@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Windows.Forms;
 
 
 namespace SoportePatitosBD.Repositorios
@@ -85,10 +86,49 @@ namespace SoportePatitosBD.Repositorios
             }
         }
 
-
+        public void ActualizarAsistencia()
+        {
+            using (var ContextoBD = new SoportePatitosEntities())
+            {
+                var empleados = ContextoBD.Empleado.ToList();
+                var fechaInicio = ContextoBD.Asistencia.Min(a => a.Fecha).Date;
+                var fechaFin = DateTime.Today.AddDays(1);
+                for (var fecha = fechaInicio; fecha < fechaFin; fecha = fecha.AddDays(1))
+                {
+                    var fechaSiguiente = fecha.AddDays(1);
+                    foreach (var empleado in empleados)
+                    {
+                        var asistencias = ContextoBD.Asistencia.Where(a => a.Cedula == empleado.Cedula && a.Fecha >= fecha && a.Fecha < fechaSiguiente).ToList();
+                        if (asistencias.Count == 2)
+                        {
+                            foreach (var asistencia in asistencias)
+                            {
+                                asistencia.ID_Estado = 1;
+                            }
+                        }
+                        else if (asistencias.Count == 1)
+                        {
+                            asistencias[0].ID_Estado = 9;
+                        }
+                        else if (asistencias.Count == 0)
+                        {
+                            var nuevaAsistencia = new Asistencia
+                            {
+                                Cedula = empleado.Cedula,
+                                Fecha = fecha,
+                                ID_Estado = 2,
+                                Tipo = 1 
+                            };
+                            ContextoBD.Asistencia.Add(nuevaAsistencia);
+                        }
+                    }
+                }
+                ContextoBD.SaveChanges();
+            }
+        }
 
         //Método para validar cuando un empleado omite una marca o está ausente
-        int IGestorAsistencia.ValidarAsistencia(Asistencia pAsistencia)
+        int IGestorAsistencia.ValidarAusencias(Asistencia pAsistencia)
         {
             DateTime fecha = DateTime.UtcNow;
             int n = 0;

@@ -78,10 +78,9 @@
 
 
 <div class="text-center">
-    @Html.ActionLink("Calcular Ausencias", "ValidarAusencias", new { }, new { @class = "btn btn-secondary btn-sm" })
+    <form action="@Url.Action("ActualizarAsistencia", "RecursosHumanos")" method="post">
+        <input type="submit" value="Actualizar Asistencia" class="btn btn-secondary btn-sm" />
+    </form>
 </div>
 
 
-<form action="@Url.Action("ActualizarAsistencia", "RecursosHumanos")" method="post">
-    <input type="submit" value="Actualizar Asistencia" />
-</form>

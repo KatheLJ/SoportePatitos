@@ -15,11 +15,14 @@ namespace SoportePatitosBD.Repositorios
         //Método para enlistar las planillas registradas en el sistema
         IEnumerable<Planilla> IGestorPlanilla.ListadoPlanilla()
         {
+            //Se crea una lista de las planillas
             List<Planilla> Planillas = new List<Planilla>();
+            //Se utiliza una conexión de Tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
                 Planillas = ContextoBD.Planilla.ToList();
             }
+            //Se regresa la lista
             return Planillas;
         }
 
@@ -28,8 +31,11 @@ namespace SoportePatitosBD.Repositorios
         //Permite realizar la deducción de ausencias
         double IGestorPlanilla.DeducAusencias(double salarioBase) //, int cantidadDiasAusentes)
         {
+            //Se crea una variable de días 
             int cantidadDiasAusentes = 2;
+            //Las deducciones son el salario / 30 * ausencias
             double deducciones = (salarioBase/30) * cantidadDiasAusentes;
+            //Se regresa la deducción
             return deducciones;
         }
 
@@ -114,7 +120,7 @@ namespace SoportePatitosBD.Repositorios
 
 
                     }
-                    //Perso si es mayor que el monto 2
+                    //Pero si es mayor que el monto 2
                     else if (Salario_impuesto1 > monto2)
                     {
                         //El impuesto se calcula sobre el monto 2
@@ -129,37 +135,42 @@ namespace SoportePatitosBD.Repositorios
                         //Si el Salario es menor que el monto 3
                         if (Salario_impuesto2 < monto3)
                         {
+                            //El impuesto se calcula sobre el restante
                             Impuesto3 = Salario_impuesto2 * porcentaje3;
                             Impuesto = Impuesto + Impuesto3;
                             return Impuesto;
 
                         }
+                        //Pero si es mayor que el monto 3
                         else if (Salario_impuesto2 > monto3)
                         {
+                            //El impuesto se calcula sobre el monto 3
                             Impuesto3 = monto3 * porcentaje3;
                             Salario_impuesto3 = Salario_impuesto2 - monto3;
+                            //El impuesto va a ser el impuesto que ya se tenga + el valor del impuesto 3
                             Impuesto = Impuesto + Impuesto3;
                             //return Impuesto3;
                             //return Salario_impuesto;
 
 
-
-
-
                             //Si el Salario es menor que el monto 4
-                            //Hasta antes de acá,si calcula la renta
                             if (Salario_impuesto3 < monto4)
                             {
+                                //El impuesto se calcula sobre el restante
                                 Impuesto4 = Salario_impuesto3 * porcentaje4;
                                 Impuesto = Impuesto + Impuesto4;
                                 return Impuesto;
 
                             }
+                            //Pero si es mayor que el monto 3
                             else if (Salario_impuesto3 > monto4)
                             {
+                                //El impuesto se calcula sobre el monto 4
                                 Impuesto4 = monto * porcentaje4;
+                                //El impuesto va a ser el impuesto que ya se tenga + el valor del impuesto 4
                                 Impuesto = Impuesto + Impuesto4;
-                                 return Impuesto;
+                                //Se regresa el impuesto
+                                return Impuesto;
                                 // return Salario_impuesto;
 
                             }
@@ -170,36 +181,39 @@ namespace SoportePatitosBD.Repositorios
                     }
                 }
 
+
+                //double ImpuestoFinal = 0.0;
+                // ImpuestoFinal = Impuesto;
+
+                //Permite realizar el rebajo de los hijos y el conyuge, al monto final del impuesto
+                if (Cantidad_Hijos != 0 && ID_Estado_Civil == 1)
+                {
+                    Impuesto = Impuesto - ReducCasado - ReducFinalHijos;
+                    //return ImpuestoFinal;
+
+                }
+                else if (Cantidad_Hijos != 0 && ID_Estado_Civil != 1)
+                {
+
+                    Impuesto = Impuesto - ReducFinalHijos;
+
+                }
+                else if (Cantidad_Hijos == 0 && ID_Estado_Civil == 1)
+                {
+
+                    Impuesto = Impuesto - ReducCasado;
+
+                }
+                else
+                {
+
+                }
+
             }
 
-            double ImpuestoFinal = 0.0;
-           // ImpuestoFinal = Impuesto;
+            
 
-            //Permite realizar el rebajo de los hijos y el conyuge, al monto final del impuesto
-            if (Cantidad_Hijos != 0 && ID_Estado_Civil == 1)
-            {
-                ImpuestoFinal = Impuesto - ReducCasado - ReducFinalHijos;
-                return ImpuestoFinal;
-
-            }
-            else if (Cantidad_Hijos != 0 && ID_Estado_Civil != 1)
-            {
-
-                ImpuestoFinal = Impuesto - ReducFinalHijos;
-
-            }
-            else if (Cantidad_Hijos == 0 && ID_Estado_Civil == 1)
-            {
-
-                ImpuestoFinal = Impuesto - ReducCasado;
-
-            }
-            else
-            {
-                
-            }
-
-            return ImpuestoFinal;
+            return Impuesto;
 
 
         }
@@ -208,8 +222,11 @@ namespace SoportePatitosBD.Repositorios
         //Permite realizar las deducciones de la CCSS
         double IGestorPlanilla.DeducSeguro(double salarioBase)
         {
+            //Se crea un variable double 
             double deducCCSS = 0;
+            //La variable va a ser igual al salario base * 0.1067
             deducCCSS = salarioBase * 0.1067;
+            //Se regresan las deducciones por la CCSS
             return deducCCSS;
         }
 
@@ -217,17 +234,19 @@ namespace SoportePatitosBD.Repositorios
         //Permite calcular el salario final
         double IGestorPlanilla.CalSalarioFinal(double salarioBase, double DeducAusencias, double DeducRenta, double DeducSeguro)
         {
-           
+           //La variable Salario base, va a ser igual al salario, menos la deducción por ausencias, por renta y por seguro
             salarioBase = salarioBase - DeducAusencias - DeducRenta - DeducSeguro;
+            //Se regresa el salario base
             return salarioBase;
         }
 
 
-        //Trae parametros de otras tablas, requeridos para la planilla
+        //Trae parametros de otras tablas, requeridos para la planilla, *NO se utiliza*
         int IGestorPlanilla.ParamPlanilla()
         {
-
+            //Se crea una variable
             int n = 0;
+            //Utiliza está conexión a la base de datos
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
                 //ContextoBD.spPLanillla();
@@ -241,7 +260,7 @@ namespace SoportePatitosBD.Repositorios
         int IGestorPlanilla.CrearPlanilla(Planilla pPlanilla)
 
         {
-           
+                //Se crea una variable
                 int n = 0;
                 //Utiliza está conexión a la base de datos
                 using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
@@ -262,13 +281,6 @@ namespace SoportePatitosBD.Repositorios
 }
 
 
-
-//El sistema guarda los registros **se requiere un ciclo o manejo individual
-//Se muestra un reporte para descargar en pdf
-
-//Las deducciones se manejan individual por empleado
-//Falta en la renta los hijos y en las ausencias que sean tomadas del sistema
-//Ahorita no permite tomar todos los empleados
 
 
 

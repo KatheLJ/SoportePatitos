@@ -4,12 +4,13 @@
     List<SelectListItem> estados = (List<SelectListItem>)ViewData["Estado"];
 }
 
-
+<!--Sección para el título (con sus clases respectivas para el formato)-->
 <div id="contact" class="contact">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="titlepage">
+                    <!--Se establece el título que aparecerá en la sección-->
                     <h2> Marcar Asistencia </h2>
                     <p> Recuerde que debe marcar a la hora de entrada y a la hora de salida</p>
                 </div>
@@ -19,14 +20,14 @@
             <!--Se define el metodo para enviar datos y el action relacionado-->
             <form action="EnviarAsistencia" method="post" class="system-forms">
 
-                <!--Campo para el ID, pero es autoincremental-->
+                <!--Campo para el ID, pero es autoincremental, además de ser un campo oculto (el usuario no debe llenarlo)-->
                 <div class="col-lg-12">
                     <fieldset>
                         <input name="Id" type="hidden" class="form-control" id="id" placeholder="">
                     </fieldset>
                 </div>
 
-
+                <!--Va a mostrar un error de acuerdo a la validación de la fecha y la cédula que se encuentra en el Controller y en GestorAsistencia-->
                 @if (TempData != null && TempData["MensajeError"] != null)
                 {
                     <script>
@@ -39,6 +40,7 @@
 
 
                 <!--Campo para la cedula del empleado-->
+                <!--El campo lo trae el sistema del usuario que está en sesión en el momento-->
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <fieldset>
@@ -77,7 +79,7 @@
                     </div>
                 </div>
 
-               
+
 
 
                 <!--Campo para estado-->
@@ -95,7 +97,7 @@
 
 
 
-                <!--Botones para registrar asistencia y limpiar los campos del formulario-->
+                <!--Botón para registrar asistencia-->
                 <div class="text-center">
                     <fieldset>
                         <br />
@@ -106,6 +108,6 @@
         </div>
     </div>
 </div>
-    
+
 
 

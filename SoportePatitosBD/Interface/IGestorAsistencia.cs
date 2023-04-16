@@ -19,10 +19,13 @@ namespace SoportePatitosBD.Interface
         //Método para validar cuando un empleado omite una marca o está ausente
         int ValidarAusencias(Asistencia pAsistencia);
 
+        //Permite verificar las marcas
         bool VerificarMarca(int cedula, DateTime fecha);
 
+        //Permite Contar las marcas, según la cédula y la fecha
         int ContarMarcas(int cedula, DateTime fecha);
 
+        //Permite actualizra la asistencia (poner ausencias/omisiones/estado presente)
         void ActualizarAsistencia();
 
     }

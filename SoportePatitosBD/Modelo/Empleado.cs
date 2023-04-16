@@ -34,7 +34,6 @@ namespace SoportePatitosBD.Modelo
         public int Cantidad_Hijos { get; set; }
         public int ID_Estado_Civil { get; set; }
     
-        public virtual Departamento Departamento { get; set; }
         public virtual Horario Horario { get; set; }
         public virtual Perfil Perfil { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -44,6 +43,7 @@ namespace SoportePatitosBD.Modelo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asistencia> Asistencia { get; set; }
         public virtual Estado_Civil Estado_Civil { get; set; }
+        public virtual Departamento Departamento { get; set; }
         public virtual Puesto Puesto { get; set; }
     }
 }

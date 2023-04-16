@@ -152,42 +152,7 @@ namespace SoportePatitosBD.Repositorios
                         pAsistencia.ID_Estado = 2;
                     }
 
-                    
-
-                    /*  var hora = asistencia.FechaHora.TimeOfDay;
-                      var diaSemana = asistencia.FechaHora.DayOfWeek;
-
-                      if (pAsistencia.Tipo == 1 && pAsistencia.Fecha = )
-                      {
-
-                      }*/
-
-
-
-                    /*diaSemana == DayOfWeek.Saturday || diaSemana == DayOfWeek.Sunday)
-                {
-                    asistencia.ID_Estado = 7;
-                }
-
-                else if ((hora >= new TimeSpan(8, 0, 0) && hora < new TimeSpan(9, 0, 0)) && (hora >= new TimeSpan(16, 0, 0) && hora < new TimeSpan(17, 0, 0)))
-                {
-                    asistencia.ID_Estado = 1;
-                }
-
-                else if (hora >= new TimeSpan(9, 0, 0) && hora < new TimeSpan(10, 0, 0))
-                {
-                    asistencia.ID_Estado = 6;
-                }
-
-
-                else if (hora >= new TimeSpan(15, 0, 0) && hora < new TimeSpan(16, 0, 0))
-                {
-                    asistencia.ID_Estado = 5;
-                }
-                else
-                {
-                    asistencia.ID_Estado = 2;
-                }*/
+                   
                 }
                // ContextoBD.Entry<Asistencia>(pAsistencia).State = System.Data.Entity.EntityState.Modified;
                 n = ContextoBD.SaveChanges();

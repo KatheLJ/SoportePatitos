@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Se llama a todo lo necesario para que el proyecto funcione bien y tenga la gráfica adecuada-->
     <!-- bootstrap css -->
     <link href="~/Content/Assets/css/bootstrap.min.css" rel="stylesheet" />
     <!-- style css -->
@@ -55,37 +57,72 @@
                         <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
                             <div class="menu-area">
                                 <div class="limit-box">
+                                    <!--Se hace la barra de navegación-->
                                     <nav class="main-menu">
+                                        <!--Si la sesión de empleado es diferente de nulo-->
                                         @if (Session["Empleado"] != null)
                                         {
-                                            <ul class="menu-area-main">
-                                                <li> <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a> </li>
-                                                <li> <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Asistencia</a> <!-- Formulario para Marcar Asistencia --> </li>
-                                                <li> <a href="@Url.Action("HistorialColilla", "Empleados")" class="nav-item nav-link">Colillas</a> <!-- Colillas de pago de planilla  --></li>
-                                                <li><a href="" class="nav-item nav-link">Bienvenido @HttpContext.Current.Session["Empleado"].ToString()</a></li>
-                                                <li><a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a></li>
-                                            </ul>
+                                            <!--Se muestra 3 menús desplegables con opciones-->
+                                            <div class="dropdown">
+                                                <button class="dropbtn">Bienvenido @HttpContext.Current.Session["Empleado"].ToString()</button>
+                                                <div class="dropdown-content">
+                                                    <a href="" class="nav-item nav-link">Mi perfil</a>
+                                                    <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a>
+                                                    <a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="dropdown">
+                                                <button class="dropbtn">Asistencia</button>
+                                                <div class="dropdown-content">
+                                                    <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Mi Asistencia</a> <!-- Formulario para Marcar Asistencia -->
+                                                </div>
+                                            </div>
+
+                                            <div class="dropdown">
+                                                <button class="dropbtn">Planilla</button>
+                                                <div class="dropdown-content">
+                                                    <a href="@Url.Action("HistorialColilla", "Empleados")" class="nav-item nav-link">Mi Historial de Colilla</a> <!-- Colillas de pago del usuario -->
+                                                </div>
+                                            </div>
                                         }
 
+                                        <!--Si la sesión de gerencia es diferente de nulo-->
                                         @if (Session["Gerencia"] != null)
                                         {
-                                            <ul class="menu-area-main">
-                                                <li> <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a> </li>
-                                                <li> <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Asistencia</a> <!-- Formulario para Marcar Asistencia --> </li>
-                                                <li> <a href="@Url.Action("Evaluacion", "RecursosHumanos")" class="nav-item nav-link">Evaluación</a> <!-- Formulario de Evaluaciòn --></li>
-                                                <li><a href="" class="nav-item nav-link">Bienvenido @HttpContext.Current.Session["Gerencia"].ToString()</a></li>
-                                                <li><a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a></li>
-                                            </ul>
+                                            <div class="dropdown">
+                                                <button class="dropbtn">Bienvenido @HttpContext.Current.Session["Gerencia"].ToString()</button>
+                                                <div class="dropdown-content">
+                                                    <a href="" class="nav-item nav-link">Mi perfil</a>
+                                                    <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a>
+                                                    <a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="dropdown">
+                                                <button class="dropbtn">Asistencia</button>
+                                                <div class="dropdown-content">
+                                                    <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Mi Asistencia</a> <!-- Formulario para Marcar Asistencia -->
+                                                </div>
+                                            </div>
+
+                                            <div class="dropdown">
+                                                <button class="dropbtn">Gestión de empleados</button>
+                                                <div class="dropdown-content">
+                                                    <a href="@Url.Action("Evaluacion", "RecursosHumanos")" class="nav-item nav-link">Formulario de Evaluación</a> <!-- Formulario de Evaluaciòn -->
+                                                </div>
+                                            </div>
                                         }
 
 
+                                        <!--Si la sesión de recursos humanos es diferente de nulo-->
                                         @if (Session["RH"] != null)
                                         {
                                             <div class="dropdown">
                                                 <button class="dropbtn">Bienvenido @HttpContext.Current.Session["RH"].ToString()</button>
                                                 <div class="dropdown-content">
                                                     <a href="" class="nav-item nav-link">Mi perfil</a>
-                                                    <li> <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a> </li>
+                                                    <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a>
                                                     <a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a>
                                                 </div>
                                             </div>
@@ -105,7 +142,6 @@
                                                     <a href="@Url.Action("Registro_Empleados", "RecursosHumanos")" class="nav-item nav-link">Registro</a> <!-- Registro de Empleados -->
                                                     <a href="@Url.Action("Evaluacion", "RecursosHumanos")" class="nav-item nav-link">Formulario de Evaluación</a> <!-- Formulario de Evaluaciòn -->
                                                     <a href="@Url.Action("ListadoEmpleados", "RecursosHumanos")" class="nav-item nav-link">Mant.Empleados</a> <!-- Listado de empleados  -->
-
                                                 </div>
                                             </div>
 
@@ -113,6 +149,7 @@
                                                 <button class="dropbtn">Asistencia</button>
                                                 <div class="dropdown-content">
                                                     <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Mi Asistencia</a> <!-- Formulario para Marcar Asistencia -->
+                                                    <a href="@Url.Action("ListadoAsistencia", "RecursosHumanos")" class="nav-item nav-link">Calcular Ausencias</a> <!-- Formulario para Marcar Asistencia -->
                                                 </div>
                                             </div>
 
@@ -130,15 +167,11 @@
         <!-- end header inner -->
 
 
-
-
         <div class="container body-content">
             @RenderBody()
             <hr />
 
         </div>
-
-
 
 
 

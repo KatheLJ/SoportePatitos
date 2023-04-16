@@ -35,13 +35,7 @@ namespace SoportePatitos.Controllers
             _oGestorAsistencia = new GestorAsistencia();
         }
 
-        public ActionResult ActualizarAsistencia()
-        {
-            var gestorAsistencia = new GestorAsistencia();
-            gestorAsistencia.ActualizarAsistencia();
-            return RedirectToAction("ListadoAsistencia");
-        }
-
+        
         // GET: RecursosHumanos
 
         //****************************************************************************************************************************//
@@ -50,6 +44,11 @@ namespace SoportePatitos.Controllers
         //Accion que permite mostrar el formulario para que el empleado se registre
         public ActionResult Registro_Empleados()
         {
+            //Si la sesión es nula lleva al login
+            if (Session["Cedula"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
 
             //Se inicializan las listas que se usaran más adelante para que el usuario pueda ver un datos y no números.
             //Ej: En lugar de ver departamento 1 ve departamento de Gerencia
@@ -64,19 +63,24 @@ namespace SoportePatitos.Controllers
             {
                 //Permite mostrar un dropdownlist con los departamentos almacenados en la base de datos
                 lst =
+                //De los registros encontrados en la base de datos en la tabla de Departamento
                 (from d in ContextoBD.Departamento
+                 //Seleccionar un nuevo Modelo de View Models de Tipo Departamento
                  select new Models.ViewModels.Departamento
                  {
+                     //Que tiene de atributos un ID y un descripción
                      ID_departamento = d.ID_departamento,
                      Descripcion = d.Descripcion
+                     //Y pasarlo a una lista
                  }).ToList();
 
+                //Seleccionar item de la lista
                 List<SelectListItem> items = lst.ConvertAll(d =>
                 {
-
+                    //Regresar ese item
                     return new SelectListItem
                     {
-
+                        //Que tiene por texto la descripción, pero su valor real es el ID
                         Text = d.Descripcion.ToString(),
                         Value = d.ID_departamento.ToString(),
                         Selected = false
@@ -176,7 +180,7 @@ namespace SoportePatitos.Controllers
 
                 });
 
-                //Se regresan las listas por medio de ViewData
+                //Se regresan las listas por medio de ViewData, para que se puedan llamar en las vistas
                 ViewData["Departamento"] = items;
                 ViewData["Puesto"] = items2;
                 ViewData["Perfil"] = items3;
@@ -222,32 +226,46 @@ namespace SoportePatitos.Controllers
         //Accion que muestra la pantalla de para evaluar a un empleado
         public ActionResult Evaluacion()
         {
+            //Si la sesión es nula lleva al login
+            if (Session["Cedula"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             List<Models.ViewModels.EmpleadoData> lst1 = null;
 
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
-                //Permite mostrar un dropdownlist con los departamentos almacenados en la base de datos
+                //Permite mostrar un dropdownlist con los empleados almacenados en la base de datos
+                //Se utiliza para que en la vista el usuario no pueda digitar la cédula, sino que tenga que seleccionar una de las que están en la lista 
                 lst1 =
+                //De los registros encontrados en la base de datos en la tabla de Empleados
                 (from d in ContextoBD.Empleado
+                //Seleccionar un nuevo Modelo de View Models de Tipo Empleado
                  select new Models.ViewModels.EmpleadoData
                  {
+                     //Que tiene de atributos Cédula y un nombre
                      Cedula = d.Cedula,
                      Nombre_Empleado = d.Nombre_Empleado
+                     //Y pasarlo a una lista
                  }).ToList();
 
+                //Seleccionar un item de la lista
                 List<SelectListItem> items = lst1.ConvertAll(d =>
                 {
-
+                    //Regresar este item
                     return new SelectListItem
                     {
-
+                        //Que tiene por texto el nombre, pero su valor real es el Cédula
                         Text = d.Nombre_Empleado.ToString(),
                         Value = d.Cedula.ToString(),
                         Selected = false
                     };
 
                 });
+                //Se regresa la lista de items por ViewData, para que se pueda pasar luego a las vistas
                 ViewData["Empleados"] = items;
+                //Se regresa la vista
                 return View();
             }
                 
@@ -267,14 +285,13 @@ namespace SoportePatitos.Controllers
 
 
         //Accion que muestra la pantalla con el listado de los empleados, donde se puede ver y descargar el reporte de la evaluación
-        public ActionResult ListadoEmpleados(string sortOrder)
+        public ActionResult ListadoEmpleados()
         {
-
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-
-            //IEnumerable<Empleado> empleados = _oGestorEmpleado.ListadoEmpleados().Include();
-            //return View(empleados);
+            //Si la sesión es nula lleva al login
+            if (Session["Cedula"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
 
             //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
@@ -292,7 +309,10 @@ namespace SoportePatitos.Controllers
             //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
+                //Se hace una variable empleados para llamar a la conexión ContextoBD, tabla Evaluación
+                //Y con el Include se puede vincular otra tabla que sería la de empleado
                 var empleados = ContextoBD.Evaluacion.Include(a => a.Empleado);
+                //Se regresa la vista con la lista de empleados, donde la cédula sea igual a la cédula pasada por parámetro (solo el primer registro)
                 return View(empleados.ToList().Where(x => x.Cedula == Cedula).FirstOrDefault());
             }
             
@@ -306,8 +326,10 @@ namespace SoportePatitos.Controllers
             //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
+                //Se llama a la tabla de Evaluación, se pasa a lista, pero que solo se muestre el primer registro según la cédula pasada por parámetro
                 var empleados = ContextoBD.Evaluacion.Include(a => a.Empleado);
                 empleados.ToList().Where(x => x.Cedula == Cedula).FirstOrDefault();
+                //Se regresa la vista pero como PDF
                 return new Rotativa.ActionAsPdf("ReporteEmpleado", empleados.ToList().Where(x => x.Cedula == Cedula).FirstOrDefault());
             }
         }
@@ -337,9 +359,17 @@ namespace SoportePatitos.Controllers
         //Accion que muestra la pantalla con los diferentes empleados a los que se debe realizar la planilla
         public ActionResult ListadoEmpleadosPlanilla()
         {
+            //Si la sesión es nula lleva al login
+            if (Session["Cedula"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
+                //Se hace una variable empleados para llamar a la conexión ContextoBD, tabla Empleado
+                //Y con el Include se puede vincular otra tabla que sería la de puesto y la de estado civil
                 var empleados = ContextoBD.Empleado.Include(a => a.Puesto).Include(a => a.Estado_Civil);
                 return View(empleados.ToList());
 
@@ -351,7 +381,7 @@ namespace SoportePatitos.Controllers
         //Accion que muestra la pantalla en donde se maneja la planilla
         public ActionResult CalculoPlanilla(double salarioBase, int Cedula, int Cantidad_Hijos, int ID_Estado_Civil)
         {
-
+            //Se traen los datos de salario y cédula
             ViewBag.salariobase = salarioBase;
             ViewBag.Cedula = Cedula;
 
@@ -383,7 +413,10 @@ namespace SoportePatitos.Controllers
             //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
+                //Se hace una variable empleados para llamar a la conexión ContextoBD, tabla Empleado
+                //Y con el Include se puede vincular otra tabla que sería la de puesto y la de estado civil
                 var empleados = ContextoBD.Empleado.Include(a => a.Puesto).Include(a => a.Estado_Civil);
+                //Se regresa la vista con la lista
                 return View(empleados.ToList().Where(x => x.Cedula == Cedula).FirstOrDefault());
             }
             //return View();
@@ -395,8 +428,11 @@ namespace SoportePatitos.Controllers
         public ActionResult EnviarPlanilla(Planilla pPlanilla)
         {
 
+            //Se crea una variable registros, para llamar al método de Crear Planilla (de Gestor planilla)
+            //Se pasa por parámetro un objeto de tipo planilla
             int registros = _oGestorPlanilla.CrearPlanilla(pPlanilla);
-            return RedirectToAction("ListadoEmpleadosPlanilla"); //Cambiar a un listado de planillas
+            //Se redirecciona a la pantalla de ListadoEmpleadosPlanilla
+            return RedirectToAction("ListadoEmpleadosPlanilla");
 
         }
         //****************************************************************************************************************************//
@@ -423,8 +459,15 @@ namespace SoportePatitos.Controllers
         //Permite mostrar un listado de todas las planillas registradas en el sistema (todos los empleados)
         public ActionResult ListadoPlanilla()
         {
+            //Si la sesión es nula lleva al login
+            if (Session["Cedula"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
 
+            //Muestra una lista de todas las planillas del sistema, llamando al método de listado planilla del gestor
             IEnumerable<Planilla> planillas = _oGestorPlanilla.ListadoPlanilla();
+            //Se regresa la vista con dicha lista
             return View(planillas);
 
         }
@@ -434,7 +477,7 @@ namespace SoportePatitos.Controllers
         //Permite descargar todas las planillas registradas en el sistema
         public ActionResult PdfPlanilla()
         {
-
+            //Regresa un PDF con los datos de la vista respectiva que es ListadoPlanilla
             return new Rotativa.ActionAsPdf("ListadoPlanilla");
 
         }
@@ -444,14 +487,11 @@ namespace SoportePatitos.Controllers
 
 
 
-
+        //Acciones por eliminar 
         public ActionResult DeducRenta()
         {
             return View();
         }
-
-        
-
         public ActionResult Renta(double salarioBase, int Cantidad_Hijos, int ID_Estado_Civil)
         {
             double rebajoR = _oGestorPlanilla.DeducRenta(salarioBase, Cantidad_Hijos, ID_Estado_Civil);
@@ -463,9 +503,18 @@ namespace SoportePatitos.Controllers
 
 
 
+        //****************************************************************************************************************************//
+        //*********************************Acciones relacionadas a la asistencia de los empleados************************************//
+
         //Permite ver todas las marcas realizadas durante el día
         public ActionResult ListadoAsistencia()
         {
+            //Si la sesión es nula lleva al login
+            if (Session["Cedula"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
@@ -474,13 +523,20 @@ namespace SoportePatitos.Controllers
                 return View(asistencia.ToList());
 
             }
-
-            //IEnumerable<Asistencia> asistencia = _oGestorAsistencia.ListadoAsistencia().;
-            //return View(asistencia);
         }
 
+
+
         //Permite validar las ausencias que tuvieron los empleados a lo largo del día
-        
+        public ActionResult ActualizarAsistencia()
+        {
+            //Se crea una variable para llamar al Gestor
+            var gestorAsistencia = new GestorAsistencia();
+            //Se llama al método requerido para que se actualicen los estados de los usuarios
+            gestorAsistencia.ActualizarAsistencia();
+            //Se regresa a la vista para mostrar los cambios realizados
+            return RedirectToAction("ListadoAsistencia");
+        }
 
 
 

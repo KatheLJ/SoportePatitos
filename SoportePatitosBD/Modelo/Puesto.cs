@@ -22,10 +22,10 @@ namespace SoportePatitosBD.Modelo
     
         public int ID_puesto { get; set; }
         public string Descripcion { get; set; }
-        public double Salario { get; set; }
-        public int ID_departamento { get; set; }
+        public int Salario { get; set; }
+        public int Departamento { get; set; }
     
-        public virtual Departamento Departamento { get; set; }
+        public virtual Departamento Departamento1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Empleado> Empleado { get; set; }
     }

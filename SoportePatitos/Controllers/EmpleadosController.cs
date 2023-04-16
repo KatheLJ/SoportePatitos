@@ -44,6 +44,12 @@ namespace SoportePatitos.Controllers
         //Accion que muestra la pantalla para registro el ingreso y la salida del empleado
         public ActionResult MarcaAsistencia()
         {
+            //Si la sesión es nula lleva al login
+            if (Session["Cedula"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             //Se inicializan las listas que se usaran más adelante
             List<Models.ViewModels.Estado> estadolst = null;
             int n = 0;
@@ -151,8 +157,15 @@ namespace SoportePatitos.Controllers
         //Permite mostrar el historial de colillas de pago del empleado que está en sesión
         public ActionResult HistorialColilla()
         {
+            //Si la sesión es nula lleva al login
+            if (Session["Cedula"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             //Se guarda la cédula del usuario que se encuentra el sesión
             int Cedula = (int)Session["Cedula"];
+
             //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
@@ -170,6 +183,12 @@ namespace SoportePatitos.Controllers
         //Permite mostrar una colilla de pago específica (usuario en sesión)
         public ActionResult Colillas(int ID_planilla)
         {
+            //Si la sesión es nula lleva al login
+            if (Session["Cedula"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {

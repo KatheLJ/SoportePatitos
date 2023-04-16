@@ -59,15 +59,20 @@ namespace SoportePatitosBD.Repositorios
             }
         }
 
+
+        //Método para llamar a la evaluación (reporte)
         int IGestorEvaluacion.EvaluacionEmpleado(int Cedula) {
 
 
              int n = 0;
-             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            //Utiliza está conexión a la base de datos
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
              {
+                //Se llama al SP y se guardan los cambios
                 ContextoBD.spEvaluacionEmpleado().Where(x => x.Cedula == Cedula).FirstOrDefault(); ;
                 n = ContextoBD.SaveChanges();
              }
+            //Se regresan en la variable
              return n;
 
          }

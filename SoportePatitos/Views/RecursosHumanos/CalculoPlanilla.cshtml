@@ -1,4 +1,5 @@
-﻿@model SoportePatitosBD.Modelo.Empleado
+﻿<!--Se llama al modelo necesario para poder mostrar los datos requeridos (empleado)-->
+@model SoportePatitosBD.Modelo.Empleado
 @{
     ViewBag.Title = "CalculoPlanilla";
 
@@ -51,13 +52,14 @@
 </div>-->
 
 
-
+<!--Se indica el action que es EnviarPLanilla, el controller que es Recursos Humanos, el método que es post y la clase para el formato-->
 @using (Html.BeginForm("EnviarPlanilla", "RecursosHumanos", FormMethod.Post, new { @class = "contact" }))
 {
     <div id="contact" class="contact">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <!--Se muestra el título de la sección-->
                 <div class="titlepage">
                     <h2> Cálculo de la planilla </h2>
                 </div>
@@ -66,12 +68,13 @@
             <div class="col-md-12">
 
                 <!--Campo para el id de la planilla-->
-
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
                         <fieldset>
                             <div class="field item form-group">
+                                <!--Se muestra el label-->
                                 <label class="col-form-label col-md-6 col-sm-6  label-align">Identificador </label>
+                                <!--Se muestra el espacio para el ide de la planilla-->
                                 <div class="col-md-12 col-sm-12">
                                     <input id="ID_planilla" class="form-control p-1" type="number" name="ID_planilla" required="" />
                                 </div>
@@ -86,7 +89,9 @@
                     <div class="col-lg-6">
                         <fieldset>
                             <div class="field item form-group">
+                                <!--Se muestra el label-->
                                 @Html.LabelFor(model => model.Cedula, htmlAttributes: new { @class = "col-form-label col-md-6 col-sm-6  label-align" })
+                                <!--Se muestra el espacio con la cédula (solo lectura porque viene por defecto del empleado seleccionado)-->
                                 <div class="col-md-12 col-sm-12">
                                     @Html.EditorFor(model => model.Cedula, new { htmlAttributes = new { @class = "form-control p-1", @readonly = "readonly" } })
                                 </div>
@@ -100,7 +105,9 @@
                     <div class="col-lg-6">
                         <fieldset>
                             <div class="field item form-group">
+                                <!--Se muestra el label-->
                                 @Html.LabelFor(model => model.Puesto.Salario, htmlAttributes: new { id = "Salario_bruto", @class = "col-form-label col-md-6 col-sm-6  label-align" })
+                                <!--Se muestra el espacio con el salario bruto (solo lectura porque viene por defecto del empleado seleccionado)-->
                                 <div class="col-md-12 col-sm-12">
                                     <input class="form-control p-1" type="number" id="Salario_bruto" name="Salario_bruto" value=@ViewBag.salarioBase readonly />
                                 </div>
@@ -116,7 +123,9 @@
                     <div class="col-lg-6">
                         <fieldset>
                             <div class="field item form-group">
+                                <!--Se muestra el label-->
                                 <label class="col-form-label col-md-10 col-sm-10  label-align">Deducción de Renta </label>
+                                <!--Se muestra el espacio con la Renta (solo lectura porque viene por defecto del empleado seleccionado)-->
                                 <div class="col-md-12 col-sm-12">
                                     <input class="form-control p-1" type="number" id="Deducciones_fiscales" name="Deducciones_fiscales" value=@ViewBag.rebajoR readonly />
                                 </div>
@@ -134,7 +143,9 @@
                     <div class="col-lg-6">
                         <fieldset>
                             <div class="field item form-group">
+                                <!--Se muestra el label-->
                                 <label class="col-form-label col-md-7 col-sm-7  label-align">Deducción de Seguro (CCSS) </label>
+                                <!--Se muestra el espacio con la deducción de la CCSS (solo lectura porque viene por defecto del empleado seleccionado)-->
                                 <div class="col-md-12 col-sm-12">
                                     <input class="form-control p-1" type="number" id="Deducciones_CCSS" name="Deducciones_CCSS" value=@ViewBag.rebajoS readonly />
                                 </div>
@@ -148,7 +159,9 @@
                     <div class="col-lg-6">
                         <fieldset>
                             <div class="field item form-group">
+                                <!--Se muestra el label-->
                                 <label class="col-form-label col-md-7 col-sm-7  label-align">Deducción por ausencias </label>
+                                <!--Se muestra el espacio con la deducción por ausencia (solo lectura porque viene por defecto del empleado seleccionado)-->
                                 <div class="col-md-12 col-sm-12">
                                     <input class="form-control p-1" type="number" id="Deducciones_ausencias" name="Deducciones_ausencias" value=@ViewBag.rebajoA readonly />
                                 </div>
@@ -162,7 +175,9 @@
                     <div class="col-lg-6">
                         <fieldset>
                             <div class="field item form-group">
+                                <!--Se muestra el label-->
                                 <label class="col-form-label col-md-6 col-sm-6  label-align"> Salario Final </label>
+                                <!--Se muestra el espacio con el salario netro (solo lectura porque viene por defecto de la ejecución del método)-->
                                 <div class="col-md-12 col-sm-12">
                                     <input class="form-control p-1" type="number" id="Salario_neto" name="Salario_neto" value=@ViewBag.salarioFinal readonly />
                                 </div>
@@ -172,7 +187,7 @@
                     </div>
                 </div>
 
-
+                <!--Se muestra el botón para Guardar la planilla-->
                 <div class="text-center">
                     <fieldset>
                         <br />
@@ -181,12 +196,10 @@
                 </div>
 
                 <div class="ln_solid">
-
                 </div>
 
             </div>
-         </div>
-                    
+         </div>    
   </div>
             
 }

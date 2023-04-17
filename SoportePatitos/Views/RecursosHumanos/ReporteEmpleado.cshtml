@@ -6,10 +6,12 @@
 
 
 
-
+<!--Se muestra el título de la sección-->
 <div class="row">
     <div class="col-md-12">
         <div class="titlepage">
+            <br /><br />
+            <h4> Soporte Patitos: </h4>
             <h2> Evaluación de desempeño </h2>
             <p> Fecha de Descarga: @DateTime.UtcNow </p>
         </div>
@@ -21,6 +23,7 @@
 
 
 <!--Muestra solo un reporte especìfico -->
+<!--Se llama al método de reporte empleado, que está en el controller de Recursos Humanos y se utiliza el método get-->
 @using (Html.BeginForm("ReporteEmpleado", "RecursosHumanos", FormMethod.Get))
 {
     <div class="single-services">
@@ -34,52 +37,53 @@
                     <div class="system-forms">
                         <div class="row">
 
-
+                            <!--Espacio que muestra la información del ID de evaluación-->
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 @Html.LabelFor(model => model.ID_evaluacion, htmlAttributes: new { @class = "control-label col-md-2" })
                                 @Html.EditorFor(model => model.ID_evaluacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <br>
                             </div>
 
-
+                            <!--Espacio que muestra la información de la cédula del empleado-->
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 @Html.LabelFor(model => model.Empleado.Cedula, htmlAttributes: new { @class = "control-label col-md-2" })
                                 @Html.EditorFor(model => model.Empleado.Cedula, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <br>
                             </div>
 
+                            <!--Espacio que muestra la información de la pregunta 1-->
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 @Html.LabelFor(model => model.Pregunta_1, htmlAttributes: new { @class = "control-label col-md-2" })
                                 @Html.EditorFor(model => model.Pregunta_1, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                             </div>
 
-
+                            <!--Espacio que muestra la información de la pregunta 2-->
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 @Html.LabelFor(model => model.Pregunta_2, htmlAttributes: new { @class = "control-label col-md-2" })
                                 @Html.EditorFor(model => model.Pregunta_2, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <br>
                             </div>
 
+                            <!--Espacio que muestra la información de la pregunta 3-->
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 @Html.LabelFor(model => model.Pregunta_3, htmlAttributes: new { @class = "control-label col-md-2" })
                                 @Html.EditorFor(model => model.Pregunta_3, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <br>
                             </div>
 
+                            <!--Espacio que muestra la información de la pregunta 4-->
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 @Html.LabelFor(model => model.Pregunta_4, htmlAttributes: new { @class = "control-label col-md-2" })
                                 @Html.EditorFor(model => model.Pregunta_4, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <br>
                             </div>
 
+                            <!--Espacio que muestra la información de la pregunta 5-->
                             <div class="col-lg-6 col-md-12 col-sm-12">
                                 @Html.LabelFor(model => model.Pregunta_5, htmlAttributes: new { @class = "control-label col-md-2" })
                                 @Html.EditorFor(model => model.Pregunta_5, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 <br>
                             </div>
-
-
-                            
                             <br><br><br><br>
                         </div>
                     </div>

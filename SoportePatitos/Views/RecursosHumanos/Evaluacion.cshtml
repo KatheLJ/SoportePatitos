@@ -1,7 +1,6 @@
-﻿
-
-@{
+﻿@{
     ViewBag.Title = "Evaluacion";
+    //Se trae la lista definida en el controller por medio del ViewData
     List<SelectListItem> items = (List<SelectListItem>)ViewData["Empleados"];
 }
 
@@ -10,6 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <!--Se muestra el título de la sección-->
                 <div class="titlepage">
                     <h2> Formulario de Evaluación </h2>
                     <p> Responda a todas las preguntas para evaluar al empleado </p>
@@ -17,13 +17,17 @@
             </div>
         </div>
 
+        <!--Inicio del formulario-->
+        <!--Se define el action que es enviar evaluación y el método que es post-->
         <form action="EnviarEvaluacion" method="post" class="contact">
             <!--Campo para la identificación de la evaluación-->
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <fieldset>
                         <div class="field item form-group">
-                            <label class="col-form-label col-md-12 col-sm-12  label-align">ID evaluacion<span class="required">*</span></label>
+                            <!--Se muestra el label-->
+                            <label class="col-form-label col-md-12 col-sm-12  label-align">ID evaluación<span class="required">*</span></label>
+                            <!--Se muestra el espacio para digitar el ide de la evaluación-->
                             <div class="col-md-12 col-sm-12">
                                 <input id="ID_evaluacion" class="form-control p-1" type="text" name="ID_evaluacion" pattern="[0-9]{10,10}" required="" placeholder="Ej:202304060355. Máximo 10 dígitos." />
                             </div>
@@ -39,7 +43,9 @@
                 <div class="col-lg-6">
                     <fieldset>
                         <div class="field item form-group">
+                            <!--Se muestra el label-->
                             <label class="col-form-label col-md-12 col-sm-12  label-align">Cédula<span>*</span></label>
+                            <!--Se muestra el menú desplegable para seleccionar la cédula-->
                             <div class="col-md-12 col-sm-12">
                                 @Html.DropDownList("Cedula", items, "Seleccione el empleado a evaluar", new { @class = "form-control p-1", required = "required" })
                                 <!--<input class="form-control p-4" type="number" id="Cedula" name="Cedula" required="" />-->
@@ -55,10 +61,11 @@
                 <div class="col-lg-6">
                     <fieldset>
                         <div class="field item form-group">
+                            <!--Se muestra el label-->
                             <label class="col-form-label col-md-12 col-sm-12  label-align">1.	Cumple con las tareas asignadas<span class="required">*</span></label>
                             <div class="col-md-12 col-sm-12">
+                                <!--Se muestran todas los valores que se pueden seleccionar para evaluar al empleado-->
                                 <select class="form-control p-1" required id="Pregunta_1" name="Pregunta_1">
-
                                     <option value="">Selecciona una calificación</option>
                                     <option value="1"> 1 </option>
                                     <option value="2"> 2 </option>
@@ -84,8 +91,10 @@
                 <div class="col-lg-6">
                     <fieldset>
                         <div class="field item form-group">
+                            <!--Se muestra el label-->
                             <label class="col-form-label col-md-12 col-sm-12  label-align">2.	No posee ausencias<span class="required">*</span></label>
                             <div class="col-md-12 col-sm-12">
+                                <!--Se muestran todas los valores que se pueden seleccionar para evaluar al empleado-->
                                 <select class="form-control p-1" required id="Pregunta_2" name="Pregunta_2">
                                     <option value="">Selecciona una calificación</option>
                                     <option value="1"> 1 </option>
@@ -111,8 +120,10 @@
                 <div class="col-lg-6">
                     <fieldset>
                         <div class="field item form-group">
+                            <!--Se muestra el label-->
                             <label class="col-form-label col-md-12 col-sm-12  label-align">3.	Posee 1 o más llegadas tardía<span class="required">*</span></label>
                             <div class="col-md-12 col-sm-12">
+                                <!--Se muestran todas los valores que se pueden seleccionar para evaluar al empleado-->
                                 <select class="form-control p-1" required id="Pregunta_3" name="Pregunta_3">
                                     <option value="">Selecciona una calificación</option>
                                     <option value="1"> 1 </option>
@@ -139,8 +150,10 @@
                 <div class="col-lg-6">
                     <fieldset>
                         <div class="field item form-group">
+                            <!--Se muestra el label-->
                             <label class="col-form-label col-md-12 col-sm-12  label-align">4.	Posee buena relación con los compañeros<span class="required">*</span></label>
                             <div class="col-md-12 col-sm-12">
+                                <!--Se muestran todas los valores que se pueden seleccionar para evaluar al empleado-->
                                 <select class="form-control p-1" required id="Pregunta_4" name="Pregunta_4">
                                     <option value="">Selecciona una calificación</option>
                                     <option value="1"> 1 </option>
@@ -166,8 +179,10 @@
                 <div class="col-lg-6">
                     <fieldset>
                         <div class="field item form-group">
+                            <!--Se muestra el label-->
                             <label class="col-form-label col-md-12 col-sm-12  label-align">5.	Fomenta el trabajo en equipo<span class="required">*</span></label>
                             <div class="col-md-12 col-sm-12">
+                                <!--Se muestran todas los valores que se pueden seleccionar para evaluar al empleado-->
                                 <select class="form-control p-1" required id="Pregunta_5" name="Pregunta_5">
                                     <option value="">Selecciona una calificación</option>
                                     <option value="1"> 1 </option>

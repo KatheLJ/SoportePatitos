@@ -3,22 +3,28 @@
     ViewBag.Title = "Login";
 }
 
-<!-- Form de iniciar sesion -->
 
-<div id="contact" class="contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="titlepage">
-                    <h2> Inicio de Sesión </h2>
-                    <p> Asegurese que el usuario y la contraseña sean los que colocó en el registro </p>
+
+
+    <!-- Form de iniciar sesion -->
+    <div id="contact" class="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <!--Se define el título de la sección-->
+                    <div class="titlepage">
+                        <h2> Inicio de Sesión </h2>
+                        <p> Asegúrese que el usuario y la contraseña sean los correctos </p>
+                    </div>
                 </div>
             </div>
-        </div>
             <br />
             <div class="col-md-12">
+                <!--Se inicia el formulario-->
+                <!--Se define el id, el action, el controlador, el método y la clase de estilo-->
                 <form id="login" action="InicioSesion" controller="Empleados" method="get" class="contact">
                     <br />
+                    <!--Para cada uno de los campos se colocan los estilos requeridos de la hojda de estilos style.css-->
                     <!--Para digitar el usuario-->
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
@@ -56,6 +62,7 @@
                             <button type='reset' class="btn btn-dark">Limpiar campos</button>
                         </fieldset>
                     </div>
+                    <!--Termina el formulario-->
                 </form>
             </div>
         </div>

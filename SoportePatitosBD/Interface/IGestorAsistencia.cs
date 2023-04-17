@@ -17,7 +17,7 @@ namespace SoportePatitosBD.Interface
         IEnumerable<Asistencia> ListadoAsistencia();
 
         //Método para validar cuando un empleado omite una marca o está ausente
-        int ValidarAusencias(Asistencia pAsistencia);
+        //int ValidarAusencias(Asistencia pAsistencia);
 
         //Permite verificar las marcas
         bool VerificarMarca(int cedula, DateTime fecha);

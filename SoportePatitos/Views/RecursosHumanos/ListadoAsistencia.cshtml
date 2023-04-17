@@ -1,18 +1,22 @@
-﻿@model IEnumerable<SoportePatitosBD.Modelo.Asistencia>
+﻿<!--Se define el modelo necesario para poder mostrar todos los datos (Asistencia)-->
+@model IEnumerable<SoportePatitosBD.Modelo.Asistencia>
 @{
     ViewBag.Title = "ListadoAsistencia";
 }
 
+<!--Se muestra el título de la sección-->
 <div class="row">
     <div class="col-md-12">
         <div class="titlepage">
             <br />
             <br />
+            <h4> Soporte Patitos: </h4>
             <h2> Listado de Asistencias (Marcas) </h2>
         </div>
     </div>
 </div>
 
+<!-- Inicio de Listado de asistencias registradas -->
 <div class="single-services">
     <div class="container">
         <div class="row">
@@ -23,9 +27,10 @@
                 </div>
 
                 <div class="table-responsive">
-                    <!--Muestra una tabla con todas las columnas del empleado-->
+                    <!--Muestra una tabla con todas las columnas de asistencia-->
+                    <!--El DisplayNameFor muestr un label para cada atributo del modelo-->
                     <table class="table table-hover table-bordered">
-                        <tr class="bg-warning text-white">
+                        <tr class="bg-warning">
                             <th>
                                 @Html.DisplayNameFor(model => model.ID_asistencia)
                             </th>
@@ -38,13 +43,16 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Cedula)
                             </th>
+                            <!--Con el Include del controller se puede llamar un espacio como este, de otra tabla, pero con el mismo modelo del principio-->
                             <th>
                                 @Html.DisplayNameFor(model => model.Estado.Descripcion)
                             </th>
 
                         </tr>
 
-                        <!--Muestra cada registro en la tabla de Empleados-->
+                        <!--Muestra cada registro en la tabla de Asistencia-->
+                        <!--Para cada item dentro del Modelo-->
+                        <!--Mostrar los datos de cada uno de los atribuos-->
                         @foreach (var item in Model)
                         {
                             <tr>
@@ -60,11 +68,12 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Cedula)
                                 </td>
+                                <!--Con el Include del controller se puede llamar un espacio como este, de otra tabla, pero con el mismo modelo del principio-->
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Estado.Descripcion)
                                 </td>
 
-                                
+
                             </tr>
                         }
                     </table>
@@ -75,8 +84,9 @@
         </div>
     </div>
 </div>
+<!--Fin-->
 
-
+<!--Se muestra un botón general al final de la lista, para poder calcular las ausencias de los empleados -->
 <div class="text-center">
     <form action="@Url.Action("ActualizarAsistencia", "RecursosHumanos")" method="post">
         <input type="submit" value="Actualizar Asistencia" class="btn btn-secondary btn-sm" />

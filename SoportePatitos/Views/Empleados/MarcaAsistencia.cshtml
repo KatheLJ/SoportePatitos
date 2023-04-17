@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <!--Se define el metodo para enviar datos y el action relacionado-->
+            <!--Se define el método para enviar datos y el action relacionado-->
             <form action="EnviarAsistencia" method="post" class="system-forms">
 
                 <!--Campo para el ID, pero es autoincremental, además de ser un campo oculto (el usuario no debe llenarlo)-->
@@ -46,7 +46,7 @@
                         <fieldset>
                             <div class="field item form-group">
 
-                                <label class="col-form-label col-md-6 col-sm-6  label-align">Cedula<span class="required">*</span></label>
+                                <label class="col-form-label col-md-6 col-sm-6  label-align">Cédula<span class="required">*</span></label>
                                 <div class="col-md-12 col-sm-12">
                                     <input class="form-control p-2" type="number" id="Cedula" name="Cedula" value="@ViewData["Cedula"].ToString()" style="display:none" required />
                                     <input type="text" id="CedulaLabel" class="form-control p-2" disabled value="@ViewData["Cedula"].ToString()" />
@@ -104,6 +104,7 @@
                         <button type="submit" class="btn btn-warning" id="btn-Login">Registrar Asistencia</button>
                     </fieldset>
                 </div>
+            <!--Termina el formulario-->
             </form>
         </div>
     </div>

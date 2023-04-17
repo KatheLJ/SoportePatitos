@@ -182,6 +182,7 @@
     <Content Include="Content\Assets\images\img.png" />
     <Content Include="Content\Assets\images\loading.gif" />
     <Content Include="Content\Assets\images\logo.png" />
+    <Content Include="Content\Assets\images\LogoSuperior.png" />
     <Content Include="Content\Assets\images\LOGO_03long.png" />
     <Content Include="Content\Assets\images\LOGO_User05 %281%29.png" />
     <Content Include="Content\Assets\images\stairs-g13cda99cc_1280.jpg" />
@@ -305,7 +306,6 @@
     <Content Include="Views\Home\CambioContraseña.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Inicio.cshtml" />
-    <Content Include="Views\RecursosHumanos\DeducRenta.cshtml" />
     <Content Include="Views\RecursosHumanos\ListadoEmpleadosPlanilla.cshtml" />
     <Content Include="Views\Empleados\HistorialColilla.cshtml" />
     <Content Include="Views\Empleados\Colillas.cshtml" />

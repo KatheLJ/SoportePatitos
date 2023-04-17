@@ -44,7 +44,8 @@
 
 
 
-    <!-- header inner -->
+    <!--Inicio del menù de nagevación-->
+    <!--Funcionan igual que el menú de navegación del layout-->
     <header>
         <div class="header-top">
             <div class="header">
@@ -54,7 +55,7 @@
                             <div class="full">
                                 <div class="center-desk">
                                     <div class="logo">
-                                            <img src="~/Content/Assets/images/LOGO_03long.png" />
+                                        <img src="~/Content/Assets/images/LogoSuperior.png" />
                                     </div>
                                 </div>
                             </div>
@@ -62,66 +63,12 @@
                         <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
                             <div class="menu-area">
                                 <div class="limit-box">
+                                    <!--Se agregan las opciones que se van a presentar en menú al inicio -->
                                     <nav class="main-menu">
                                         <ul class="menu-area-main">
-                                            <li> <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a> </li>
+                                            <li> <a href="@Url.Action("Inicio", "Home")" class="nav-item nav-link active">Inicio</a> </li>
                                             <li><a href="@Url.Action("Login", "Home" )" class="nav-item nav-link">Iniciar Sesión</a></li>
                                         </ul>
-                                        @if (Session["Empleado"] != null)
-                                        {
-                                            <ul class="menu-area-main">
-                                                <li> <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Asistencia</a> <!-- Formulario para Marcar Asistencia --> </li>
-                                                <li> <a href="@Url.Action("HistorialColilla", "Empleados")" class="nav-item nav-link">Colillas</a> <!-- Colillas de pago de planilla  --></li>
-                                            </ul>
-                                        }
-
-                                        @if (Session["Gerencia"] != null)
-                                        {
-                                            <ul class="menu-area-main">
-                                                <li> <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Asistencia</a> <!-- Formulario para Marcar Asistencia --> </li>
-                                                <li> <a href="@Url.Action("Evaluacion", "RecursosHumanos")" class="nav-item nav-link">Evaluación</a> <!-- Formulario de Evaluaciòn --></li>
-                                            </ul>
-                                        }
-
-                                        @if (Session["RH"] != null)
-                                        {
-                                            <ul class="menu-area-main">
-                                                <li> <a href="@Url.Action("Registro_Empleados", "RecursosHumanos")" class="nav-item nav-link">Registro</a> <!-- Registro de Empleados --> </li>
-                                                <li> <a href="@Url.Action("Evaluacion", "RecursosHumanos")" class="nav-item nav-link">Evaluación</a> <!-- Formulario de Evaluaciòn --></li>
-                                                <li> <a href="@Url.Action("ListadoEmpleadosPlanilla", "RecursosHumanos")" class="nav-item nav-link">Planilla</a> <!-- Manejo de Planillas --></li>
-                                                <li> <a href="@Url.Action("MarcaAsistencia", "Empleados")" class="nav-item nav-link">Asistencia</a> <!-- Formulario para Marcar Asistencia --></li>
-                                                <li> <a href="@Url.Action("HistorialColilla", "Empleados")" class="nav-item nav-link">Historial de Colilla</a> <!-- Colillas de pago del usuario --> </li>
-                                                <li> <a href="@Url.Action("ListadoEmpleados", "RecursosHumanos")" class="nav-item nav-link">Mant.Empleados</a> <!-- Listado de empleados  --></li>
-                                                <li><a href="@Url.Action("ListadoPlanilla", "RecursosHumanos")" class="nav-item nav-link">Mant.Planilla</a> <!-- Listado de Planillas  --></li>
-                                            </ul>
-                                        }
-
-
-                                        @if (Session["Gerencia"] != null)
-                                        {
-                                            <ul class="menu-area-main">
-                                                <li><a href="@Url.Action("CuentaGerencia", "Empleado")" class="nav-item nav-link">Bienvenido @HttpContext.Current.Session["Gerencia"].ToString()</a></li>
-                                                <li><a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a></li>
-                                            </ul>
-                                        }
-
-
-                                        @if (Session["RH"] != null)
-                                        {
-                                            <ul class="menu-area-main">
-                                                <li><a href="@Url.Action("CuentaRH", "RecursosHumanos")" class="nav-item nav-link">Bienvenido @HttpContext.Current.Session["RH"].ToString()</a></li>
-                                                <li><a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a></li>
-                                            </ul>
-                                        }
-
-                                        @if (Session["Empleado"] != null)
-                                        {
-                                            <ul class="menu-area-main">
-                                                <li><a href="@Url.Action("CuentaEmpleado", "Empleado")" class="nav-item nav-link">Bienvenido @HttpContext.Current.Session["Empleado"].ToString()</a></li>
-                                                <li><a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a></li>
-                                            </ul>
-
-                                        }
 
                                     </nav>
                                 </div>
@@ -132,7 +79,7 @@
             </div>
         </div>
 
-        <!-- end header inner -->
+        <!-- Fin de menù de navegación  -->
 
 
         <section class="slider_section">
@@ -161,11 +108,12 @@
         </section>
     </header>
 
-    <!-- Best  -->
+    <!-- Parte de inicio con características de Soporte Patitos  -->
     <div id="jewellery" class="Best">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <!--Se define el título de la sección-->
                     <div class="titlepage">
                         <h2>Soporte Patitos</h2>
                         <p>
@@ -176,7 +124,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-
+                    <!--Primer espacio con imagen-->
                     <div class="best_main pa_bot">
                         <div class="row d_flex">
                             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
@@ -197,7 +145,7 @@
                     </div>
                     <br /><br /><br /><br /><br />
 
-
+                    <!--Segundo espacio con imagen-->
                     <div class="best_main">
                         <div class="row d_flex">
                             <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
@@ -210,12 +158,13 @@
                             </div>
                             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
                                 <div class="best_text flot_left">
-                                    <p>Ofrecemos servicios de mantenimiento a todo tipo de eficios a nivel nacional a precios muy accesibles. </p>
+                                    <p>Ofrecemos servicios de mantenimiento a todo tipo de edificios a nivel nacional a precios muy accesibles. </p>
                                     <a href="#contact">Más información</a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!--Tercer espacio con imagen-->
                     <div class="best_main pa_bot">
                         <div class="row d_flex">
                             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
@@ -238,12 +187,13 @@
             </div>
         </div>
     </div>
-    <!-- end Best -->
-    <!-- contact -->
+    <!-- Fin del inicio -->
+    <!-- Formulario de contacto -->
     <div id="contact" class="contact">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <!--Se define el título de la sección-->
                     <div class="titlepage">
                         <h2>Formulario de Contacto</h2>
                         <p> Contáctenos sin ningún compromiso </p>
@@ -253,25 +203,28 @@
             <div class="row">
                 <div class="col-xl-5 col-lg-5 col-md-5 col-sm-12">
                     <div class="contact">
+                        <!--Inicio del formulario-->
                         <form>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <input class="contactus" placeholder="Nombre" type="text" name="Name">
                                 </div>
                                 <div class="col-sm-12">
-                                    <input class="contactus" placeholder="Teléfono" type="text" name="Phone Number">
+                                    <input class="contactus" placeholder="Teléfono" type="number" name="Phone Number">
                                 </div>
                                 <div class="col-sm-12">
-                                    <input class="contactus" placeholder="Correo" type="text" name="Email">
+                                    <input class="contactus" placeholder="Correo" type="email" name="Email">
                                 </div>
                                 <div class="col-sm-12">
                                     <textarea class="textarea" placeholder="Mensaje" type="text" name="Message"></textarea>
                                 </div>
                                 <div class="col-sm-12">
-                                    <button class="send">Enviar</button>
+                                    <!--Botón de envío-->
+                                    <button type='reset' class="send">Enviar</button>
                                 </div>
                             </div>
                         </form>
+                        <!--Fin-->
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
@@ -284,18 +237,22 @@
             </div>
         </div>
     </div>
-    <!-- end contact -->
-    <!-- clients -->
+    <!-- Fin del formulario de contacto -->
+
+    <!-- Opiniones de los clientes -->
     <div id="clients" class="clients ">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <!--Se define el título de la sección-->
                     <div class="titlepage">
                         <h2>Nuestros clientes</h2>
                         <p> Conozca las opiniones de nuestros clientes sobre nuestros servicios </p>
                     </div>
                 </div>
             </div>
+
+            <!--Cuerpo de las opiniones de los clientes-->
             <div class="row d_flex">
                 <div class="col-md-10 offset-col-md-1">
                     <div id="myCarousel" class="carousel slide clients_slider" data-ride="carousel">
@@ -336,7 +293,8 @@
                 </div>
             </div>
         </div>
-        <!-- end clients -->
+        <!-- Fin de opiniones de los clientes -->
+
 
 
 

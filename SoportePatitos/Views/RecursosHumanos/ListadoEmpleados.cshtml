@@ -1,20 +1,24 @@
-﻿
+﻿<!--Se define el modelo necesario para poder mostrar todos los datos (Empleados)-->
 @model IEnumerable<SoportePatitosBD.Modelo.Empleado>
 @{
     ViewBag.Title = "ListadoEmpleados";
 }
 
+<!--Se muestra el título de la sección-->
 <div class="row">
     <div class="col-md-12">
         <div class="titlepage">
             <br />
             <br />
+            <h4> Soporte Patitos: </h4>
             <h2> Listado de Empleados </h2>
             <p> Vea o Descargue el Reporte de Evaluación </p>
         </div>
     </div>
 </div>
 
+
+<!-- Inicio de Listado de empleados -->
 <div class="">
     <div class="">
         <div class="row">
@@ -23,6 +27,7 @@
                 </div>
                 <div class="table-responsive">
                     <!--Muestra una tabla con todas las columnas del empleado-->
+                    <!--El DisplayNameFor muestr un label para cada atributo del modelo-->
                     <table class="table table-hover table-bordered">
                         <tr class="bg-warning">
                             <th>
@@ -56,6 +61,7 @@
                         </tr>
 
                         <!--Muestra cada registro en la tabla de Empleados-->
+                        <!--Con los datos asociados a cada uno de los atributos-->
                         @foreach (var item in Model)
                         {
                             <tr>
@@ -90,6 +96,7 @@
                                     <!--Permite dirigirse al reporte del empleado-->
                                     @Html.ActionLink("Ver", "ReporteEmpleado", new { Cedula = item.Cedula }, new { @class = "btn btn-warning btn-sm" })
                                     <br><br>
+                                    <!--Permite descargar el reporte del empleado en pdf-->
                                     @Html.ActionLink("Descargar", "GeneratePDFReporte", new { Cedula = item.Cedula }, new { @class = "btn btn btn-dark btn-sm" })
                                     <br><br>
 
@@ -103,4 +110,4 @@
         </div>
     </div>
 </div>
-
+<!--Fin-->

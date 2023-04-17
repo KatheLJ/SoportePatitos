@@ -1,20 +1,24 @@
-﻿@model IEnumerable<SoportePatitosBD.Modelo.Planilla>
+﻿<!--Se define el modelo necesario para poder mostrar todos los datos (Planilla)-->
+@model IEnumerable<SoportePatitosBD.Modelo.Planilla>
 @{
     ViewBag.Title = "ListadoPlanilla";
 }
 
 
-
+<!--Se muestra el título de la sección-->
 <div class="row">
     <div class="col-md-12">
         <div class="titlepage">
             <br />
             <br />
+            <h4> Soporte Patitos: </h4>
             <h2> Planillas de empleados </h2>
+            <p> Fecha: @DateTime.UtcNow</p>
         </div>
     </div>
 </div>
 
+<!-- Inicio de Listado Planilla -->
 <div class="single-services">
     <div class="container">
         <div class="row">
@@ -25,9 +29,10 @@
                 </div>
 
                 <div class="table-responsive">
-                    <!--Muestra una tabla con todas las columnas del empleado-->
+                    <!--Muestra una tabla con todas las columnas de la planilla-->
+                    <!--El DisplayNameFor muestr un label para cada atributo del modelo-->
                     <table class="table table-hover table-bordered">
-                        <tr class="bg-warning text-white">
+                        <tr class="bg-warning">
                             <th>
                                 @Html.DisplayNameFor(model => model.ID_planilla)
                             </th>
@@ -51,7 +56,7 @@
                             </th>
                         </tr>
 
-                        <!--Muestra cada registro en la tabla de Empleados-->
+                        <!--Muestra cada registro en la tabla de Planilla-->
                         @foreach (var item in Model)
                         {
                             <tr>
@@ -87,9 +92,9 @@
         </div>
     </div>
 </div>
+<!--Fin-->
 
-
-
+<!--Se muestra un botón general al final de la lista, para poder descargar todas las planillas realizadas hasta la fecha -->
 <div class="ln_solid">
     <div class="form-group">
         <div class="text-right">

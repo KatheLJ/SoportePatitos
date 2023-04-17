@@ -183,12 +183,6 @@ namespace SoportePatitos.Controllers
         //Permite mostrar una colilla de pago específica (usuario en sesión)
         public ActionResult Colillas(int ID_planilla)
         {
-            //Si la sesión es nula lleva al login
-            if (Session["Cedula"] == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
-
             //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {

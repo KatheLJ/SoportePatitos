@@ -459,12 +459,7 @@ namespace SoportePatitos.Controllers
         //Permite mostrar un listado de todas las planillas registradas en el sistema (todos los empleados)
         public ActionResult ListadoPlanilla()
         {
-            //Si la sesión es nula lleva al login
-            if (Session["Cedula"] == null)
-            {
-                return RedirectToAction("Login", "Home");
-            }
-
+            
             //Muestra una lista de todas las planillas del sistema, llamando al método de listado planilla del gestor
             IEnumerable<Planilla> planillas = _oGestorPlanilla.ListadoPlanilla();
             //Se regresa la vista con dicha lista
@@ -477,6 +472,7 @@ namespace SoportePatitos.Controllers
         //Permite descargar todas las planillas registradas en el sistema
         public ActionResult PdfPlanilla()
         {
+
             //Regresa un PDF con los datos de la vista respectiva que es ListadoPlanilla
             return new Rotativa.ActionAsPdf("ListadoPlanilla");
 

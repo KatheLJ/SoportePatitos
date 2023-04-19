@@ -39,15 +39,15 @@ namespace SoportePatitosBD.Repositorios
                 //Utiliza está conexión a la base de datos
                 using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
                 {
-                    ContextoBD.Empleado.Add(pEmpleado);
-                    /* if (n == 0)
+                    try
                     {
-                        MessageBox.Show("No se puede llevar a cabo el registro. Intente denuevo.");
-                    }
-                    else
-                    {*/
+                        ContextoBD.Empleado.Add(pEmpleado);
                         n = ContextoBD.SaveChanges();
-                    //}
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Ocurrió un error al agregar el registro de empleado: " + ex.Message);
+                    }
                 }
                 return n;
             }

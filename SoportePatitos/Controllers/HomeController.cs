@@ -80,12 +80,27 @@ namespace SoportePatitos.Controllers
 
                         // Redireccionar al usuario a la página de inicio, si todo es correcto
                         return RedirectToAction("Index", "Home");
+
+                        else
+                        {
+                            // Verificar si el objeto 'user' es nulo
+                            if (user == null)
+                            {
+                                // Si no se encuentra el usuario, redireccionar a la página de registro
+                                TempData["MensajeError"] = "El usuario no existe";
+                                return RedirectToAction("Registro_Empleados", "RecursosHumanos");
+                            }
+                            else if (user.Contraseña != contraseña)
+                            {
+                                //Si la contraseña es incorrecta, se muestra el mensaje de error correspondiente y se redirige a la vista de login
+                                TempData["MensajeError"] = "La contraseña es incorrecta.";
+                                return RedirectToAction("Registro_Empleados", "RecursosHumanos");
+
+                            }
+                        }
                     }
                 }
             }
-
-            // Si no se encuentra el usuario, redireccionar a la página de registro
-            return RedirectToAction("Registro_Empleados", "RecursosHumanos");
         }
 
 

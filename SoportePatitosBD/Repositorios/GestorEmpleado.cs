@@ -33,8 +33,7 @@ namespace SoportePatitosBD.Repositorios
         int IGestorEmpleado.CrearEmpleado(Empleado pEmpleado)
         {
             //Intenta el código
-            try
-            { 
+            
                 int n = 0;
                 //Utiliza está conexión a la base de datos
                 using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
@@ -50,18 +49,7 @@ namespace SoportePatitosBD.Repositorios
                     }
                 }
                 return n;
-            }
-
-            //Muestra una excepción, si no funciona
-            catch (SqlException ex)
-            {
-                    if (ex.Number == 544)
-                    {
-                    throw ex;
-                    }
-
-                throw new ApplicationException("Exception thrown");
-            }
+            
         }
 
 

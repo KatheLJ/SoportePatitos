@@ -53,6 +53,17 @@
                         </div>
                     </div>
 
+                    <!--Va a mostrar un error -->
+                    @if (TempData != null && TempData["LoginError"] != null)
+                    {
+                        <script>
+                                var mensajeError = '@TempData["LoginError"]';
+                                if (mensajeError.trim() !== "") {
+                                    alert(mensajeError);
+                                }
+                        </script>
+                    }
+
 
                     <!--Botones de ingresar y limpiar campos-->
                     <div class="text-center">

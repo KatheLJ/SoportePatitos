@@ -11,6 +11,7 @@ using System.Data.Entity;
 using System.Web.Mvc;
 using SoportePatitos.Models.ViewModels;
 using System.Web.Optimization;
+using System.Data.Entity;
 
 namespace SoportePatitos.Controllers
 {
@@ -196,10 +197,21 @@ namespace SoportePatitos.Controllers
         //Accion que permite Registrar un empleado en la base de datos
         public ActionResult EnviarEmpleado(Empleado pEmpleado)
         {
-            //Se llama al método de Crear Empleado, que recibe un objeto de tipo empleado por parámetro
-            int registros = _oGestorEmpleado.CrearEmpleado(pEmpleado);
-            //Se regresa a la pantalla de Registro de Empleados al terminar
-            return RedirectToAction("Registro_Empleados");
+            try
+            {
+                //Se llama al método de Crear Empleado, que recibe un objeto de tipo empleado por parámetro
+                int registros = _oGestorEmpleado.CrearEmpleado(pEmpleado);
+                //Se regresa a la pantalla de Registro de Empleados al terminar
+                TempData["RegistroCorrecto"] = "Empleado Registrado Correctamente";
+                return RedirectToAction("Registro_Empleados");
+            }
+            
+            catch(Exception ex)
+            {
+                TempData["RegistroError"] = "La cédula ingresada ya existe. Intente Denuevo.";
+                return RedirectToAction("Registro_Empleados");
+            }
+            
             
             
 

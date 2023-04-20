@@ -41,66 +41,73 @@ namespace SoportePatitos.Controllers
         //Accion que valide los datos y permite o deniega el ingreso al usuario
         public ActionResult InicioSesion(Empleado pEmpleado)
         {
-            //Si el esetado del Modelo es válido
-            if (ModelState.IsValid)
-            {
-                //Se llama a una conexión de tipo SoportePatitosEntities
-                using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            
+                //Si el estado del Modelo es válido
+                if (ModelState.IsValid)
                 {
-                    //Se crea una variable User, que recibirá los paramétros que de el usuario y los comparará con los que están en la BD
-                    var user = ContextoBD.Empleado.FirstOrDefault(a => a.Usuario.Equals(pEmpleado.Usuario) &&
-                    a.Contraseña.Equals(pEmpleado.Contraseña));
-
-                    //Si está variable es diferente de nulo
-                    if (user != null)
+                    //Se llama a una conexión de tipo SoportePatitosEntities
+                    using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
                     {
-                        // Si se encuentra el usuario, se establecen las variables de sesión correspondientes
-                        //Si el perfil es 1
-                        if (user.ID_perfil == 1)
+
+                        //Se crea una variable User, que recibirá los paramétros que de el usuario y los comparará con los que están en la BD
+                        var user = ContextoBD.Empleado.FirstOrDefault(a => a.Usuario.Equals(pEmpleado.Usuario) &&
+                        a.Contraseña.Equals(pEmpleado.Contraseña));
+
+                        //Si está variable es diferente de nulo
+                        if (user != null)
                         {
-                            //Será un usuario de tipo Gerencia
-                            Session["Gerencia"] = user.Usuario;
-                        }
-                        //Si el perfil es tipo 2
-                        else if (user.ID_perfil == 2)
-                        {
-                            //Será un usuario de Recursos Humanos
-                            Session["RH"] = user.Usuario;
-                        }
-                        //Si el perfil es tipo 3
-                        else if (user.ID_perfil == 3)
-                        { 
-                            //Será un empleado general
-                            Session["Empleado"] = user.Usuario;
-                        }
+                            // Si se encuentra el usuario, se establecen las variables de sesión correspondientes
+                            //Si el perfil es 1
+                            if (user.ID_perfil == 1)
+                            {
+                                //Será un usuario de tipo Gerencia
+                                Session["Gerencia"] = user.Usuario;
+                            }
+                            //Si el perfil es tipo 2
+                            else if (user.ID_perfil == 2)
+                            {
+                                //Será un usuario de Recursos Humanos
+                                Session["RH"] = user.Usuario;
+                            }
+                            //Si el perfil es tipo 3
+                            else if (user.ID_perfil == 3)
+                            {
+                                //Será un empleado general
+                                Session["Empleado"] = user.Usuario;
+                            }
 
-                        //Se deben guardar los datos de la cédula y el nombre del empleado
-                        Session["Cedula"] = user.Cedula;
-                        Session["Nombre"] = user.Nombre_Empleado;
+                            //Se deben guardar los datos de la cédula y el nombre del empleado
+                            Session["Cedula"] = user.Cedula;
+                            Session["Nombre"] = user.Nombre_Empleado;
 
-                        // Redireccionar al usuario a la página de inicio, si todo es correcto
-                        return RedirectToAction("Index", "Home");
+                            // Redireccionar al usuario a la página de inicio, si todo es correcto
+                            return RedirectToAction("Index", "Home");
 
+                            /*else
+                            {
+                                // Verificar si el objeto 'user' es nulo
+                                if (user == null)
+                                {
+                                    // Si no se encuentra el usuario, redireccionar a la página de registro
+                                    TempData["MensajeError"] = "El usuario no existe";
+                                    return RedirectToAction("Registro_Empleados", "RecursosHumanos");
+                                }
+                                else if (user.Contraseña != contraseña)
+                                {
+                                    //Si la contraseña es incorrecta, se muestra el mensaje de error correspondiente y se redirige a la vista de login
+                                    TempData["MensajeError"] = "La contraseña es incorrecta.";
+
+
+                                }
+                            }*/
+                        }
                         else
                         {
-                            // Verificar si el objeto 'user' es nulo
-                            if (user == null)
-                            {
-                                // Si no se encuentra el usuario, redireccionar a la página de registro
-                                TempData["MensajeError"] = "El usuario no existe";
-                                return RedirectToAction("Registro_Empleados", "RecursosHumanos");
-                            }
-                            else if (user.Contraseña != contraseña)
-                            {
-                                //Si la contraseña es incorrecta, se muestra el mensaje de error correspondiente y se redirige a la vista de login
-                                TempData["MensajeError"] = "La contraseña es incorrecta.";
-                                return RedirectToAction("Registro_Empleados", "RecursosHumanos");
-
-                            }
+                            TempData["LoginError"] = "Credenciales Invalidas.Intente Denuevo.";
                         }
                     }
                 }
-            }
+            return RedirectToAction("Login", "Home");
         }
 
 

@@ -44,6 +44,19 @@
                     </div>
                 </div>
 
+
+                <!--Va a mostrar un error-->
+                @if (TempData != null && TempData["RegistroError"] != null)
+                {
+                    <script>
+                                var mensajeError = '@TempData["RegistroError"]';
+                                if (mensajeError.trim() !== "") {
+                                    alert(mensajeError);
+                                }
+                    </script>
+                }
+
+
                 <!--Campo para el nombre completo del empleado-->
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
@@ -224,6 +237,8 @@
                         </fieldset>
                     </div>
                 </div>
+
+
 
 
 

@@ -202,7 +202,7 @@ namespace SoportePatitos.Controllers
                 //Se llama al método de Crear Empleado, que recibe un objeto de tipo empleado por parámetro
                 int registros = _oGestorEmpleado.CrearEmpleado(pEmpleado);
                 //Se regresa a la pantalla de Registro de Empleados al terminar
-                TempData["RegistroCorrecto"] = "Empleado Registrado Correctamente";
+               // TempData["RegistroCorrecto"] = "Empleado Registrado Correctamente";
                 return RedirectToAction("Registro_Empleados");
             }
             

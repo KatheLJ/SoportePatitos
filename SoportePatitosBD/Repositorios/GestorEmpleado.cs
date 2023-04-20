@@ -45,6 +45,7 @@ namespace SoportePatitosBD.Repositorios
                     }
                     catch (Exception ex)
                     {
+
                         Console.WriteLine("Ocurrió un error al agregar el registro de empleado: " + ex.Message);
                     }
                 }

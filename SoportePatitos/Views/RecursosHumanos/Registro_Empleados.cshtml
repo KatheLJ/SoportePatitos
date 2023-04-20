@@ -45,16 +45,7 @@
                 </div>
 
 
-                <!--Va a mostrar un error-->
-                @if (TempData != null && TempData["RegistroError"] != null)
-                {
-                    <script>
-                                var mensajeError = '@TempData["RegistroError"]';
-                                if (mensajeError.trim() !== "") {
-                                    alert(mensajeError);
-                                }
-                    </script>
-                }
+
 
 
                 <!--Campo para el nombre completo del empleado-->
@@ -239,6 +230,16 @@
                 </div>
 
 
+                <!--Va a mostrar un error-->
+                @if (TempData != null && TempData["RegistroError"] != null)
+                {
+                    <script>
+                                var mensajeError = '@TempData["RegistroError"]';
+                                if (mensajeError.trim() !== "") {
+                                    alert(mensajeError);
+                                }
+                    </script>
+                }
 
 
 

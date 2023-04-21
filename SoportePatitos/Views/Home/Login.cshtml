@@ -56,12 +56,9 @@
                     <!--Va a mostrar un error -->
                     @if (TempData != null && TempData["LoginError"] != null)
                     {
-                        <script>
-                                var mensajeError = '@TempData["LoginError"]';
-                                if (mensajeError.trim() !== "") {
-                                    alert(mensajeError);
-                                }
-                        </script>
+                        <div class="alert alert-danger">
+                            @TempData["LoginError"]
+                        </div>
                     }
 
 

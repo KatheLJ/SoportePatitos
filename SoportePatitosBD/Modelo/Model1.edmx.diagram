@@ -17,16 +17,16 @@
         <EntityTypeShape EntityType="SoportePatitosModel.Planilla" Width="1.5" PointX="7.5" PointY="3.75" />
         <AssociationConnector Association="SoportePatitosModel.FK__Planilla__Cedula__09746778" />
         <EntityTypeShape EntityType="SoportePatitosModel.Asistencia" Width="1.5" PointX="7.5" PointY="7" />
-        <EntityTypeShape EntityType="SoportePatitosModel.Estado_Civil" Width="1.5" PointX="5.125" PointY="2.625" />
+        <EntityTypeShape EntityType="SoportePatitosModel.Estado_Civil" Width="1.5" PointX="5" PointY="3.5" />
         <AssociationConnector Association="SoportePatitosModel.FK__Asistenci__Cedul__5FB337D6" />
         <AssociationConnector Association="SoportePatitosModel.FK__Asistenci__ID_Es__60A75C0F" />
         <AssociationConnector Association="SoportePatitosModel.FK__Asistencia__Tipo__5EBF139D" />
         <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_Est__5812160E" />
-        <EntityTypeShape EntityType="SoportePatitosModel.Departamento" Width="1.5" PointX="0.75" PointY="8.25" />
-        <EntityTypeShape EntityType="SoportePatitosModel.Puesto" Width="1.5" PointX="3" PointY="9.875" />
-        <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_dep__571DF1D5" />
-        <AssociationConnector Association="SoportePatitosModel.FK__Puesto__Departam__60A75C0F" />
-        <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_pue__59063A47" />
+        <EntityTypeShape EntityType="SoportePatitosModel.Departamento" Width="1.5" PointX="2.875" PointY="8.875" />
+        <EntityTypeShape EntityType="SoportePatitosModel.Puesto" Width="1.5" PointX="2.875" PointY="6.25" />
+        <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_dep__5441852A" />
+        <AssociationConnector Association="SoportePatitosModel.FK__Puesto__ID_depar__4D94879B" />
+        <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_pue__5629CD9C" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

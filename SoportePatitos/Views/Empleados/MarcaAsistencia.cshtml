@@ -30,12 +30,9 @@
                 <!--Va a mostrar un error de acuerdo a la validación de la fecha y la cédula que se encuentra en el Controller y en GestorAsistencia-->
                 @if (TempData != null && TempData["MensajeError"] != null)
                 {
-                    <script>
-                                var mensajeError = '@TempData["MensajeError"]';
-                                if (mensajeError.trim() !== "") {
-                                    alert(mensajeError);
-                                }
-                    </script>
+                    <div class="alert alert-danger">
+                        @TempData["MensajeError"]
+                    </div>
                 }
 
 
@@ -104,7 +101,7 @@
                         <button type="submit" class="btn btn-warning" id="btn-Login">Registrar Asistencia</button>
                     </fieldset>
                 </div>
-            <!--Termina el formulario-->
+                <!--Termina el formulario-->
             </form>
         </div>
     </div>

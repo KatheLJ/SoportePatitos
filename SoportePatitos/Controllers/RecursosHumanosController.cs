@@ -201,21 +201,28 @@ namespace SoportePatitos.Controllers
             {
                 //Se llama al método de Crear Empleado, que recibe un objeto de tipo empleado por parámetro
                 int registros = _oGestorEmpleado.CrearEmpleado(pEmpleado);
-                //Se regresa a la pantalla de Registro de Empleados al terminar
-               // TempData["RegistroCorrecto"] = "Empleado Registrado Correctamente";
+                if (registros > 0)
+                {
+                    //Se regresa a la pantalla de Registro de Empleados al terminar
+                    TempData["RegistroCorrecto"] = "Empleado Registrado Correctamente";
+                    TempData.Remove("RegistroError");
+                }
+                else
+                {
+                    TempData["RegistroError"] = "La cédula ingresada ya existe. Intente nuevamente.";
+                    TempData.Remove("RegistroCorrecto");
+                }
                 return RedirectToAction("Registro_Empleados");
             }
-            
-            catch(Exception ex)
-            {
-                TempData["RegistroError"] = "La cédula ingresada ya existe. Intente Denuevo.";
-                return RedirectToAction("Registro_Empleados");
-            }
-            
-            
-            
 
+            catch (Exception ex)
+            {
+                TempData["RegistroError"] = "No se pudo crear el empleado. Intente nuevamente.";
+                TempData.Remove("RegistroCorrecto");
+                return RedirectToAction("Registro_Empleados");
+            }
         }
+
         //****************************************************************************************************************************//
 
 

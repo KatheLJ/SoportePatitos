@@ -103,7 +103,7 @@ namespace SoportePatitos.Controllers
                         }
                         else
                         {
-                            TempData["LoginError"] = "Credenciales Invalidas.Intente Denuevo.";
+                            TempData["LoginError"] = "Credenciales Invalidas. Intente nuevamente.";
                         }
                     }
                 }

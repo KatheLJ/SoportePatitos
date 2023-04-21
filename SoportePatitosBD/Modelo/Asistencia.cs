@@ -11,17 +11,13 @@ namespace SoportePatitosBD.Modelo
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Asistencia
     {
-        [Display(Name = "ID")]
         public int ID_asistencia { get; set; }
         public int Tipo { get; set; }
         public System.DateTime Fecha { get; set; }
-        [Display(Name = "Cédula")]
         public int Cedula { get; set; }
-        [Display(Name = "Estado")]
         public int ID_Estado { get; set; }
     
         public virtual Empleado Empleado { get; set; }

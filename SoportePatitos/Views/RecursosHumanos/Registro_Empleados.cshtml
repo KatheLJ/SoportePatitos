@@ -231,15 +231,20 @@
 
 
                 <!--Va a mostrar un error-->
-                @if (TempData != null && TempData["RegistroError"] != null)
+                @if (TempData["RegistroError"] != null)
                 {
-                    <script>
-                                var mensajeError = '@TempData["RegistroError"]';
-                                if (mensajeError.trim() !== "") {
-                                    alert(mensajeError);
-                                }
-                    </script>
+                    <div class="alert alert-danger">
+                        @TempData["RegistroError"]
+                    </div>
                 }
+
+                @if (TempData["RegistroCorrecto"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["RegistroCorrecto"]
+                    </div>
+                }
+
 
 
 

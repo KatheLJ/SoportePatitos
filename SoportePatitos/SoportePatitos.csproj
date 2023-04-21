@@ -310,6 +310,7 @@
     <Content Include="Views\Empleados\HistorialColilla.cshtml" />
     <Content Include="Views\Empleados\Colillas.cshtml" />
     <Content Include="Views\RecursosHumanos\ListadoPlanilla.cshtml" />
+    <Content Include="Views\Empleados\Perfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

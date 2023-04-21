@@ -38,6 +38,7 @@ namespace SoportePatitosBD.Modelo
         public virtual DbSet<Estado_Civil> Estado_Civil { get; set; }
         public virtual DbSet<Departamento> Departamento { get; set; }
         public virtual DbSet<Puesto> Puesto { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     
         public virtual ObjectResult<spEvaluacionEmpleado_Result> spEvaluacionEmpleado()
         {

@@ -22,11 +22,12 @@
         <AssociationConnector Association="SoportePatitosModel.FK__Asistenci__ID_Es__60A75C0F" />
         <AssociationConnector Association="SoportePatitosModel.FK__Asistencia__Tipo__5EBF139D" />
         <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_Est__5812160E" />
-        <EntityTypeShape EntityType="SoportePatitosModel.Departamento" Width="1.5" PointX="2.875" PointY="8.875" />
-        <EntityTypeShape EntityType="SoportePatitosModel.Puesto" Width="1.5" PointX="2.875" PointY="6.25" />
-        <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_dep__5441852A" />
-        <AssociationConnector Association="SoportePatitosModel.FK__Puesto__ID_depar__4D94879B" />
-        <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_pue__5629CD9C" />
+        <EntityTypeShape EntityType="SoportePatitosModel.Departamento" Width="1.5" PointX="3" PointY="7.625" />
+        <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_dep__571DF1D5" />
+        <EntityTypeShape EntityType="SoportePatitosModel.Puesto" Width="1.5" PointX="2.875" PointY="11.125" />
+        <EntityTypeShape EntityType="SoportePatitosModel.sysdiagrams" Width="1.5" PointX="10.125" PointY="3.625" />
+        <AssociationConnector Association="SoportePatitosModel.FK__Puesto__Departam__60A75C0F" />
+        <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_pue__59063A47" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

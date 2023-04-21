@@ -295,10 +295,33 @@ namespace SoportePatitos.Controllers
         //Accion envia la evaluación realizada a un empleado
         public ActionResult EnviarEvaluacion(Evaluacion pEvaluacion)
         {
-            //Se llama al método de Crear Evaluación, que recibe un objeto de tipo evaluación por parámetro
-            int registros = _oGestorEvaluacion.CrearEvaluacion(pEvaluacion);
-            //Se regresa a la pantalla de Evaluación al terminar
-            return RedirectToAction("Evaluacion");
+            try
+            {
+                ///Se llama al método de Crear Evaluación, que recibe un objeto de tipo evaluación por parámetro
+                int registros = _oGestorEvaluacion.CrearEvaluacion(pEvaluacion);
+                if (registros > 0)
+                {
+                    //Se regresa a la pantalla de Registro de Empleados al terminar
+                    TempData["EvaCorrecto"] = "Evaluación Creada Correctamente";
+                    TempData.Remove("EvaError");
+                }
+                else
+                {
+                    TempData["EvaError"] = "Error al crear la evaluación. Intente nuevamente.";
+                    TempData.Remove("EvaCorrecto");
+                }
+                //Se regresa a la pantalla de Evaluación al terminar
+                return RedirectToAction("Evaluacion");
+            }
+
+            catch (Exception ex)
+            {
+                TempData["EvaError"] = "Error al crear la evaluación. Intente nuevamente.";
+                TempData.Remove("EvaCorrecto");
+                //Se regresa a la pantalla de Evaluación al terminar
+                return RedirectToAction("Evaluacion");
+            }
+
         }
 
 
@@ -451,7 +474,7 @@ namespace SoportePatitos.Controllers
             //Se pasa por parámetro un objeto de tipo planilla
             int registros = _oGestorPlanilla.CrearPlanilla(pPlanilla);
             //Se redirecciona a la pantalla de ListadoEmpleadosPlanilla
-            return RedirectToAction("ListadoEmpleadosPlanilla");
+            return RedirectToAction("ListadoPlanilla");
 
         }
         //****************************************************************************************************************************//

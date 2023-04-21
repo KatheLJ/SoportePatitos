@@ -194,6 +194,21 @@
             </div>
 
 
+            <!--Va a mostrar un error-->
+            @if (TempData["EvaError"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["EvaError"]
+                </div>
+            }
+
+            @if (TempData["EvaCorrecto"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["EvaCorrecto"]
+                </div>
+            }
+
 
             <!--Botones de enviar el formulario y limpiar campos-->
             <div class="text-center">

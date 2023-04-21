@@ -56,7 +56,7 @@
           <Key>
             <PropertyRef Name="ID_evaluacion" />
           </Key>
-          <Property Name="ID_evaluacion" Type="int" Nullable="false" />
+          <Property Name="ID_evaluacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cedula" Type="int" Nullable="false" />
           <Property Name="Pregunta_1" Type="int" Nullable="false" />
           <Property Name="Pregunta_2" Type="int" Nullable="false" />
@@ -212,7 +212,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Evaluacio__Cedul__6FE99F9F">
+        <Association Name="FK__Evaluacio__Cedul__67DE6983">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Evaluacion" Type="Self.Evaluacion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -293,7 +293,7 @@
             <End Role="Puesto" EntitySet="Puesto" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
-          <AssociationSet Name="FK__Evaluacio__Cedul__6FE99F9F" Association="Self.FK__Evaluacio__Cedul__6FE99F9F">
+          <AssociationSet Name="FK__Evaluacio__Cedul__67DE6983" Association="Self.FK__Evaluacio__Cedul__67DE6983">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Evaluacion" EntitySet="Evaluacion" />
           </AssociationSet>

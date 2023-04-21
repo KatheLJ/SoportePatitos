@@ -20,20 +20,11 @@
         <!--Inicio del formulario-->
         <!--Se define el action que es enviar evaluación y el método que es post-->
         <form action="EnviarEvaluacion" method="post" class="contact">
-            <!--Campo para la identificación de la evaluación-->
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <fieldset>
-                        <div class="field item form-group">
-                            <!--Se muestra el label-->
-                            <label class="col-form-label col-md-12 col-sm-12  label-align">ID evaluación<span class="required">*</span></label>
-                            <!--Se muestra el espacio para digitar el ide de la evaluación-->
-                            <div class="col-md-12 col-sm-12">
-                                <input id="ID_evaluacion" class="form-control p-1" type="text" name="ID_evaluacion" pattern="[0-9]{10,10}" required="" placeholder="Ej:202304060355. Máximo 10 dígitos." />
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
+            <!--Campo para el ID, pero es autoincremental, además de ser un campo oculto (el usuario no debe llenarlo)-->
+            <div class="col-lg-12">
+                <fieldset>
+                    <input name="Id" type="hidden" class="form-control" id="id" placeholder="">
+                </fieldset>
             </div>
 
 
@@ -83,7 +74,7 @@
                     </fieldset>
                 </div>
             </div>
-            
+
 
 
             <!--Campo para la pregunta 2-->
@@ -113,7 +104,7 @@
                     </fieldset>
                 </div>
             </div>
-            
+
 
             <!--Campo para la pregunta 3-->
             <div class="row justify-content-center">
@@ -142,7 +133,7 @@
                     </fieldset>
                 </div>
             </div>
-            
+
 
 
             <!--Campo para la pregunta 4-->

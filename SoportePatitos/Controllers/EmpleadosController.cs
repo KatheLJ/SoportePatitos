@@ -215,5 +215,38 @@ namespace SoportePatitos.Controllers
         //****************************************************************************************************************************//
 
 
+
+
+
+
+
+
+
+        //****************************************************************************************************************************//
+        //*******************************************Acciones relacionadas al perfil de los empleados ********************************//
+
+        //Permite mostrar el perfil del empleado
+        public ActionResult Perfil()
+        {
+            //Si la sesión es nula lleva al login
+            if (Session["Cedula"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            //Se guarda la cédula del usuario que se encuentra el sesión
+            int Cedula = (int)Session["Cedula"];
+
+            //Se llama a una conexión de tipo SoportePatitosEntities
+            using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
+            {
+                
+                var perfil = ContextoBD.Empleado.Include(a => a.Departamento).Include(a => a.Puesto).Include(a => a.Horario).Include(a => a.Perfil);
+                return View(perfil.ToList().Where(x => x.Cedula == Cedula).FirstOrDefault());
+            }
+
+
+        }
+
     }
 }

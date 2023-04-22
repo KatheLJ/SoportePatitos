@@ -68,7 +68,7 @@
                                             <div class="dropdown">
                                                 <button class="dropbtn"> @HttpContext.Current.Session["Empleado"].ToString()</button>
                                                 <div class="dropdown-content">
-                                                    <a href="" class="nav-item nav-link">Mi perfil</a>
+                                                    <a href="@Url.Action("Perfil", "Empleados")" class="nav-item nav-link">Mi perfil</a>
                                                     <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a>
                                                     <a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a>
                                                 </div>
@@ -98,7 +98,7 @@
                                             <div class="dropdown">
                                                 <button class="dropbtn"> @HttpContext.Current.Session["Gerencia"].ToString()</button>
                                                 <div class="dropdown-content">
-                                                    <a href="" class="nav-item nav-link">Mi perfil</a>
+                                                    <a href="@Url.Action("Perfil", "Empleados")" class="nav-item nav-link">Mi perfil</a>
                                                     <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a>
                                                     <a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a>
                                                 </div>
@@ -129,7 +129,7 @@
                                             <div class="dropdown">
                                                 <button class="dropbtn"> @HttpContext.Current.Session["RH"].ToString()</button>
                                                 <div class="dropdown-content">
-                                                    <a href="" class="nav-item nav-link">Mi perfil</a>
+                                                    <a href="@Url.Action("Perfil", "Empleados")" class="nav-item nav-link">Mi perfil</a>
                                                     <a href="@Url.Action("Index", "Home")" class="nav-item nav-link active">Inicio</a>
                                                     <a href="@Url.Action("Logout", "Home")" class="nav-item nav-link">Salir</a>
                                                 </div>

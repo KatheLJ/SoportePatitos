@@ -203,12 +203,14 @@ namespace SoportePatitos.Controllers
                 int registros = _oGestorEmpleado.CrearEmpleado(pEmpleado);
                 if (registros > 0)
                 {
-                    //Se regresa a la pantalla de Registro de Empleados al terminar
+                    //Se regresa a la pantalla de Registro de Empleados al terminar y se muestra el mensaje exitoso
                     TempData["RegistroCorrecto"] = "Empleado Registrado Correctamente";
+                    //Se remueve la alerta del error
                     TempData.Remove("RegistroError");
                 }
                 else
                 {
+                    //Se muestra el error
                     TempData["RegistroError"] = "La cédula ingresada ya existe. Intente nuevamente.";
                     TempData.Remove("RegistroCorrecto");
                 }
@@ -217,6 +219,7 @@ namespace SoportePatitos.Controllers
 
             catch (Exception ex)
             {
+                //Se muestra el error
                 TempData["RegistroError"] = "No se pudo crear el empleado. Intente nuevamente.";
                 TempData.Remove("RegistroCorrecto");
                 return RedirectToAction("Registro_Empleados");
@@ -297,17 +300,20 @@ namespace SoportePatitos.Controllers
         {
             try
             {
-                ///Se llama al método de Crear Evaluación, que recibe un objeto de tipo evaluación por parámetro
+                //Se llama al método de Crear Evaluación, que recibe un objeto de tipo evaluación por parámetro
                 int registros = _oGestorEvaluacion.CrearEvaluacion(pEvaluacion);
                 if (registros > 0)
                 {
-                    //Se regresa a la pantalla de Registro de Empleados al terminar
+                    //Se regresa a la pantalla de Registro de Empleados al terminar y se muestra el mensaje de exitoso
                     TempData["EvaCorrecto"] = "Evaluación Creada Correctamente";
+                    //Se remueve la alerta del error
                     TempData.Remove("EvaError");
                 }
                 else
                 {
+                    //Se muestra el error
                     TempData["EvaError"] = "Error al crear la evaluación. Intente nuevamente.";
+                    //Se remueve la alerta exitosa
                     TempData.Remove("EvaCorrecto");
                 }
                 //Se regresa a la pantalla de Evaluación al terminar
@@ -316,7 +322,9 @@ namespace SoportePatitos.Controllers
 
             catch (Exception ex)
             {
+                //Se muestra el error
                 TempData["EvaError"] = "Error al crear la evaluación. Intente nuevamente.";
+                //Se remueve la alerta exitosa
                 TempData.Remove("EvaCorrecto");
                 //Se regresa a la pantalla de Evaluación al terminar
                 return RedirectToAction("Evaluacion");

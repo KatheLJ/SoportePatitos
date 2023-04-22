@@ -11,7 +11,7 @@ namespace SoportePatitosBD.Modelo
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Puesto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +21,7 @@ namespace SoportePatitosBD.Modelo
         }
     
         public int ID_puesto { get; set; }
+        [Display(Name = "Puesto")]
         public string Descripcion { get; set; }
         public int Salario { get; set; }
         public int Departamento { get; set; }

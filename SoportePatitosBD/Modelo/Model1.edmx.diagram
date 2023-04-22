@@ -14,8 +14,6 @@
         <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_hor__59FA5E80" ManuallyRouted="false" />
         <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_per__5812160E" ManuallyRouted="false" />
         <AssociationConnector Association="SoportePatitosModel.FK__Evaluacio__Cedul__6FE99F9F" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="SoportePatitosModel.Planilla" Width="1.5" PointX="7.5" PointY="3.75" />
-        <AssociationConnector Association="SoportePatitosModel.FK__Planilla__Cedula__09746778" />
         <EntityTypeShape EntityType="SoportePatitosModel.Asistencia" Width="1.5" PointX="7.5" PointY="7" />
         <EntityTypeShape EntityType="SoportePatitosModel.Estado_Civil" Width="1.5" PointX="5" PointY="3.5" />
         <AssociationConnector Association="SoportePatitosModel.FK__Asistenci__Cedul__5FB337D6" />
@@ -28,6 +26,8 @@
         <EntityTypeShape EntityType="SoportePatitosModel.sysdiagrams" Width="1.5" PointX="10.125" PointY="3.625" />
         <AssociationConnector Association="SoportePatitosModel.FK__Puesto__Departam__60A75C0F" />
         <AssociationConnector Association="SoportePatitosModel.FK__Empleado__ID_pue__59063A47" />
+        <EntityTypeShape EntityType="SoportePatitosModel.Planilla" Width="1.5" PointX="7.5" PointY="3.125" />
+        <AssociationConnector Association="SoportePatitosModel.FK__Planilla__Cedula__7DCDAAA2" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

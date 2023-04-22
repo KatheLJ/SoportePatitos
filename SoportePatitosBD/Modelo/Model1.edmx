@@ -82,7 +82,7 @@
           <Key>
             <PropertyRef Name="ID_planilla" />
           </Key>
-          <Property Name="ID_planilla" Type="int" Nullable="false" />
+          <Property Name="ID_planilla" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cedula" Type="int" Nullable="false" />
           <Property Name="Salario_bruto" Type="int" Nullable="false" />
           <Property Name="Deducciones_fiscales" Type="float" Nullable="false" />
@@ -224,7 +224,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Planilla__Cedula__09746778">
+        <Association Name="FK__Planilla__Cedula__7DCDAAA2">
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
           <End Role="Planilla" Type="Self.Planilla" Multiplicity="*" />
           <ReferentialConstraint>
@@ -297,7 +297,7 @@
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Evaluacion" EntitySet="Evaluacion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Planilla__Cedula__09746778" Association="Self.FK__Planilla__Cedula__09746778">
+          <AssociationSet Name="FK__Planilla__Cedula__7DCDAAA2" Association="Self.FK__Planilla__Cedula__7DCDAAA2">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="Planilla" EntitySet="Planilla" />
           </AssociationSet>
@@ -326,13 +326,13 @@
           <NavigationProperty Name="Horario" Relationship="Self.FK__Empleado__ID_hor__59FA5E80" FromRole="Empleado" ToRole="Horario" />
           <NavigationProperty Name="Perfil" Relationship="Self.FK__Empleado__ID_per__5812160E" FromRole="Empleado" ToRole="Perfil" />
           <NavigationProperty Name="Evaluacion" Relationship="Self.FK__Evaluacio__Cedul__6FE99F9F" FromRole="Empleado" ToRole="Evaluacion" />
-          <NavigationProperty Name="Planilla" Relationship="SoportePatitosModel.FK__Planilla__Cedula__09746778" FromRole="Empleado" ToRole="Planilla" />
           <Property Name="Cantidad_Hijos" Type="Int32" Nullable="false" />
           <Property Name="ID_Estado_Civil" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Asistencia" Relationship="SoportePatitosModel.FK__Asistenci__Cedul__5FB337D6" FromRole="Empleado" ToRole="Asistencia" />
           <NavigationProperty Name="Estado_Civil" Relationship="SoportePatitosModel.FK__Empleado__ID_Est__5812160E" FromRole="Empleado" ToRole="Estado_Civil" />
           <NavigationProperty Name="Departamento" Relationship="SoportePatitosModel.FK__Empleado__ID_dep__571DF1D5" FromRole="Empleado" ToRole="Departamento" />
           <NavigationProperty Name="Puesto" Relationship="SoportePatitosModel.FK__Empleado__ID_pue__59063A47" FromRole="Empleado" ToRole="Puesto" />
+          <NavigationProperty Name="Planilla" Relationship="SoportePatitosModel.FK__Planilla__Cedula__7DCDAAA2" FromRole="Empleado" ToRole="Planilla" />
         </EntityType>
         <EntityType Name="Estado">
           <Key>
@@ -435,11 +435,6 @@
             <End Role="Evaluacion" EntitySet="Evaluacion" />
           </AssociationSet>
           <FunctionImport Name="spEvaluacionEmpleado" ReturnType="Collection(SoportePatitosModel.spEvaluacionEmpleado_Result)" />
-          <EntitySet Name="Planilla" EntityType="SoportePatitosModel.Planilla" />
-          <AssociationSet Name="FK__Planilla__Cedula__09746778" Association="SoportePatitosModel.FK__Planilla__Cedula__09746778">
-            <End Role="Empleado" EntitySet="Empleado" />
-            <End Role="Planilla" EntitySet="Planilla" />
-          </AssociationSet>
           <FunctionImport Name="spPLanillla" ReturnType="Collection(SoportePatitosModel.spPLanillla_Result)" />
           <EntitySet Name="Asistencia" EntityType="SoportePatitosModel.Asistencia" />
           <EntitySet Name="Estado_Civil" EntityType="SoportePatitosModel.Estado_Civil" />
@@ -474,6 +469,11 @@
             <End Role="Puesto" EntitySet="Puesto" />
             <End Role="Empleado" EntitySet="Empleado" />
           </AssociationSet>
+          <EntitySet Name="Planilla" EntityType="SoportePatitosModel.Planilla" />
+          <AssociationSet Name="FK__Planilla__Cedula__7DCDAAA2" Association="SoportePatitosModel.FK__Planilla__Cedula__7DCDAAA2">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Planilla" EntitySet="Planilla" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="spEvaluacionEmpleado_Result">
           <Property Type="Int32" Name="Cedula" Nullable="false" />
@@ -484,31 +484,6 @@
           <Property Type="Int32" Name="Pregunta_4" Nullable="false" />
           <Property Type="Int32" Name="Pregunta_5" Nullable="false" />
         </ComplexType>
-        <EntityType Name="Planilla">
-          <Key>
-            <PropertyRef Name="ID_planilla" />
-          </Key>
-          <Property Name="ID_planilla" Type="Int32" Nullable="false" />
-          <Property Name="Cedula" Type="Int32" Nullable="false" />
-          <Property Name="Salario_bruto" Type="Int32" Nullable="false" />
-          <Property Name="Deducciones_fiscales" Type="Double" Nullable="false" />
-          <Property Name="Deducciones_CCSS" Type="Double" Nullable="false" />
-          <Property Name="Deducciones_ausencias" Type="Double" Nullable="false" />
-          <Property Name="Salario_neto" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Empleado" Relationship="SoportePatitosModel.FK__Planilla__Cedula__09746778" FromRole="Planilla" ToRole="Empleado" />
-        </EntityType>
-        <Association Name="FK__Planilla__Cedula__09746778">
-          <End Type="SoportePatitosModel.Empleado" Role="Empleado" Multiplicity="1" />
-          <End Type="SoportePatitosModel.Planilla" Role="Planilla" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Empleado">
-              <PropertyRef Name="Cedula" />
-            </Principal>
-            <Dependent Role="Planilla">
-              <PropertyRef Name="Cedula" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <ComplexType Name="spPLanillla_Result">
           <Property Type="Int32" Name="Cedula" Nullable="false" />
           <Property Type="String" Name="Nombre_Empleado" Nullable="false" MaxLength="50" />
@@ -649,6 +624,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Planilla">
+          <Key>
+            <PropertyRef Name="ID_planilla" />
+          </Key>
+          <Property Name="ID_planilla" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cedula" Type="Int32" Nullable="false" />
+          <Property Name="Salario_bruto" Type="Int32" Nullable="false" />
+          <Property Name="Deducciones_fiscales" Type="Double" Nullable="false" />
+          <Property Name="Deducciones_CCSS" Type="Double" Nullable="false" />
+          <Property Name="Deducciones_ausencias" Type="Double" Nullable="false" />
+          <Property Name="Salario_neto" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="SoportePatitosModel.FK__Planilla__Cedula__7DCDAAA2" FromRole="Planilla" ToRole="Empleado" />
+        </EntityType>
+        <Association Name="FK__Planilla__Cedula__7DCDAAA2">
+          <End Type="SoportePatitosModel.Empleado" Role="Empleado" Multiplicity="1" />
+          <End Type="SoportePatitosModel.Planilla" Role="Planilla" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="Cedula" />
+            </Principal>
+            <Dependent Role="Planilla">
+              <PropertyRef Name="Cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -717,19 +717,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Planilla">
-            <EntityTypeMapping TypeName="SoportePatitosModel.Planilla">
-              <MappingFragment StoreEntitySet="Planilla">
-                <ScalarProperty Name="Salario_neto" ColumnName="Salario_neto" />
-                <ScalarProperty Name="Deducciones_ausencias" ColumnName="Deducciones_ausencias" />
-                <ScalarProperty Name="Deducciones_CCSS" ColumnName="Deducciones_CCSS" />
-                <ScalarProperty Name="Deducciones_fiscales" ColumnName="Deducciones_fiscales" />
-                <ScalarProperty Name="Salario_bruto" ColumnName="Salario_bruto" />
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="ID_planilla" ColumnName="ID_planilla" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Asistencia">
             <EntityTypeMapping TypeName="SoportePatitosModel.Asistencia">
               <MappingFragment StoreEntitySet="Asistencia">
@@ -775,6 +762,19 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Planilla">
+            <EntityTypeMapping TypeName="SoportePatitosModel.Planilla">
+              <MappingFragment StoreEntitySet="Planilla">
+                <ScalarProperty Name="Salario_neto" ColumnName="Salario_neto" />
+                <ScalarProperty Name="Deducciones_ausencias" ColumnName="Deducciones_ausencias" />
+                <ScalarProperty Name="Deducciones_CCSS" ColumnName="Deducciones_CCSS" />
+                <ScalarProperty Name="Deducciones_fiscales" ColumnName="Deducciones_fiscales" />
+                <ScalarProperty Name="Salario_bruto" ColumnName="Salario_bruto" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="ID_planilla" ColumnName="ID_planilla" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

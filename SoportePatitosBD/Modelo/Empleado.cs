@@ -18,8 +18,8 @@ namespace SoportePatitosBD.Modelo
         public Empleado()
         {
             this.Evaluacion = new HashSet<Evaluacion>();
-            this.Planilla = new HashSet<Planilla>();
             this.Asistencia = new HashSet<Asistencia>();
+            this.Planilla = new HashSet<Planilla>();
         }
     
         public int Cedula { get; set; }
@@ -39,11 +39,11 @@ namespace SoportePatitosBD.Modelo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Evaluacion> Evaluacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Planilla> Planilla { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asistencia> Asistencia { get; set; }
         public virtual Estado_Civil Estado_Civil { get; set; }
         public virtual Departamento Departamento { get; set; }
         public virtual Puesto Puesto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Planilla> Planilla { get; set; }
     }
 }

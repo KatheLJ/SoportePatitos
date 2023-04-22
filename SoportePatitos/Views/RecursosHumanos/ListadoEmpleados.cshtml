@@ -26,6 +26,12 @@
                 <div class="">
                 </div>
                 <div class="table-responsive">
+                    @if (TempData["Message"] != null)
+                    {
+                        <div class="alert alert-danger">
+                            @TempData["Message"]
+                        </div>
+                    }
                     <!--Muestra una tabla con todas las columnas del empleado-->
                     <!--El DisplayNameFor muestr un label para cada atributo del modelo-->
                     <table class="table table-hover table-bordered">
@@ -64,6 +70,7 @@
                         <!--Con los datos asociados a cada uno de los atributos-->
                         @foreach (var item in Model)
                         {
+                            var evaluacion = item.Evaluacion.FirstOrDefault();
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Cedula)
@@ -93,13 +100,18 @@
                                     @Html.DisplayFor(modelItem => item.Contraseña)
                                 </td>
                                 <td>
-                                    <!--Permite dirigirse al reporte del empleado-->
-                                    @Html.ActionLink("Ver", "ReporteEmpleado", new { Cedula = item.Cedula }, new { @class = "btn btn-warning btn-sm" })
-                                    <br><br>
-                                    <!--Permite descargar el reporte del empleado en pdf-->
-                                    @Html.ActionLink("Descargar", "GeneratePDFReporte", new { Cedula = item.Cedula }, new { @class = "btn btn btn-dark btn-sm" })
-                                    <br><br>
 
+                                    @if (evaluacion != null)
+                                    {
+                                        @Html.ActionLink("Ver", "ReporteEmpleado", new { Cedula = item.Cedula }, new { @class = "btn btn-warning btn-sm" })
+                                        <br><br>
+                                        @Html.ActionLink("Descargar", "GeneratePDFReporte", new { Cedula = item.Cedula }, new { @class = "btn btn btn-dark btn-sm" })
+                                        <br><br>
+                                    }
+                                    else
+                                    {
+                                        <p>El empleado no tiene una evaluación.</p>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -110,4 +122,3 @@
         </div>
     </div>
 </div>
-<!--Fin-->

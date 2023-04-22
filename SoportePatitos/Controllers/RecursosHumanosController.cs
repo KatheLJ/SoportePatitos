@@ -346,7 +346,7 @@ namespace SoportePatitos.Controllers
             //Se llama a una conexión de tipo SoportePatitosEntities
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
-                var empleados = ContextoBD.Empleado.Include(a => a.Departamento).Include(a => a.Puesto).Include(a => a.Horario).Include(a => a.Perfil);
+                var empleados = ContextoBD.Empleado.Include(a => a.Departamento).Include(a => a.Puesto).Include(a => a.Horario).Include(a => a.Perfil).Include(a => a.Evaluacion);
                 return View(empleados.ToList());
             }
         }
@@ -361,11 +361,19 @@ namespace SoportePatitos.Controllers
             {
                 //Se hace una variable empleados para llamar a la conexión ContextoBD, tabla Evaluación
                 //Y con el Include se puede vincular otra tabla que sería la de empleado
-                var empleados = ContextoBD.Evaluacion.Include(a => a.Empleado);
+                var evaluacion = ContextoBD.Evaluacion.Include(a => a.Empleado).Where(x => x.Cedula == Cedula).FirstOrDefault();
                 //Se regresa la vista con la lista de empleados, donde la cédula sea igual a la cédula pasada por parámetro (solo el primer registro)
-                return View(empleados.ToList().Where(x => x.Cedula == Cedula).FirstOrDefault());
+                if (evaluacion == null)
+                {
+                    ViewBag.Message = "El empleado no tiene una evaluación.";
+                    return View();
+                }
+                else
+                {
+                    return View(evaluacion);
+                }
             }
-            
+
 
         }
 
@@ -377,13 +385,18 @@ namespace SoportePatitos.Controllers
             using (SoportePatitosEntities ContextoBD = new SoportePatitosEntities())
             {
                 //Se llama a la tabla de Evaluación, se pasa a lista, pero que solo se muestre el primer registro según la cédula pasada por parámetro
-                var empleados = ContextoBD.Evaluacion.Include(a => a.Empleado);
-                empleados.ToList().Where(x => x.Cedula == Cedula).FirstOrDefault();
-                //Se regresa la vista pero como PDF
-                return new Rotativa.ActionAsPdf("ReporteEmpleado", empleados.ToList().Where(x => x.Cedula == Cedula).FirstOrDefault());
+                var evaluacion = ContextoBD.Evaluacion.Include(a => a.Empleado).Where(x => x.Cedula == Cedula).FirstOrDefault();
+                if (evaluacion == null)
+                {
+                    TempData["Message"] = "El empleado no tiene una evaluación.";
+                    return RedirectToAction("ListadoEmpleados");
+                }
+                else
+                {
+                    return new Rotativa.ActionAsPdf("ReporteEmpleado", evaluacion);
+                }
             }
         }
-
         //****************************************************************************************************************************//
 
 
